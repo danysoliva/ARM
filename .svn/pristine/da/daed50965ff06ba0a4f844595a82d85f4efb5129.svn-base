@@ -1,0 +1,848 @@
+﻿namespace ARM.Production
+{
+    partial class OP_Production_Orders_Planner
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OP_Production_Orders_Planner));
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
+            this.btn_exit = new DevExpress.XtraBars.BarButtonItem();
+            this.bar2 = new DevExpress.XtraBars.Bar();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btn_OrderUpdate = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_ProduceMix1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Suspend = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_AddComment = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_mix1_stock = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_mix1_changeMix = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_mix2_Stock = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_mix2_ChangeMix = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.ContextMenu_Orders = new DevExpress.XtraBars.PopupMenu();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.PanelIzquierda = new DevExpress.XtraEditors.PanelControl();
+            this.grd_Orders = new DevExpress.XtraGrid.GridControl();
+            this.grdv_Orders = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.PanelDerecha = new DevExpress.XtraEditors.PanelControl();
+            this.navigationPane1 = new DevExpress.XtraBars.Navigation.NavigationPane();
+            this.np_Materiales = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.grp_mix1 = new DevExpress.XtraEditors.GroupControl();
+            this.grd_Mix1 = new DevExpress.XtraGrid.GridControl();
+            this.grdv_Mix1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col1_record_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_order_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_mix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_item_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_item_code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_item_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_item_type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_kg_batch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col1_kg_total = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grp_mix2 = new DevExpress.XtraEditors.GroupControl();
+            this.grd_Mix2 = new DevExpress.XtraGrid.GridControl();
+            this.grdv_Mix2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col2_record_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_order_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_mix = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_item_id = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_item_code = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_item_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_item_type = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_kg_batch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col2_kg_total = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.np_Comments = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.grd_Comments = new DevExpress.XtraGrid.GridControl();
+            this.grdv_Comments = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.np_Events = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.grd_events = new DevExpress.XtraGrid.GridControl();
+            this.grdv_events = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ContextMenu_Mix1 = new DevExpress.XtraBars.PopupMenu();
+            this.ContextMenu_Mix2 = new DevExpress.XtraBars.PopupMenu();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Orders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelIzquierda)).BeginInit();
+            this.PanelIzquierda.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelDerecha)).BeginInit();
+            this.PanelDerecha.SuspendLayout();
+            this.navigationPane1.SuspendLayout();
+            this.np_Materiales.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grp_mix1)).BeginInit();
+            this.grp_mix1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Mix1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Mix1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grp_mix2)).BeginInit();
+            this.grp_mix2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Mix2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Mix2)).BeginInit();
+            this.np_Comments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Comments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Comments)).BeginInit();
+            this.np_Events.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_events)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_events)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Mix1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Mix2)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // barManager1
+            // 
+            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar3,
+            this.bar1,
+            this.bar2});
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.DockControls.Add(this.standaloneBarDockControl1);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.barStaticItem1,
+            this.barHeaderItem1,
+            this.btn_exit,
+            this.barButtonItem1,
+            this.btn_OrderUpdate,
+            this.btn_ProduceMix1,
+            this.btn_Suspend,
+            this.btn_AddComment,
+            this.btn_mix1_stock,
+            this.btn_mix1_changeMix,
+            this.btn_mix2_Stock,
+            this.btn_mix2_ChangeMix,
+            this.barButtonItem2,
+            this.barButtonItem3});
+            this.barManager1.MaxItemId = 14;
+            this.barManager1.StatusBar = this.bar3;
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Custom 4";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barHeaderItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_exit)});
+            this.bar1.OptionsBar.AllowQuickCustomization = false;
+            this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Custom 4";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Glyph = global::ARM.Properties.Resources.Logo_x48;
+            this.barStaticItem1.Id = 0;
+            this.barStaticItem1.Name = "barStaticItem1";
+            this.barStaticItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionInMenu;
+            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barHeaderItem1
+            // 
+            this.barHeaderItem1.Caption = "Planificador de Ordenes de Producción";
+            this.barHeaderItem1.Id = 1;
+            this.barHeaderItem1.Name = "barHeaderItem1";
+            // 
+            // btn_exit
+            // 
+            this.btn_exit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_exit.Caption = "Salir";
+            this.btn_exit.Id = 2;
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_exit_ItemClick);
+            // 
+            // bar2
+            // 
+            this.bar2.BarName = "Custom 5";
+            this.bar2.DockCol = 0;
+            this.bar2.DockRow = 0;
+            this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
+            this.bar2.FloatLocation = new System.Drawing.Point(792, 291);
+            this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DrawDragBorder = false;
+            this.bar2.OptionsBar.UseWholeRow = true;
+            this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl1;
+            this.bar2.Text = "Custom 5";
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Nuevo Comentario";
+            this.barButtonItem1.Id = 3;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // standaloneBarDockControl1
+            // 
+            this.standaloneBarDockControl1.CausesValidation = false;
+            this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(0, 0);
+            this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(492, 37);
+            this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(923, 63);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 615);
+            this.barDockControlBottom.Size = new System.Drawing.Size(923, 23);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 552);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(923, 63);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 552);
+            // 
+            // btn_OrderUpdate
+            // 
+            this.btn_OrderUpdate.Caption = "Actualizar";
+            this.btn_OrderUpdate.Id = 4;
+            this.btn_OrderUpdate.ImageUri.Uri = "Recurrence";
+            this.btn_OrderUpdate.Name = "btn_OrderUpdate";
+            // 
+            // btn_ProduceMix1
+            // 
+            this.btn_ProduceMix1.Caption = "Producir Mix #1";
+            this.btn_ProduceMix1.Id = 5;
+            this.btn_ProduceMix1.ImageUri.Uri = "CustomizeGrid";
+            this.btn_ProduceMix1.Name = "btn_ProduceMix1";
+            this.btn_ProduceMix1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_ProduceMix1_ItemClick);
+            // 
+            // btn_Suspend
+            // 
+            this.btn_Suspend.Caption = "Suspender Mix #1";
+            this.btn_Suspend.Id = 6;
+            this.btn_Suspend.ImageUri.Uri = "Cut";
+            this.btn_Suspend.Name = "btn_Suspend";
+            // 
+            // btn_AddComment
+            // 
+            this.btn_AddComment.Caption = "Agregar Comentario";
+            this.btn_AddComment.Id = 7;
+            this.btn_AddComment.ImageUri.Uri = "Add";
+            this.btn_AddComment.Name = "btn_AddComment";
+            // 
+            // btn_mix1_stock
+            // 
+            this.btn_mix1_stock.Caption = "Ver Stock Disponible";
+            this.btn_mix1_stock.Id = 8;
+            this.btn_mix1_stock.ImageUri.Uri = "Paste";
+            this.btn_mix1_stock.Name = "btn_mix1_stock";
+            // 
+            // btn_mix1_changeMix
+            // 
+            this.btn_mix1_changeMix.Caption = "Cambiar a Mix2";
+            this.btn_mix1_changeMix.Id = 9;
+            this.btn_mix1_changeMix.ImageUri.Uri = "AlignHorizontalBottom";
+            this.btn_mix1_changeMix.Name = "btn_mix1_changeMix";
+            // 
+            // btn_mix2_Stock
+            // 
+            this.btn_mix2_Stock.Caption = "Ver Stock Disponible";
+            this.btn_mix2_Stock.Id = 10;
+            this.btn_mix2_Stock.ImageUri.Uri = "Paste";
+            this.btn_mix2_Stock.Name = "btn_mix2_Stock";
+            // 
+            // btn_mix2_ChangeMix
+            // 
+            this.btn_mix2_ChangeMix.Caption = "Cambiar a Mix1";
+            this.btn_mix2_ChangeMix.Id = 11;
+            this.btn_mix2_ChangeMix.ImageUri.Uri = "AlignHorizontalTop";
+            this.btn_mix2_ChangeMix.Name = "btn_mix2_ChangeMix";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "Producir Mix #2";
+            this.barButtonItem2.Id = 12;
+            this.barButtonItem2.ImageUri.Uri = "CustomizeGrid";
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "Suspender Mix #2";
+            this.barButtonItem3.Id = 13;
+            this.barButtonItem3.ImageUri.Uri = "Cut";
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // ContextMenu_Orders
+            // 
+            this.ContextMenu_Orders.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_OrderUpdate),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_AddComment),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_ProduceMix1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_Suspend),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
+            this.ContextMenu_Orders.Manager = this.barManager1;
+            this.ContextMenu_Orders.Name = "ContextMenu_Orders";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.PanelIzquierda);
+            this.panelControl1.Controls.Add(this.PanelDerecha);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 63);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(923, 552);
+            this.panelControl1.TabIndex = 4;
+            // 
+            // PanelIzquierda
+            // 
+            this.PanelIzquierda.Controls.Add(this.grd_Orders);
+            this.PanelIzquierda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelIzquierda.Location = new System.Drawing.Point(2, 2);
+            this.PanelIzquierda.Name = "PanelIzquierda";
+            this.PanelIzquierda.Size = new System.Drawing.Size(329, 548);
+            this.PanelIzquierda.TabIndex = 1;
+            // 
+            // grd_Orders
+            // 
+            this.grd_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_Orders.Location = new System.Drawing.Point(2, 2);
+            this.grd_Orders.MainView = this.grdv_Orders;
+            this.grd_Orders.MenuManager = this.barManager1;
+            this.grd_Orders.Name = "grd_Orders";
+            this.grd_Orders.Size = new System.Drawing.Size(325, 544);
+            this.grd_Orders.TabIndex = 0;
+            this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_Orders});
+            // 
+            // grdv_Orders
+            // 
+            this.grdv_Orders.GridControl = this.grd_Orders;
+            this.grdv_Orders.Name = "grdv_Orders";
+            this.grdv_Orders.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.grdv_Orders.OptionsBehavior.Editable = false;
+            this.grdv_Orders.OptionsView.ShowAutoFilterRow = true;
+            this.grdv_Orders.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Orders_RowClick);
+            this.grdv_Orders.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdv_Orders_FocusedRowChanged);
+            // 
+            // PanelDerecha
+            // 
+            this.PanelDerecha.Controls.Add(this.navigationPane1);
+            this.PanelDerecha.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PanelDerecha.Location = new System.Drawing.Point(331, 2);
+            this.PanelDerecha.Name = "PanelDerecha";
+            this.PanelDerecha.Size = new System.Drawing.Size(590, 548);
+            this.PanelDerecha.TabIndex = 0;
+            // 
+            // navigationPane1
+            // 
+            this.navigationPane1.AllowResize = false;
+            this.navigationPane1.Controls.Add(this.np_Materiales);
+            this.navigationPane1.Controls.Add(this.np_Comments);
+            this.navigationPane1.Controls.Add(this.np_Events);
+            this.navigationPane1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationPane1.Location = new System.Drawing.Point(2, 2);
+            this.navigationPane1.Name = "navigationPane1";
+            this.navigationPane1.PageProperties.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navigationPane1.PageProperties.AppearanceCaption.Options.UseFont = true;
+            this.navigationPane1.PageProperties.ShowCollapseButton = false;
+            this.navigationPane1.PageProperties.ShowExpandButton = false;
+            this.navigationPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.np_Materiales,
+            this.np_Comments,
+            this.np_Events});
+            this.navigationPane1.RegularSize = new System.Drawing.Size(586, 544);
+            this.navigationPane1.SelectedPage = this.np_Comments;
+            this.navigationPane1.SelectedPageIndex = 0;
+            this.navigationPane1.Size = new System.Drawing.Size(586, 544);
+            this.navigationPane1.TabIndex = 0;
+            this.navigationPane1.Text = "navigationPane1";
+            // 
+            // np_Materiales
+            // 
+            this.np_Materiales.Caption = "Materiales";
+            this.np_Materiales.Controls.Add(this.tableLayoutPanel1);
+            this.np_Materiales.Name = "np_Materiales";
+            this.np_Materiales.Size = new System.Drawing.Size(492, 495);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.grp_mix1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grp_mix2, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(492, 495);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // grp_mix1
+            // 
+            this.grp_mix1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grp_mix1.AppearanceCaption.Options.UseFont = true;
+            this.grp_mix1.Controls.Add(this.grd_Mix1);
+            this.grp_mix1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grp_mix1.Location = new System.Drawing.Point(3, 3);
+            this.grp_mix1.Name = "grp_mix1";
+            this.grp_mix1.Size = new System.Drawing.Size(486, 241);
+            this.grp_mix1.TabIndex = 0;
+            this.grp_mix1.Text = "Primer Mezclado";
+            // 
+            // grd_Mix1
+            // 
+            this.grd_Mix1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_Mix1.Location = new System.Drawing.Point(2, 21);
+            this.grd_Mix1.MainView = this.grdv_Mix1;
+            this.grd_Mix1.MenuManager = this.barManager1;
+            this.grd_Mix1.Name = "grd_Mix1";
+            this.grd_Mix1.Size = new System.Drawing.Size(482, 218);
+            this.grd_Mix1.TabIndex = 0;
+            this.grd_Mix1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_Mix1});
+            // 
+            // grdv_Mix1
+            // 
+            this.grdv_Mix1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col1_record_id,
+            this.col1_order_id,
+            this.col1_mix,
+            this.col1_item_id,
+            this.col1_item_code,
+            this.col1_item_name,
+            this.col1_item_type,
+            this.col1_kg_batch,
+            this.col1_kg_total});
+            this.grdv_Mix1.GridControl = this.grd_Mix1;
+            this.grdv_Mix1.Name = "grdv_Mix1";
+            this.grdv_Mix1.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.grdv_Mix1.OptionsBehavior.Editable = false;
+            this.grdv_Mix1.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Mix1_RowClick);
+            // 
+            // col1_record_id
+            // 
+            this.col1_record_id.Caption = "ID Registro";
+            this.col1_record_id.FieldName = "record_id";
+            this.col1_record_id.Name = "col1_record_id";
+            // 
+            // col1_order_id
+            // 
+            this.col1_order_id.Caption = "ID Orden";
+            this.col1_order_id.FieldName = "order_id";
+            this.col1_order_id.Name = "col1_order_id";
+            // 
+            // col1_mix
+            // 
+            this.col1_mix.Caption = "Mix";
+            this.col1_mix.FieldName = "mix";
+            this.col1_mix.Name = "col1_mix";
+            // 
+            // col1_item_id
+            // 
+            this.col1_item_id.Caption = "ID Material";
+            this.col1_item_id.FieldName = "item_id";
+            this.col1_item_id.Name = "col1_item_id";
+            this.col1_item_id.Visible = true;
+            this.col1_item_id.VisibleIndex = 0;
+            this.col1_item_id.Width = 64;
+            // 
+            // col1_item_code
+            // 
+            this.col1_item_code.Caption = "Código";
+            this.col1_item_code.FieldName = "item_code";
+            this.col1_item_code.Name = "col1_item_code";
+            this.col1_item_code.Visible = true;
+            this.col1_item_code.VisibleIndex = 1;
+            this.col1_item_code.Width = 87;
+            // 
+            // col1_item_name
+            // 
+            this.col1_item_name.Caption = "Material";
+            this.col1_item_name.FieldName = "item_name";
+            this.col1_item_name.Name = "col1_item_name";
+            this.col1_item_name.Visible = true;
+            this.col1_item_name.VisibleIndex = 2;
+            this.col1_item_name.Width = 157;
+            // 
+            // col1_item_type
+            // 
+            this.col1_item_type.Caption = "Tipo Material";
+            this.col1_item_type.FieldName = "item_type";
+            this.col1_item_type.Name = "col1_item_type";
+            // 
+            // col1_kg_batch
+            // 
+            this.col1_kg_batch.Caption = "Kg x Batch";
+            this.col1_kg_batch.FieldName = "kg_batch";
+            this.col1_kg_batch.Name = "col1_kg_batch";
+            this.col1_kg_batch.Visible = true;
+            this.col1_kg_batch.VisibleIndex = 3;
+            this.col1_kg_batch.Width = 63;
+            // 
+            // col1_kg_total
+            // 
+            this.col1_kg_total.Caption = "Kg Total";
+            this.col1_kg_total.FieldName = "kg_total";
+            this.col1_kg_total.Name = "col1_kg_total";
+            this.col1_kg_total.Visible = true;
+            this.col1_kg_total.VisibleIndex = 4;
+            this.col1_kg_total.Width = 95;
+            // 
+            // grp_mix2
+            // 
+            this.grp_mix2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grp_mix2.AppearanceCaption.Options.UseFont = true;
+            this.grp_mix2.Controls.Add(this.grd_Mix2);
+            this.grp_mix2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grp_mix2.Location = new System.Drawing.Point(3, 250);
+            this.grp_mix2.Name = "grp_mix2";
+            this.grp_mix2.Size = new System.Drawing.Size(486, 242);
+            this.grp_mix2.TabIndex = 1;
+            this.grp_mix2.Text = "Segundo Mezclado";
+            // 
+            // grd_Mix2
+            // 
+            this.grd_Mix2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_Mix2.Location = new System.Drawing.Point(2, 21);
+            this.grd_Mix2.MainView = this.grdv_Mix2;
+            this.grd_Mix2.MenuManager = this.barManager1;
+            this.grd_Mix2.Name = "grd_Mix2";
+            this.grd_Mix2.Size = new System.Drawing.Size(482, 219);
+            this.grd_Mix2.TabIndex = 0;
+            this.grd_Mix2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_Mix2});
+            // 
+            // grdv_Mix2
+            // 
+            this.grdv_Mix2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col2_record_id,
+            this.col2_order_id,
+            this.col2_mix,
+            this.col2_item_id,
+            this.col2_item_code,
+            this.col2_item_name,
+            this.col2_item_type,
+            this.col2_kg_batch,
+            this.col2_kg_total});
+            this.grdv_Mix2.GridControl = this.grd_Mix2;
+            this.grdv_Mix2.Name = "grdv_Mix2";
+            this.grdv_Mix2.OptionsBehavior.AutoSelectAllInEditor = false;
+            this.grdv_Mix2.OptionsBehavior.Editable = false;
+            this.grdv_Mix2.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Mix2_RowClick);
+            // 
+            // col2_record_id
+            // 
+            this.col2_record_id.Caption = "ID Registro";
+            this.col2_record_id.FieldName = "record_id";
+            this.col2_record_id.Name = "col2_record_id";
+            // 
+            // col2_order_id
+            // 
+            this.col2_order_id.Caption = "ID Orden";
+            this.col2_order_id.FieldName = "order_id";
+            this.col2_order_id.Name = "col2_order_id";
+            // 
+            // col2_mix
+            // 
+            this.col2_mix.Caption = "Mix";
+            this.col2_mix.FieldName = "mix";
+            this.col2_mix.Name = "col2_mix";
+            // 
+            // col2_item_id
+            // 
+            this.col2_item_id.Caption = "ID Material";
+            this.col2_item_id.FieldName = "item_id";
+            this.col2_item_id.Name = "col2_item_id";
+            this.col2_item_id.Visible = true;
+            this.col2_item_id.VisibleIndex = 0;
+            this.col2_item_id.Width = 65;
+            // 
+            // col2_item_code
+            // 
+            this.col2_item_code.Caption = "Código";
+            this.col2_item_code.FieldName = "item_code";
+            this.col2_item_code.Name = "col2_item_code";
+            this.col2_item_code.Visible = true;
+            this.col2_item_code.VisibleIndex = 1;
+            this.col2_item_code.Width = 85;
+            // 
+            // col2_item_name
+            // 
+            this.col2_item_name.Caption = "Material";
+            this.col2_item_name.FieldName = "item_name";
+            this.col2_item_name.Name = "col2_item_name";
+            this.col2_item_name.Visible = true;
+            this.col2_item_name.VisibleIndex = 2;
+            this.col2_item_name.Width = 158;
+            // 
+            // col2_item_type
+            // 
+            this.col2_item_type.Caption = "Tipo Material";
+            this.col2_item_type.FieldName = "item_type";
+            this.col2_item_type.Name = "col2_item_type";
+            // 
+            // col2_kg_batch
+            // 
+            this.col2_kg_batch.Caption = "Kg x Batch";
+            this.col2_kg_batch.FieldName = "kg_batch";
+            this.col2_kg_batch.Name = "col2_kg_batch";
+            this.col2_kg_batch.Visible = true;
+            this.col2_kg_batch.VisibleIndex = 3;
+            this.col2_kg_batch.Width = 65;
+            // 
+            // col2_kg_total
+            // 
+            this.col2_kg_total.Caption = "Kg Total";
+            this.col2_kg_total.FieldName = "kg_total";
+            this.col2_kg_total.Name = "col2_kg_total";
+            this.col2_kg_total.Visible = true;
+            this.col2_kg_total.VisibleIndex = 4;
+            this.col2_kg_total.Width = 93;
+            // 
+            // np_Comments
+            // 
+            this.np_Comments.Caption = "Comentarios";
+            this.np_Comments.Controls.Add(this.grd_Comments);
+            this.np_Comments.Controls.Add(this.standaloneBarDockControl1);
+            this.np_Comments.Name = "np_Comments";
+            this.np_Comments.Size = new System.Drawing.Size(492, 495);
+            // 
+            // grd_Comments
+            // 
+            this.grd_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_Comments.Location = new System.Drawing.Point(0, 37);
+            this.grd_Comments.MainView = this.grdv_Comments;
+            this.grd_Comments.MenuManager = this.barManager1;
+            this.grd_Comments.Name = "grd_Comments";
+            this.grd_Comments.Size = new System.Drawing.Size(492, 458);
+            this.grd_Comments.TabIndex = 1;
+            this.grd_Comments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_Comments});
+            // 
+            // grdv_Comments
+            // 
+            this.grdv_Comments.GridControl = this.grd_Comments;
+            this.grdv_Comments.Name = "grdv_Comments";
+            // 
+            // np_Events
+            // 
+            this.np_Events.Caption = "Eventos";
+            this.np_Events.Controls.Add(this.grd_events);
+            this.np_Events.Name = "np_Events";
+            this.np_Events.Size = new System.Drawing.Size(492, 495);
+            // 
+            // grd_events
+            // 
+            this.grd_events.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_events.Location = new System.Drawing.Point(0, 0);
+            this.grd_events.MainView = this.grdv_events;
+            this.grd_events.MenuManager = this.barManager1;
+            this.grd_events.Name = "grd_events";
+            this.grd_events.Size = new System.Drawing.Size(492, 495);
+            this.grd_events.TabIndex = 1;
+            this.grd_events.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grdv_events});
+            // 
+            // grdv_events
+            // 
+            this.grdv_events.GridControl = this.grd_events;
+            this.grdv_events.Name = "grdv_events";
+            // 
+            // ContextMenu_Mix1
+            // 
+            this.ContextMenu_Mix1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_mix1_stock),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_mix1_changeMix)});
+            this.ContextMenu_Mix1.Manager = this.barManager1;
+            this.ContextMenu_Mix1.Name = "ContextMenu_Mix1";
+            // 
+            // ContextMenu_Mix2
+            // 
+            this.ContextMenu_Mix2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_mix2_Stock),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_mix2_ChangeMix)});
+            this.ContextMenu_Mix2.Manager = this.barManager1;
+            this.ContextMenu_Mix2.Name = "ContextMenu_Mix2";
+            // 
+            // OP_Production_Orders_Planner
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(923, 638);
+            this.Controls.Add(this.panelControl1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "OP_Production_Orders_Planner";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Aquafeed - Production Orders Planner";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.OP_Production_Orders_Planner_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Orders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PanelIzquierda)).EndInit();
+            this.PanelIzquierda.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PanelDerecha)).EndInit();
+            this.PanelDerecha.ResumeLayout(false);
+            this.navigationPane1.ResumeLayout(false);
+            this.np_Materiales.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grp_mix1)).EndInit();
+            this.grp_mix1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Mix1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Mix1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grp_mix2)).EndInit();
+            this.grp_mix2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Mix2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Mix2)).EndInit();
+            this.np_Comments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_Comments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_Comments)).EndInit();
+            this.np_Events.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_events)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdv_events)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Mix1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ContextMenu_Mix2)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarHeaderItem barHeaderItem1;
+        private DevExpress.XtraBars.BarButtonItem btn_exit;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.PanelControl PanelIzquierda;
+        private DevExpress.XtraGrid.GridControl grd_Orders;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_Orders;
+        private DevExpress.XtraEditors.PanelControl PanelDerecha;
+        private DevExpress.XtraBars.Navigation.NavigationPane navigationPane1;
+        private DevExpress.XtraBars.Navigation.NavigationPage np_Materiales;
+        private DevExpress.XtraBars.Navigation.NavigationPage np_Comments;
+        private DevExpress.XtraBars.Navigation.NavigationPage np_Events;
+        private DevExpress.XtraBars.PopupMenu ContextMenu_Orders;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraEditors.GroupControl grp_mix1;
+        private DevExpress.XtraGrid.GridControl grd_Mix1;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_Mix1;
+        private DevExpress.XtraEditors.GroupControl grp_mix2;
+        private DevExpress.XtraGrid.GridControl grd_Mix2;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_Mix2;
+        private DevExpress.XtraBars.Bar bar2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl1;
+        private DevExpress.XtraGrid.GridControl grd_Comments;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_Comments;
+        private DevExpress.XtraGrid.GridControl grd_events;
+        private DevExpress.XtraGrid.Views.Grid.GridView grdv_events;
+        private DevExpress.XtraBars.PopupMenu ContextMenu_Mix1;
+        private DevExpress.XtraBars.PopupMenu ContextMenu_Mix2;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_record_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_order_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_mix;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_item_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_item_code;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_item_name;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_item_type;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_kg_batch;
+        private DevExpress.XtraGrid.Columns.GridColumn col1_kg_total;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_record_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_order_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_mix;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_item_id;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_item_code;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_item_name;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_item_type;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_kg_batch;
+        private DevExpress.XtraGrid.Columns.GridColumn col2_kg_total;
+        private DevExpress.XtraBars.BarButtonItem btn_OrderUpdate;
+        private DevExpress.XtraBars.BarButtonItem btn_ProduceMix1;
+        private DevExpress.XtraBars.BarButtonItem btn_Suspend;
+        private DevExpress.XtraBars.BarButtonItem btn_AddComment;
+        private DevExpress.XtraBars.BarButtonItem btn_mix1_stock;
+        private DevExpress.XtraBars.BarButtonItem btn_mix1_changeMix;
+        private DevExpress.XtraBars.BarButtonItem btn_mix2_Stock;
+        private DevExpress.XtraBars.BarButtonItem btn_mix2_ChangeMix;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+    }
+}

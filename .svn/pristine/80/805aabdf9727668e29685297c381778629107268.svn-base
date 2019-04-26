@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using DevExpress.UserSkins;
+using DevExpress.Skins;
+using DevExpress.LookAndFeel;
+
+namespace ARM
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+
+            bool result;
+            var mutex = new System.Threading.Mutex(true, "UniqueAppId", out result);
+
+            if (!result)
+            {
+                //MessageBox.Show("Another instance is already running.");
+                return;
+            }
+
+            //Application.Run(new DUO.Moisture_Sensor_Test());    //1
+            //Application.Run(new DUO.Siemens_Comm_Library());  //0
+            //Application.Run(new Production.OP_Production_Orders_Planner()); return;     // DR, JV
+
+            //Application.Run(new Mants.Mants_Bins());    //2 donde!
+            //Application.Run(new Mants.Mant_MP_xBin());  //3
+            //Application.Run(new Production.OP_Production_Orders_Planner("1012")); return;
+            
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            BonusSkins.Register();
+            SkinManager.EnableFormSkins();
+            UserLookAndFeel.Default.SetSkinStyle("Whiteprint");
+            //UserLookAndFeel.Default.SetSkinStyle("Sharp");
+            Application.Run(new Production.OP_Production_Orders_Planner("1012"));
+
+            //Application.Run(new Main_Form());
+            //Application.Run(new Reports.IntakeViewer()); /// BY DAVID RIEGA
+
+            GC.KeepAlive(mutex);
+        }
+
+
+    }
+}

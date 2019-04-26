@@ -1,0 +1,261 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using ARM.Classes;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Columns;
+using System.Data.SqlClient;
+
+namespace ARM.Reports
+{
+    public partial class IntakeViewer : DevExpress.XtraEditors.XtraForm
+    {
+        FMOP fmop = new FMOP();
+        DataOperations dp = new DataOperations();
+
+        int max_id = 0;
+   
+        public IntakeViewer()
+        {
+            InitializeComponent();
+
+            #region Screen Selection
+            if (Screen.AllScreens.Count() > 1)
+            {
+                switch (Screen.AllScreens.Count())
+                {
+                    case 2:
+                        this.Location = Screen.AllScreens[1].WorkingArea.Location;
+                        break;
+                    case 3:
+                        this.Location = Screen.AllScreens[2].WorkingArea.Location;
+                        break;
+                    case 4:
+                        this.Location = Screen.AllScreens[3].WorkingArea.Location;
+                        break;
+                    case 5:
+                        this.Location = Screen.AllScreens[4].WorkingArea.Location;
+                        break;
+                    case 6://Configuración Actual Consola
+                        this.Location = Screen.AllScreens[5].WorkingArea.Location;
+                        break;
+                }
+            }
+
+            #endregion
+
+        }
+
+        private void btn_exit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void IntakeViewer_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                max_id = int.Parse(dp.APMS_GetSelectData(@"SELECT MAX([id]) FROM [dbo].[OP_Batch_Intake_Data_RM]").Tables[0].Rows[0][0].ToString());
+                txt_status.Caption = "Detenido";
+                txt_status.Appearance.ForeColor = Color.Red;
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Error: " + ex.Message);  }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                #region Old Query
+
+                string query = @"   SELECT Consumos.[id] AS 'ID'
+	                                                                  ,Consumos.[order_code] AS 'Orden Producción'
+	                                                                  ,Consumos.[product_code] AS 'Código PT'
+	                                                                  ,Consumos.[product_name] AS 'Producto'
+	                                                                  ,Consumos.[lot_number] AS 'Numero Lote'
+	                                                                  ,(CASE Consumos.[mix] WHEN 1 THEN 'Mix #1' ELSE 'Mix #2' END) AS 'Mix'
+	                                                                  ,Consumos.[bin_code] AS 'Código BIN'
+	                                                                  ,Consumos.[bin_name] AS 'Nombre BIN'
+	                                                                  ,Consumos.[material_code] AS 'Cod. Material'
+	                                                                  ,Consumos.[material_name] AS 'Material'
+	                                                                  ,(CASE Consumos.[intake_type] WHEN 'RM' THEN 'Materia Prima' WHEN 'NC' THEN 'Núcleo' WHEN 'SFP' THEN 'Pre-Mezcla' WHEN 'FP' THEN 'Producto Terminado' ELSE 'N/A' END) AS Tipo
+	                                                                  ,Consumos.[intake_plan] AS 'Planificado'
+	                                                                  ,Consumos.[intake_real] AS 'Real'
+	                                                                  ,Consumos.[batch_start] AS 'Registrado'
+                                                                FROM
+                                                                (SELECT A.[id]
+                                                                      --,A.[order_id]
+                                                                                  ,B.[order_code]
+                                                                                  ,C.[code] AS 'product_code'
+                                                                                  ,C.[long_name] AS 'product_name'
+                                                                                  ,B.[fp_lot_number] AS 'lot_number'
+                                                                      --,A.[order_mix_id]
+                                                                                  ,D.[mix_fullCode] AS 'order_mix_code'
+                                                                      --,A.[material_id]
+                                                                                  ,E.[code] AS 'material_code'
+                                                                                  ,E.[long_name] AS 'material_name'
+                                                                      --,A.[bin_id]
+                                                                                  ,F.[code] AS 'bin_code'
+                                                                      --,A.[bin_codes]
+                                                                                  ,F.[long_name] AS 'bin_name'
+                                                                      --,A.[lot_id]
+                                                                      ,A.[intake_type]
+                                                                      --,A.[batch_no]
+                                                                      ,A.[intake_plan]
+                                                                      ,A.[intake_real]
+                                                                      ,A.[mix]
+                                                                      --,A.[logged_user]
+                                                                      ,A.[batch_start]
+                                                                      ,A.[batch_end]
+                                                                  FROM [APMS].[dbo].[OP_Batch_Intake_Data_RM] A
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main] B
+                                                                                ON A.[order_id] = B.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Finished_Products] C
+                                                                                ON B.[fp_id] = C.[id]
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main_Mix] D
+                                                                                ON A.[order_mix_id] = D.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Raw_Material] E
+                                                                                ON A.[material_id] = E.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Bins] F
+                                                                                ON A.[bin_id] = F.[id]
+                                                                WHERE A.[intake_plan] <> 0
+                                                                AND [intake_type] = 'RM'
+                                                                --AND A.id > 2296
+
+                                                                UNION ALL
+
+                                                                SELECT A.[id]
+                                                                      --,A.[order_id]
+                                                                                  ,B.[order_code]
+                                                                                  ,C.[code] AS 'product_code'
+                                                                                  ,C.[long_name] AS 'product_name'
+                                                                                  ,B.[fp_lot_number] AS 'lot_number'
+                                                                      --,A.[order_mix_id]
+                                                                                  ,D.[mix_fullCode] AS 'order_mix_code'
+                                                                      --,A.[material_id]
+                                                                                  ,E.[nc_code] AS 'material_code'
+                                                                                  ,E.[nc_name] AS 'material_name'
+                                                                      --,A.[bin_id]
+                                                                                  ,F.[code] AS 'bin_code'
+                                                                      --,A.[bin_codes]
+                                                                                  ,F.[long_name] AS 'bin_name'
+                                                                      --,A.[lot_id]
+                                                                      ,A.[intake_type]
+                                                                      --,A.[batch_no]
+                                                                      ,A.[intake_plan]
+                                                                      ,A.[intake_real]
+                                                                      ,A.[mix]
+                                                                      --,A.[logged_user]
+                                                                      ,A.[batch_start]
+                                                                      ,A.[batch_end]
+                                                                  FROM [APMS].[dbo].[OP_Batch_Intake_Data_RM] A
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main] B
+                                                                                ON A.[order_id] = B.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Finished_Products] C
+                                                                                ON B.[fp_id] = C.[id]
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main_Mix] D
+                                                                                ON A.[order_mix_id] = D.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_NC_Main] E
+                                                                                ON A.[material_id] = E.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Bins] F
+                                                                                ON A.[bin_id] = F.[id]
+                                                                WHERE A.[intake_plan] <> 0
+                                                                AND [intake_type] = 'NC'
+                                                                --AND A.id > 2296
+
+                                                                UNION ALL
+
+                                                                SELECT A.[id]
+                                                                      --,A.[order_id]
+                                                                                  ,B.[order_code]
+                                                                                  ,C.[code] AS 'product_code'
+                                                                                  ,C.[long_name] AS 'product_name'
+                                                                                  ,B.[fp_lot_number] AS 'lot_number'
+                                                                      --,A.[order_mix_id]
+                                                                                  ,D.[mix_fullCode] AS 'order_mix_code'
+                                                                      --,A.[material_id]
+                                                                                  ,E.[fp_lot_number] AS 'material_code'
+                                                                                  ,E.[mix_fullCode] AS 'material_name'
+                                                                      --,A.[bin_id]
+                                                                                  ,F.[code] AS 'bin_code'
+                                                                      --,A.[bin_codes]
+                                                                                  ,F.[long_name] AS 'bin_name'
+                                                                      --,A.[lot_id]
+                                                                      ,A.[intake_type]
+                                                                      --,A.[batch_no]
+                                                                      ,A.[intake_plan]
+                                                                      ,A.[intake_real]
+                                                                      ,A.[mix]
+                                                                      --,A.[logged_user]
+                                                                      ,A.[batch_start]
+                                                                      ,A.[batch_end]
+                                                                  FROM [APMS].[dbo].[OP_Batch_Intake_Data_RM] A
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main] B
+                                                                                ON A.[order_id] = B.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Finished_Products] C
+                                                                                ON B.[fp_id] = C.[id]
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main_Mix] D
+                                                                                ON A.[order_mix_id] = D.[id]
+                                                                INNER JOIN [APMS].[dbo].[OP_Production_Orders_Main_Mix] E
+                                                                                ON A.[material_id] = E.[id]
+                                                                INNER JOIN [APMS].[dbo].[MD_Bins] F
+                                                                                ON A.[bin_id] = F.[id]
+                                                                WHERE A.[intake_plan] <> 0
+                                                                AND [intake_type] = 'SFP'
+                                                                --AND A.id > 2296
+                                                                ) Consumos
+                                                                WHERE Consumos.[id] > " + max_id.ToString() + @"
+                                                                ORDER BY Consumos.[id]";
+#endregion
+
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@last_id", max_id);
+
+                grd_data.DataSource = dp.APMS_Exec_SP_Get_Data("RPT_Live_Intake_Data", command);
+            }
+            catch (Exception) 
+            { throw; }
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            timer.Enabled = true;
+            timer.Start();
+
+            txt_status.Caption = "Iniciado";
+            txt_status.Appearance.ForeColor = Color.Green;
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            timer.Enabled = false;
+            timer.Stop();
+            txt_status.Caption = "Detenido";
+            txt_status.Appearance.ForeColor = Color.Red;
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            IntakeViewer_Load(sender, e);
+            timer_Tick(sender, e);
+        }
+
+        private void grdv_data_GroupLevelStyle(object sender, DevExpress.XtraGrid.Views.Grid.GroupLevelStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            GridColumn column = View.GroupedColumns[e.Level];
+            if (column == null) return;
+            e.LevelAppearance.Combine(column.AppearanceHeader);
+        }
+    }
+}

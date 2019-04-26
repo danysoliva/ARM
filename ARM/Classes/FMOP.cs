@@ -1,0 +1,719 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Data;
+
+namespace ARM.Classes
+{
+    class FMOP
+    {
+        DataOperations dp = new DataOperations();
+
+        #region External Formulas Related
+
+        /// <summary>
+        /// Retorna la informacion de encabezado de la formula original
+        /// </summary>
+        /// <param name="formula_ff">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable ext_formula_get_main(int formula_ff)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula_ff;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_Main", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la estructura de la formula original
+        /// </summary>
+        /// <param name="formula_ff">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable ext_formula_get_structure(int formula_ff)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula_ff;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_Structure", cmd);
+        }
+
+        /// <summary>
+        /// Gets the Main information of the formula, considering the status and the available and due date
+        /// </summary>
+        /// <param name="min_status">Minimum status for query</param>
+        /// <param name="max_status">Maximum status for query</param>
+        /// <returns>Returns a Datatable with the fomrula information</returns>
+        public DataTable ext_formula_get_available_planning(int min_status, int max_status)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@min_status", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@max_status", SqlDbType.Int));
+
+            cmd.Parameters["@min_status"].Value = min_status;
+            cmd.Parameters["@max_status"].Value = max_status;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_Available_Planning", cmd);
+        }
+
+        /// <summary>
+        /// Gets the Main information of the formula, considering the status Only
+        /// </summary>
+        /// <param name="min_status">Minimum status for query</param>
+        /// <param name="max_status">Maximum status for query</param>
+        /// <returns>Returns a Datatable with the fomrula information</returns>
+        public DataTable ext_formula_get_by_status(int min_status, int max_status)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@min_status", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@max_status", SqlDbType.Int));
+
+            cmd.Parameters["@min_status"].Value = min_status;
+            cmd.Parameters["@max_status"].Value = max_status;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_By_Status", cmd);
+        }
+
+        /// <summary>
+        /// Inserta comentario en la tabla "FML_FF_Comments"
+        /// </summary>
+        /// <param name="formula">ID de la formula a la que hace referencia le comentario</param>
+        /// <param name="user">Usuario que inserta el comentario</param>
+        /// <param name="comment">Comentario</param>
+        /// <param name="is_reject">Flag que determina si el comentario esta relacionado a un rechazo de formula</param>
+        public void ext_formula_comment_entry(int formula, int user, string comment, bool is_reject)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@comment_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@comment", SqlDbType.VarChar));
+            cmd.Parameters.Add(new SqlParameter("@is_reject", SqlDbType.Bit));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@comment_by"].Value = user;
+            cmd.Parameters["@comment"].Value = comment;
+            cmd.Parameters["@is_reject"].Value = is_reject;
+
+            dp.ACS_Exec_SP("FM_FF_Insert_Comment", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la lista de comentarios relacionados a una formula externa
+        /// </summary>
+        /// <param name="formula">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable ext_formula_get_comments(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@formula", SqlDbType.Int));
+
+            cmd.Parameters["@formula"].Value = formula;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_Comments", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la lista de eventos relacionados a una formula externa
+        /// </summary>
+        /// <param name="formula">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable ext_formula_get_events(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@formula", SqlDbType.Int));
+
+            cmd.Parameters["@formula"].Value = formula;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FF_Get_Events", cmd);
+        }
+
+        /// <summary>
+        /// Inserta evento en la tabla "FML_FF_Events"
+        /// </summary>
+        /// <param name="formula">ID de la formula a la que hace referencia el evento</param>
+        /// <param name="user">Usuario que ocaciona el evento</param>
+        /// <param name="event_type">Tipo de evento</param>
+        /// <param name="event_comment">Comentario del evento</param>
+        public void ext_formula_event_entry(int formula, int user, string event_type, string event_comment)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@event_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@event_type", SqlDbType.VarChar));
+            cmd.Parameters.Add(new SqlParameter("@event_comment", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@event_by"].Value = user;
+            cmd.Parameters["@event_type"].Value = event_type;
+            cmd.Parameters["@event_comment"].Value = event_comment;
+
+            dp.ACS_Exec_SP("FM_FF_Insert_Event", cmd);
+        }
+
+        /// <summary>
+        /// Metodo para aprovacion de la formula, las validaciones para su ejecucion deben hacerce antes
+        /// </summary>
+        /// <param name="formula">ID de la formula que se aprobara</param>
+        /// <param name="user_approve">Usuario que aprobo la formula</param>
+        /// <param name="approval_type">Tipo de aprovacion puede ser "FIN" o "PRD" segun sea el caso.</param>
+        public void ext_formula_approve(int formula, int user_approve, string approval_type)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@approve_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_type", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@approve_by"].Value = user_approve;
+            cmd.Parameters["@user_type"].Value = approval_type;
+
+            dp.ACS_Exec_SP("FM_FF_Approve", cmd);
+        }
+
+        /// <summary>
+        /// Method to know a specific formula status
+        /// </summary>
+        /// <param name="formula"> ID of formula to be consulted</param>
+        /// <returns>INT with status.</returns>
+        public int ext_formula_get_status(int formula)
+        {
+            return int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT [status] FROM [dbo].[FML_Fomulas_FF_H] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+        }
+
+        /// <summary>
+        /// Method to validate if some kind of approval has been made to a formula
+        /// </summary>
+        /// <param name="formula">Formula ID to be consulted</param>
+        /// <param name="approval_type">Type of approval searched -  Can be "PRD" or "FIN"</param>
+        /// <returns></returns>
+        public bool ext_formula_exist_approve(int formula, string approval_type)
+        {
+            int value;
+
+            if (approval_type == "FIN")
+            {
+                value = int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT COALESCE([aprove_fin], -1) AS aprove_fin FROM [ACS].[dbo].[FML_Fomulas_FF_H] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+            }
+            else if (approval_type == "PRD")
+            {
+                value = int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT COALESCE([approve_prod], -1) AS approve_prod FROM [ACS].[dbo].[FML_Fomulas_FF_H] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+            }
+            else
+            {
+                value = 1;
+            }
+
+            if (value == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return Convert.ToBoolean(value);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para rechazar la formula, las validaciones para su ejecucion deben hacerce antes
+        /// </summary>
+        /// <param name="formula">ID de la formula que se rechazara</param>
+        /// <param name="user_approve">Usuario que rechazo la formula</param>
+        /// <param name="reject_type">Tipo de rechazo puede ser "FIN" o "PRD" segun sea el caso.</param>
+        public void ext_formula_reject(int formula, int user_approve, string reject_type)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@reject_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_type", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@reject_by"].Value = user_approve;
+            cmd.Parameters["@user_type"].Value = reject_type;
+
+            dp.ACS_Exec_SP("FM_FF_Reject", cmd);
+        }
+
+        /// <summary>
+        /// Method to change formula status, validations had to be made before.
+        /// </summary>
+        /// <param name="formula">ID of the formula to update</param>
+        /// <param name="user_change">User ID who made the change</param>
+        /// <param name="status">requested status to be set </param>
+        public void ext_formula_change_status(int formula, int user_change, int status)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_change", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@status", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@user_change"].Value = user_change;
+            cmd.Parameters["@status"].Value = status;
+
+            dp.ACS_Exec_SP("FM_FF_Change_Status", cmd);
+        }
+
+        /// <summary>
+        /// Method to clean the approval registered for the formula, should be used for fresh approval reques only.
+        /// </summary>
+        /// <param name="formula">ID of the formula to be changed</param>
+        public void ext_formula_clean_approvals(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+
+            dp.ACS_Exec_SP("FM_FF_Clean_Approvals", cmd);
+        }
+
+        #endregion
+
+        #region Local Formula Related
+
+        /// <summary>
+        /// Method to get the PO information related to a production plan
+        /// </summary>
+        /// <param name="plan_id">ID of the plan to be consuted</param>
+        /// <returns>Datatable containing the information of the Orders, this Datatable stucture y alike the original table.</returns>
+        public DataTable pp_get_plan_pos(int plan_id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@plan", SqlDbType.Int));
+
+            cmd.Parameters["@plan"].Value = plan_id;
+
+            return dp.ACS_Exec_SP_Get_Data("PP_Get_Plan_PO", cmd);
+        }
+
+        /// <summary>
+        /// Gets the Main information of the formula, considering the status Only
+        /// </summary>
+        /// <param name="min_status">Minimum status for query</param>
+        /// <param name="max_status">Maximum status for query</param>
+        /// <returns>Returns a Datatable with the fomrula information</returns>
+        public DataTable local_formula_get_by_status(int min_status, int max_status)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@min_status", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@max_status", SqlDbType.Int));
+
+            cmd.Parameters["@min_status"].Value = min_status;
+            cmd.Parameters["@max_status"].Value = max_status;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FL_Get_By_Status", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la estructura de la formula generada localmente.
+        /// </summary>
+        /// <param name="formula_id">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable local_formula_get_structure(int formula_id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula_id;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FL_Get_Structure", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la informacion de encabezado de la formula original
+        /// </summary>
+        /// <param name="formula_id">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable local_formula_get_main(int formula_id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula_id;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FL_Get_Main", cmd);
+        }
+
+        /// <summary>
+        /// Inserta comentario en la tabla "FML_Formulas_Comments"
+        /// </summary>
+        /// <param name="formula">ID de la formula a la que hace referencia le comentario</param>
+        /// <param name="user">Usuario que inserta el comentario</param>
+        /// <param name="comment">Comentario</param>
+        /// <param name="is_reject">Flag que determina si el comentario esta relacionado a un rechazo de formula</param>
+        public void local_formula_comment_entry(int formula, int user, string comment, bool is_reject)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@comment_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@comment", SqlDbType.VarChar));
+            cmd.Parameters.Add(new SqlParameter("@is_reject", SqlDbType.Bit));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@comment_by"].Value = user;
+            cmd.Parameters["@comment"].Value = comment;
+            cmd.Parameters["@is_reject"].Value = is_reject;
+
+            dp.ACS_Exec_SP("FM_Insert_Comment", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la lista de comentarios relacionados a una formula
+        /// </summary>
+        /// <param name="formula">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable local_formula_get_comments(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@formula", SqlDbType.Int));
+
+            cmd.Parameters["@formula"].Value = formula;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FL_Get_Comments", cmd);
+        }
+
+        /// <summary>
+        /// Retorna la lista de eventos relacionados a una formula externa
+        /// </summary>
+        /// <param name="formula">ID de la formula que sera consultada</param>
+        /// <returns>DataTable con la informacion Requerida</returns>
+        public DataTable local_formula_get_events(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@formula", SqlDbType.Int));
+
+            cmd.Parameters["@formula"].Value = formula;
+
+            return dp.ACS_Exec_SP_Get_Data("FM_FL_Get_Events", cmd);
+        }
+
+        /// <summary>
+        /// Inserta evento en la tabla "FML_FF_Events"
+        /// </summary>
+        /// <param name="formula">ID de la formula a la que hace referencia el evento</param>
+        /// <param name="user">Usuario que ocaciona el evento</param>
+        /// <param name="event_type">Tipo de evento</param>
+        /// <param name="event_comment">Comentario del evento</param>
+        public void local_formula_event_entry(int formula, int user, string event_type, string event_comment)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@event_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@event_type", SqlDbType.VarChar));
+            cmd.Parameters.Add(new SqlParameter("@event_comment", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@event_by"].Value = user;
+            cmd.Parameters["@event_type"].Value = event_type;
+            cmd.Parameters["@event_comment"].Value = event_comment;
+
+            dp.ACS_Exec_SP("FM_FL_Insert_Event", cmd);
+        }
+
+        /// <summary>
+        /// Method to change formula status, validations had to be made before.
+        /// </summary>
+        /// <param name="formula">ID of the formula to update</param>
+        /// <param name="user_change">User ID who made the change</param>
+        /// <param name="status">requested status to be set </param>
+        public void local_formula_change_status(int formula, int user_change, int status)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_change", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@status", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@user_change"].Value = user_change;
+            cmd.Parameters["@status"].Value = status;
+
+            dp.ACS_Exec_SP("FM_FL_Change_Status", cmd);
+        }
+
+        /// <summary>
+        /// Method to know a specific formula status
+        /// </summary>
+        /// <param name="formula"> ID of formula to be consulted</param>
+        /// <returns>INT with status.</returns>
+        public int local_formula_get_status(int formula)
+        {
+            return int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT [estado] FROM [dbo].[FML_Formulas_v2] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+        }
+
+        /// <summary>
+        /// Method to validate if some kind of approval has been made to a formula
+        /// </summary>
+        /// <param name="formula">Formula ID to be consulted</param>
+        /// <param name="approval_type">Type of approval searched -  Can be "PRD" or "FIN"</param>
+        /// <returns></returns>
+        public bool local_formula_exist_approve(int formula, string approval_type)
+        {
+            int value;
+
+            if (approval_type == "FIN")
+            {
+                value = int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT COALESCE([aprov_fin], -1) AS aprove_fin FROM [ACS].[dbo].[FML_Formulas_v2] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+            }
+            else if (approval_type == "PRD")
+            {
+                value = int.Parse(dp.ACS_GetSelectData(string.Format(@"SELECT COALESCE([aprov_prod], -1) AS approve_prod FROM [ACS].[dbo].[FML_Formulas_v2] WHERE [id] = {0}", formula)).Tables[0].Rows[0][0].ToString());
+            }
+            else
+            {
+                value = 1;
+            }
+
+            if (value == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return Convert.ToBoolean(value);
+            }
+        }
+
+        /// <summary>
+        /// Metodo para aprovacion de la formula, las validaciones para su ejecucion deben hacerce antes
+        /// </summary>
+        /// <param name="formula">ID de la formula que se aprobara</param>
+        /// <param name="user_approve">Usuario que aprobo la formula</param>
+        /// <param name="approval_type">Tipo de aprovacion puede ser "FIN" o "PRD" segun sea el caso.</param>
+        public void local_formula_approve(int formula, int user_approve, string approval_type)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@approve_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_type", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@approve_by"].Value = user_approve;
+            cmd.Parameters["@user_type"].Value = approval_type;
+
+            dp.ACS_Exec_SP("FM_FL_Approve", cmd);
+        }
+
+        /// <summary>
+        /// Metodo para rechazar la formula, las validaciones para su ejecucion deben hacerce antes
+        /// </summary>
+        /// <param name="formula">ID de la formula que se rechazara</param>
+        /// <param name="user_approve">Usuario que rechazo la formula</param>
+        /// <param name="reject_type">Tipo de rechazo puede ser "FIN" o "PRD" segun sea el caso.</param>
+        public void local_formula_reject(int formula, int user_approve, string reject_type)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@reject_by", SqlDbType.Int));
+            cmd.Parameters.Add(new SqlParameter("@user_type", SqlDbType.VarChar));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+            cmd.Parameters["@reject_by"].Value = user_approve;
+            cmd.Parameters["@user_type"].Value = reject_type;
+
+            dp.ACS_Exec_SP("FM_FL_Reject", cmd);
+        }
+
+        /// <summary>
+        /// Method to clean the approval registered for the formula, should be used for fresh approval reques only.
+        /// </summary>
+        /// <param name="formula">ID of the formula to be changed</param>
+        public void local_formula_clean_approvals(int formula)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@id_formula", SqlDbType.Int));
+
+            cmd.Parameters["@id_formula"].Value = formula;
+
+            dp.ACS_Exec_SP("FM_FL_Clean_Approvals", cmd);
+        }
+
+        #endregion
+
+        #region ACS
+
+        public DataTable acs_get_order_detail(int order_id)
+        {
+            try
+            {
+                #region Parametros_SP_Entrada
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@order_id", SqlDbType.Int));
+
+                cmd.Parameters["@order_id"].Value = order_id;
+                #endregion
+
+                return dp.ACS_Exec_SP_Get_Data("PP_Plan_Order_Get_Detail", cmd);
+            }
+            catch (Exception) { throw; }
+        }
+
+        #endregion
+
+        #region APMS
+        public DataTable ConsGral_BinsxGrupo(int idGrupo)
+        {
+            try
+            {
+                #region Parametros_SP_Entrada
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@group_id", SqlDbType.Int));
+                cmd.Parameters["@group_id"].Value = idGrupo;
+                #endregion
+
+                return dp.APMS_Exec_SP_Get_Data("Bins_ConsGeneral_xGrupo", cmd); 
+            }
+            catch (Exception){ throw; }
+        }
+
+        public DataTable ConsGral_GruposBins() 
+        {
+            try
+            {
+                return  dp.APMS_Exec_SP_Get_Data("BinsGroup_ConsGeneral", new SqlCommand());
+            }
+            catch (Exception){ throw; }
+        }
+
+        public void Upd_MaterialPermitido_xBin(int idBin, bool allow_rm, bool allow_fp, bool allow_nc, bool allow_sfp)
+        {
+            try
+            {
+                    #region Parametros_SP_Entrada
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@rm", SqlDbType.Bit));
+                    cmd.Parameters.Add(new SqlParameter("@fp", SqlDbType.Bit));
+                    cmd.Parameters.Add(new SqlParameter("@nc", SqlDbType.Bit));
+                    cmd.Parameters.Add(new SqlParameter("@sfp", SqlDbType.Bit));
+
+
+                    cmd.Parameters["@id"].Value = idBin;
+
+                    cmd.Parameters["@rm"].Value  = Convert.ToByte(allow_rm  == null ? false : allow_rm);
+                    cmd.Parameters["@fp"].Value  = Convert.ToByte(allow_fp  == null ? false : allow_fp);
+                    cmd.Parameters["@nc"].Value  = Convert.ToByte(allow_nc  == null ? false : allow_nc);
+                    cmd.Parameters["@sfp"].Value = Convert.ToByte(allow_sfp == null ? false : allow_sfp);
+                    #endregion
+
+                    dp.APMS_Exec_SP("Bins_UPD_MatPermitidos", cmd);
+            }
+            catch (Exception){throw; }
+        }
+
+        #region Production Order Operation
+
+        /// <summary>
+        /// Funcion para obtener las ordenes de produccion en un rango de estados especificados
+        /// </summary>
+        /// <param name="min_status"> Estado minimo de la orden</param>
+        /// <param name="max_status"> Estado maximo de la orden</param>
+        /// <returns> Datatable con la informacion de las ordenes</returns>
+        public DataTable apms_get_orders_by_status(int min_status, int max_status) 
+        {
+            try
+            {
+                #region Parametros_SP_Entrada
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@min_status", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@max_status", SqlDbType.Int));
+
+                cmd.Parameters["@min_status"].Value = min_status;
+                cmd.Parameters["@max_status"].Value = max_status;
+                #endregion
+
+                return dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_by_Status", cmd);
+            }
+            catch (Exception) { throw; }
+        }
+
+        /// <summary>
+        /// Consulta la extructura de la orden de produccion por MIX
+        /// </summary>
+        /// <param name="order_id">ID Orden de Produccion</param>
+        /// <param name="mix_num">Mezclado en que se aplica el material</param>
+        /// <returns>Materiales de la orden de produccion y mix especificado</returns>
+        public DataTable apms_get_order_structure_per_mix(int order_id, int mix_num)
+        {
+            try
+            {
+                #region Parametros_SP_Entrada
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@id_order", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@mix_num", SqlDbType.Int));
+
+                cmd.Parameters["@id_order"].Value = order_id;
+                cmd.Parameters["@mix_num"].Value = mix_num;
+                #endregion
+
+                return dp.APMS_Exec_SP_Get_Data("OP_Get_Order_Structure_v2", cmd);
+            }
+            catch (Exception) { throw; }
+        }
+
+        /// <summary>
+        /// Retorna el estado de la orden de Produccion ORDER_MAIN
+        /// </summary>
+        /// <param name="order_id">ID de la orden de producción</param>
+        /// <returns>Retorna el Estado como Entero</returns>
+        public int apms_get_order_status(int order_id) 
+        {
+            return Convert.ToInt32(dp.APMS_GetSelectData(string.Format(@"SELECT [status] FROM [APMS].[dbo].[OP_Production_Orders_Main] WHERE [id] = {0}", order_id)).Tables[0].Rows[0][0].ToString());
+        }
+
+        /// <summary>
+        /// Retorna el estado de la linea de mix de la orden ORDER_MAIN_MIX
+        /// </summary>
+        /// <param name="order_id">ID Orden de producción</param>
+        /// <param name="mix_num">Numero de Mix, puede ser 1 o 2</param>
+        /// <returns></returns>
+        public int apms_get_order_mix_status(int order_id, int mix_num)
+        {
+            return Convert.ToInt32(dp.APMS_GetSelectData(string.Format(@"SELECT [status] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] WHERE [order_id] = {0} AND [mix_num] = {1}", order_id, mix_num)).Tables[0].Rows[0][0].ToString());
+        }
+
+        #endregion
+
+        #endregion
+
+    }
+}

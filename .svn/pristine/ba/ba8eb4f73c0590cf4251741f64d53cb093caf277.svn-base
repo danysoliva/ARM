@@ -1,0 +1,444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3F3BAFAD-8141-4B24-8013-709F3FCF7ECD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ARM</RootNamespace>
+    <AssemblyName>ARM</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v15.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v15.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v15.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.2.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v15.2">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EasyModbus">
+      <HintPath>Resources\Libraries\EasyModbus.dll</HintPath>
+    </Reference>
+    <Reference Include="S7.Net">
+      <HintPath>..\packages\S7netplus.0.1.4\lib\net45\S7.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\DataOperations.cs" />
+    <Compile Include="Classes\FMOP.cs" />
+    <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\OperationsARMS.cs" />
+    <Compile Include="Classes\SecOps.cs" />
+    <Compile Include="DUO\Modbus_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUO\Modbus_Test.Designer.cs">
+      <DependentUpon>Modbus_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DUO\Moisture_Sensor_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUO\Moisture_Sensor_Test.Designer.cs">
+      <DependentUpon>Moisture_Sensor_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DUO\Siemens_Comm_Library.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUO\Siemens_Comm_Library.Designer.cs">
+      <DependentUpon>Siemens_Comm_Library.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DUO\SOCP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUO\SOCP.Designer.cs">
+      <DependentUpon>SOCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulas\Aqua\formula_viewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulas\Aqua\formula_viewer.Designer.cs">
+      <DependentUpon>formula_viewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main_Form.Designer.cs">
+      <DependentUpon>Main_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mants\Mants_Bins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mants\Mants_Bins.Designer.cs">
+      <DependentUpon>Mants_Bins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mants\Mant_MP_xBin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mants\Mant_MP_xBin.Designer.cs">
+      <DependentUpon>Mant_MP_xBin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Select_Items_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Select_Items_v2.designer.cs">
+      <DependentUpon>Select_Items_v2.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DUO\Modbus_Test.resx">
+      <DependentUpon>Modbus_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUO\Moisture_Sensor_Test.resx">
+      <DependentUpon>Moisture_Sensor_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUO\Siemens_Comm_Library.resx">
+      <DependentUpon>Siemens_Comm_Library.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUO\SOCP.resx">
+      <DependentUpon>SOCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formulas\Aqua\formula_viewer.resx">
+      <DependentUpon>formula_viewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main_Form.resx">
+      <DependentUpon>Main_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mants\Mants_Bins.resx">
+      <DependentUpon>Mants_Bins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mants\Mant_MP_xBin.resx">
+      <DependentUpon>Mant_MP_xBin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Select_Items_v2.resx">
+      <DependentUpon>Select_Items_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Custom Form Designs\Hand_Feed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Custom Form Designs\Logo Aquafeed HD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Logo_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Logo_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoLimp_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoLimp_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Camaron_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Camaron_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Camaron_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Camaron_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAqua_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAqua_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAqua_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAqua_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaFish_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaFish_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaFish_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaFish_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaShrimp_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaShrimp_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaShrimp_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\LogoAquaShrimp_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_x128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\factory_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\factory_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\factory_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\factory_x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Production\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\circuit_on_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel2_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel2_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel2_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel2_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\edit_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\edit_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\edit_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\edit_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\saveChanges_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\saveChanges_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\saveChanges_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\add_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\add_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\add_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\add_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\remove_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\remove_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\remove_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\remove_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\rm_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\rm_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\rm_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_nucleo_x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_nucleo_x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\formula_nucleo_x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Accept_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Accept_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\Accept_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\cancel_48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\refresh_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\refresh_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\refresh_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PNG\refresh_48x48.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

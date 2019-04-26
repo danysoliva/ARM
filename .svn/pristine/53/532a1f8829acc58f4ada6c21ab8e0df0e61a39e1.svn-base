@@ -1,0 +1,167 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+using ARM.Classes;
+using System.Data.SqlClient;
+
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.Controls;
+
+namespace ARM.Mants
+{
+    public partial class Mant_MP_xBin : DevExpress.XtraEditors.XtraForm
+    {
+
+        #region Variables_Globales
+        DataOperations dp = new DataOperations();
+        FMOP op = new FMOP();
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        Boolean cambioRM  = false;
+        Boolean cambioFP  = false;
+        Boolean cambioNC  = false;
+        Boolean cambioSFP = false;
+        #endregion        
+        
+        public Mant_MP_xBin()
+        {
+            InitializeComponent();
+            load_combo_grupos();            
+        }
+
+        void load_combo_grupos()
+        {
+            repositoryItemLookUpEdit1.DataSource = op.ConsGral_GruposBins();
+            repositoryItemLookUpEdit1.DisplayMember = "long_name";
+            repositoryItemLookUpEdit1.ValueMember = "id";
+        }
+
+        void load_combo_bines()
+        {
+            repositoryItemLookUpEdit2.DataSource = op.ConsGral_BinsxGrupo(Convert.ToInt32(cmbl_gruposBin.EditValue));
+            repositoryItemLookUpEdit2.DisplayMember = "long_name";
+            repositoryItemLookUpEdit2.ValueMember = "id";
+        }
+
+        private void cmbl_gruposBin_EditValueChanged(object sender, EventArgs e)
+        {
+            load_combo_bines();
+        }
+
+        void load_grid() //RM, FP, NC, SFP
+        {
+
+        }
+
+        #region Metodos Botones_Agregar-Eliminar
+        //------------------------------------------------------------------------------------------
+        private void btn_AddRM_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(1);
+        }
+
+        private void btn_DelMP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioRM = true;
+            habilitar_Botones_Guardar();
+        }
+
+        private void btn_AddFP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(2);
+        }
+
+        private void btn_delFP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioFP = true;
+            habilitar_Botones_Guardar();
+        }
+
+        private void btn_AddNc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(3);
+        }
+
+        private void btn_DelNc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioNC = true;
+            habilitar_Botones_Guardar();
+        }
+
+        private void btn_AddSfp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(4);
+        }
+
+        private void btn_DelSfp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioSFP = true;
+            habilitar_Botones_Guardar();
+        }
+        //-------------------------------------------------------------------------------------------
+        #endregion
+
+        void habilitar_Botones_Guardar()
+        {
+            btn_Cancelar.Visibility = btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+        }
+
+        private void btn_Cancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btn_Cancelar.Visibility = btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // CargarGrids de Nuevo
+        }
+
+
+
+        /// <summary>
+        /// -- Seleccionar Parametrizable --
+        /// </summary>
+        /// <param name="Opc"> 1=RM, FP, NC, SFP </param>
+        /// <returns></returns>
+        void Agregar_GridItem(int Opc) 
+        {
+            String query, col1, col2;
+            query = col1 = col2 = "";
+            if (Opc == 1) { 
+                query = "SELECT id, long_name col1, code col2 FROM MD_Raw_Material where status between 40 and 80";
+                col1 = "Materia Prima"; col2 = "Codigo";
+            }
+            if (Opc == 2) { 
+                query = "SELECT id, long_name col1, code col2 FROM MD_Finished_Products where status between 40 and 80";
+                col1 = "Producto Terminado"; col2 = "Codigo";
+            }
+            if (Opc == 3) {
+                query = "SELECT id, nc_name col1, nc_code col2 FROM MD_NC_Main where status between 40 and 80";
+                col1 = "Nucleo"; col2 = "Codigo";
+            }
+            if (Opc == 4) { 
+                query = "SELECT id, order_number col1, order_code col2 FROM OP_Production_Orders_Main";
+                col1 = "No.Orden"; col2 = "Codigo";           
+            }
+
+            //else semielaborado solo mostrar del  primer mexclado (mix)
+            Utils.Select_Items_v2 form = new Utils.Select_Items_v2(query, col1, col2);
+
+            if (form.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            if (Opc == 1) cambioRM  = true;
+            if (Opc == 2) cambioFP  = true;
+            if (Opc == 3) cambioNC  = true;
+            if (Opc == 4) cambioSFP = true;
+            //idUsuario          = form.getID;
+            //txt_usuarioAD.Text = form.getCol1;
+            //txt_barcode.Text = form.getCol2;
+            habilitar_Botones_Guardar();
+        }
+
+    }
+}

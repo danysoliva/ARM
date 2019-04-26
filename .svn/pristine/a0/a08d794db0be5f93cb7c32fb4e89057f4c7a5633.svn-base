@@ -1,0 +1,531 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+using ARM.Classes;
+using System.Data.SqlClient;
+
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraEditors.Controls;
+
+using DevExpress.XtraGrid.Views.Grid; 
+
+namespace ARM.Mants
+{
+    public partial class Mant_MP_xBin : DevExpress.XtraEditors.XtraForm
+    {
+
+        #region Variables_Globales
+        int idBin = 0;
+        DataOperations dp = new DataOperations();
+        FMOP op = new FMOP();
+        DataSet ds_rm ;
+        DataSet ds_fp;
+        DataSet ds_nc;
+        DataSet ds_sfp;
+        DataTable dt;
+
+        Boolean cambioRM  = false;
+        Boolean cambioFP  = false;
+        Boolean cambioNC  = false;
+        Boolean cambioSFP = false;
+        #endregion        
+        
+        public Mant_MP_xBin()
+        {
+            InitializeComponent();
+            load_combo_grupos();            
+        }
+
+        void load_combo_grupos()
+        {
+            repositoryItemLookUpEdit1.DataSource = op.ConsGral_GruposBins();
+            repositoryItemLookUpEdit1.DisplayMember = "long_name";
+            repositoryItemLookUpEdit1.ValueMember = "id";
+        }
+
+        void load_combo_bines()
+        {
+            repositoryItemLookUpEdit2.DataSource = op.ConsGral_BinsxGrupo(Convert.ToInt32(cmbl_gruposBin.EditValue));
+            repositoryItemLookUpEdit2.DisplayMember = "long_name";
+            repositoryItemLookUpEdit2.ValueMember = "id";
+        }
+
+        private void cmbl_gruposBin_EditValueChanged(object sender, EventArgs e)
+        {
+            if (btn_Cancelar.Visibility == DevExpress.XtraBars.BarItemVisibility.Always) btn_Cancelar.PerformClick();
+            load_combo_bines();
+        }
+
+        void load_grid() //RM, FP, NC, SFP
+        {        
+            #region Querys Iniciales (Grid)
+            String queryRM = String.Format(@"
+                    Select  a.id, a.rm_id external_id, b.code codigo, b.short_name descripcion
+                            ,'' borrar
+                            From    SYS_Bin_Material_Rel a
+                                    right join MD_Raw_Material b on b.id= a.rm_id
+                            where bin_id= {0} and status between 40 and 70", idBin);
+            String queryFP = String.Format(@"
+                    Select  a.id, a.fp_id external_id, b.code codigo, b.short_name descripcion
+                            ,'' borrar
+                            From    SYS_Bin_Material_Rel a
+                                    right join MD_Finished_Products b on b.id= a.fp_id
+                            where bin_id= {0} and status between 40 and 70", idBin);
+            String queryNC = String.Format(@"
+                    Select  a.id, a.nc_id external_id, b.nc_code codigo, b.nc_name descripcion
+                            ,'' borrar
+                            From    SYS_Bin_Material_Rel a
+                                    right join MD_NC_Main b on b.id= a.nc_id
+                            where bin_id= {0} and status between 40 and 70", idBin);
+            String querySFP = String.Format(@"
+                    Select  a.id, a.sfp_id external_id, b.mix_fullCode codigo, fp_lot_number descripcion
+                            ,'' borrar
+                            From    SYS_Bin_Material_Rel a
+                                    right join OP_Production_Orders_Main_Mix b on b.id= a.sfp_id
+                            where bin_id= {0} and mix_code='S' and status between 40 and 80", idBin);
+            #endregion
+            ds_rm  = dp.APMS_GetSelectData(queryRM);
+            ds_fp  = dp.APMS_GetSelectData(queryFP);
+            ds_nc  = dp.APMS_GetSelectData(queryNC);
+            ds_sfp = dp.APMS_GetSelectData(querySFP); 
+            
+            gridControl1.DataSource = ds_rm.Tables[0];
+            gridControl2.DataSource = ds_fp.Tables[0];
+            gridControl3.DataSource = ds_nc.Tables[0];
+            gridControl4.DataSource = ds_sfp.Tables[0];
+        }
+
+        #region Metodos Botones_Agregar-Eliminar
+        //------------------------------------------------------------------------------------------
+        private void btn_AddRM_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(1);
+        }
+
+        private void btn_DelMP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioRM = true;
+            habilitar_Botones_Guardar();
+            Eliminar_Items(1);
+        }
+
+        private void btn_AddFP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(2);
+        }
+
+        private void btn_delFP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioFP = true;
+            habilitar_Botones_Guardar();
+            Eliminar_Items(2);
+        }
+
+        private void btn_AddNc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(3);
+        }
+
+        private void btn_DelNc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioNC = true;
+            habilitar_Botones_Guardar();
+            Eliminar_Items(3);
+        }
+
+        private void btn_AddSfp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Agregar_GridItem(4);
+        }
+
+        private void btn_DelSfp_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            cambioSFP = true;
+            habilitar_Botones_Guardar();
+            Eliminar_Items(4);
+        }
+        //-------------------------------------------------------------------------------------------
+
+        #endregion
+
+        void habilitar_Botones_Guardar()
+        {
+            btn_Cancelar.Visibility = btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+        }
+
+        private void btn_Cancelar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btn_Cancelar.Visibility = btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            load_grid();
+        }
+
+        /// <summary>
+        /// -- Seleccionar Parametrizable --
+        /// </summary>
+        /// <param name="Opc"> 1=RM, FP, NC, SFP </param>
+        /// <returns></returns>
+        void Agregar_GridItem(int Opc)
+        {
+            if (idBin == 0) return; // No tiene seleccionado ningun BIN
+            #region Seleccionar [Configurable]..
+            String query, col1, col2;
+                query = col1 = col2 = "";
+                if (Opc == 1) {
+                    query = "SELECT id, code col1, long_name col2 FROM MD_Raw_Material where status between 40 and 80";
+                    col1 = "Codigo"; col2 = "Materia Prima";
+                }
+                if (Opc == 2) {
+                    query = "SELECT id, code col1, long_name col2 FROM MD_Finished_Products where status between 40 and 80";
+                    col1 = "Codigo"; col2 = "Producto Terminado";
+                }
+                if (Opc == 3) {
+                    query = "SELECT id, nc_code col1, nc_name col2 FROM MD_NC_Main where status between 40 and 80";
+                    col1 = "Codigo"; col2 = "Nucleo";
+                }
+                if (Opc == 4) {
+                    query = @"  SELECT id, mix_fullCode  col1, fp_lot_number col2 FROM OP_Production_Orders_Main_Mix 
+                                where status between 60 and 80 and mix_code='P'";
+                    col1 = "Codigo"; col2 = "No.Lote";
+                }
+                //else semielaborado solo mostrar del  primer mexclado (mix)
+
+            Utils.Select_Items_v2 form = new Utils.Select_Items_v2(query, col1, col2);
+            #endregion
+            if (form.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;  // No seleccion nada..
+
+            GridView gridBuscar= new GridView();
+            if (Opc == 1) { cambioRM = true; dt = gridControl1.DataSource as DataTable; gridBuscar = gridView1; }
+            if (Opc == 2) { cambioFP = true; dt = gridControl2.DataSource as DataTable; gridBuscar = gridView2; }
+            if (Opc == 3) { cambioNC = true; dt = gridControl3.DataSource as DataTable; gridBuscar = gridView3; }
+            if (Opc == 4) { cambioSFP = true; dt = gridControl4.DataSource as DataTable; gridBuscar = gridView4; }
+
+            #region Control Registro_Existente
+            if (Opc == 1 && existeDatoEnGrid(gridBuscar, "codigo", form.getCol1))
+            {
+                MessageBox.Show("Ya se encuentra agregado el material seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            #endregion
+
+            #region Agregando Datos a Grid
+            DataRow newRow = dt.NewRow();
+
+            newRow["id"]          = 0;
+            newRow["external_id"] = form.getID;
+            newRow["codigo"]      = form.getCol1;
+            newRow["descripcion"] = form.getCol2;
+            newRow["borrar"]      = "" ;
+
+            dt.Rows.Add(newRow);
+            #endregion
+
+            habilitar_Botones_Guardar();
+        }
+
+        private void cmbl_Bins_EditValueChanged(object sender, EventArgs e)
+        {
+            idBin = Convert.ToInt32(cmbl_Bins.EditValue);
+            DeshabilitarGrids();
+            load_grid();
+        }
+
+        private void gridControl4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        void DeshabilitarGrids() {
+            DataTable dtTEMP = new DataTable();
+            dtTEMP = dp.APMS_GetSelectData(@"SELECT allow_rm, allow_fp, allow_nc, allow_sfp FROM MD_Bins Where id= " + idBin).Tables[0];
+
+            if(dtTEMP.Rows[0]["allow_rm"]== DBNull.Value || Convert.ToBoolean(dtTEMP.Rows[0]["allow_rm"])==  false)
+                standaloneBarDockControl1.Enabled = gridControl1.Enabled = false ;
+            else
+                standaloneBarDockControl1.Enabled = gridControl1.Enabled = true;
+
+            if (dtTEMP.Rows[0]["allow_fp"] == DBNull.Value || Convert.ToBoolean(dtTEMP.Rows[0]["allow_fp"]) == false)
+                standaloneBarDockControl2.Enabled = gridControl2.Enabled = false;
+            else
+                standaloneBarDockControl2.Enabled = gridControl2.Enabled = true;
+
+            if (dtTEMP.Rows[0]["allow_nc"] == DBNull.Value || Convert.ToBoolean(dtTEMP.Rows[0]["allow_nc"]) == false)
+                standaloneBarDockControl3.Enabled = gridControl3.Enabled = false;
+            else
+                standaloneBarDockControl3.Enabled = gridControl3.Enabled = true;
+
+            if (dtTEMP.Rows[0]["allow_sfp"] == DBNull.Value || Convert.ToBoolean(dtTEMP.Rows[0]["allow_sfp"]) == false)
+                standaloneBarDockControl4.Enabled = gridControl4.Enabled = false;
+            else
+                standaloneBarDockControl4.Enabled = gridControl4.Enabled = true;
+        }
+
+        private void btn_Guardar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Gurdar_Datos();
+
+            btn_Cancelar.Visibility = btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            load_grid();
+        }
+
+
+        void Gurdar_Datos() {
+            try
+            {
+                #region Materia_Prima
+                if (standaloneBarDockControl1.Enabled == true)
+                {
+                    foreach (DataRow lin in ds_rm.Tables[0].Rows)
+                    {
+                        if (lin["borrar"].ToString() == "S")
+                        {
+                            #region Borrando Registro Existente y Marcado para Borrar
+                            if (Convert.ToInt32(lin["id"]) > 0)
+                            {
+                                String queryBorrar = "DELETE [dbo].[SYS_Bin_Material_Rel] WHERE ID=" + Convert.ToInt32(lin["id"]);
+                                dp.APMS_DoSmallDBOperation(queryBorrar);
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            #region Insertando/Actualizando
+                            String Query = "";
+                            if (lin["id"] == DBNull.Value || Convert.ToInt32(lin["id"]) == 0)
+                            {
+                                #region Registro_NUEVO
+                                Query = string.Format(@"INSERT INTO [dbo].[SYS_Bin_Material_Rel](bin_id, record_type, rm_id)
+                                        VALUES  ({0}, '{1}', {2})"
+                                        , idBin
+                                        , "RM"
+                                        , Convert.ToInt32(lin["external_id"]));
+                                dp.APMS_InsertAndReturnID(Query);
+                                #endregion
+                            }
+                            #endregion
+                        }
+                    }
+
+                }
+
+                #endregion
+
+                #region Producto_Terminado
+                if (standaloneBarDockControl2.Enabled == true)
+                {
+                    foreach (DataRow lin in ds_fp.Tables[0].Rows)
+                    {
+                        if (lin["borrar"].ToString() == "S")
+                        {
+                            #region Borrando Registro Existente y Marcado para Borrar
+                            if (Convert.ToInt32(lin["id"]) > 0)
+                            {
+                                String queryBorrar = "DELETE [dbo].[SYS_Bin_Material_Rel] WHERE ID=" + Convert.ToInt32(lin["id"]);
+                                dp.APMS_DoSmallDBOperation(queryBorrar);
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            #region Insertando/Actualizando
+                            String Query = "";
+                            if (lin["id"] == DBNull.Value || Convert.ToInt32(lin["id"]) == 0)
+                            {
+                                #region Registro_NUEVO
+                                Query = string.Format(@"INSERT INTO [dbo].[SYS_Bin_Material_Rel](bin_id, record_type, fp_id)
+                                        VALUES  ({0}, '{1}', {2})"
+                                        , idBin
+                                        , "FP"
+                                        , Convert.ToInt32(lin["external_id"]));
+                                dp.APMS_InsertAndReturnID(Query);
+                                #endregion
+                            }
+                            #endregion
+                        }
+                    }
+
+                }
+
+                #endregion
+
+                #region Nucleo
+                if (standaloneBarDockControl3.Enabled == true)
+                {
+                    foreach (DataRow lin in ds_nc.Tables[0].Rows)
+                    {
+                        if (lin["borrar"].ToString() == "S")
+                        {
+                            #region Borrando Registro Existente y Marcado para Borrar
+                            if (Convert.ToInt32(lin["id"]) > 0)
+                            {
+                                String queryBorrar = "DELETE [dbo].[SYS_Bin_Material_Rel] WHERE ID=" + Convert.ToInt32(lin["id"]);
+                                dp.APMS_DoSmallDBOperation(queryBorrar);
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            #region Insertando/Actualizando
+                            String Query = "";
+                            if (lin["id"] == DBNull.Value || Convert.ToInt32(lin["id"]) == 0)
+                            {
+                                #region Registro_NUEVO
+                                Query = string.Format(@"INSERT INTO [dbo].[SYS_Bin_Material_Rel](bin_id, record_type, nc_id)
+                                        VALUES  ({0}, '{1}', {2})"
+                                        , idBin
+                                        , "NC"
+                                        , Convert.ToInt32(lin["external_id"]));
+                                dp.APMS_InsertAndReturnID(Query);
+                                #endregion
+                            }
+                            #endregion
+                        }
+                    }
+
+                }
+
+                #endregion
+
+                #region Semi-Elaborado
+                if (standaloneBarDockControl4.Enabled == true)
+                {
+                    foreach (DataRow lin in ds_sfp.Tables[0].Rows)
+                    {
+                        if (lin["borrar"].ToString() == "S")
+                        {
+                            #region Borrando Registro Existente y Marcado para Borrar
+                            if (Convert.ToInt32(lin["id"]) > 0)
+                            {
+                                String queryBorrar = "DELETE [dbo].[SYS_Bin_Material_Rel] WHERE ID=" + Convert.ToInt32(lin["id"]);
+                                dp.APMS_DoSmallDBOperation(queryBorrar);
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            #region Insertando/Actualizando
+                            String Query = "";
+                            if (lin["id"] == DBNull.Value || Convert.ToInt32(lin["id"]) == 0)
+                            {
+                                #region Registro_NUEVO
+                                Query = string.Format(@"INSERT INTO [dbo].[SYS_Bin_Material_Rel](bin_id, record_type, sfp_id)
+                                        VALUES  ({0}, '{1}', {2})"
+                                        , idBin
+                                        , "SFP"
+                                        , Convert.ToInt32(lin["external_id"]));
+                                dp.APMS_InsertAndReturnID(Query);
+                                #endregion
+                            }
+                            #endregion
+                        }
+                    }
+
+                }
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                #region Try-Catch_Mensaje-Error
+                var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
+                var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
+                var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
+                dialog.Text = "Error";
+                dialogType.GetProperty("Message").SetValue(dialog, "Error: " + ex.Message, null);
+                dialogType.GetProperty("Details").SetValue(dialog, ex.StackTrace, null);
+                var result = dialog.ShowDialog();
+                #endregion
+            }        
+        }
+
+        // Esta es una prueba
+
+        void Eliminar_Items(int noGrid){
+
+            if (noGrid == 1) {
+                #region Marcando_Borrado MateriaPrima
+                if (gridView1.RowCount == 0) return;
+                int lin = gridView1.GetVisibleIndex(gridView1.FocusedRowHandle);
+                if (gridView1.RowCount > 0 && lin >= 0)
+                {
+                    System.Data.DataRow row = gridView1.GetDataRow(gridView1.FocusedRowHandle);
+                    DialogResult resultado = MessageBox.Show("¿Esta realmente seguro, se borrará el dato seleccionado?", "Confirmación", MessageBoxButtons.YesNo);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        ds_rm.Tables[0].Rows[lin]["borrar"] = "S";
+                }
+                #endregion           
+            }
+
+            if (noGrid == 2)
+            {
+                #region Marcando_Borrado ProductoTerminado
+                if (gridView2.RowCount == 0) return;
+                int lin = gridView2.GetVisibleIndex(gridView2.FocusedRowHandle);
+                if (gridView2.RowCount > 0 && lin >= 0)
+                {
+                    System.Data.DataRow row = gridView2.GetDataRow(gridView2.FocusedRowHandle);
+                    DialogResult resultado = MessageBox.Show("¿Esta realmente seguro, se borrará el dato seleccionado?", "Confirmación", MessageBoxButtons.YesNo);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        ds_fp.Tables[0].Rows[lin]["borrar"] = "S";
+                }
+                #endregion
+            }
+
+            if (noGrid == 3)
+            {
+                #region Marcando_Borrado Nucleo
+                if (gridView3.RowCount == 0) return;
+                int lin = gridView3.GetVisibleIndex(gridView3.FocusedRowHandle);
+                if (gridView3.RowCount > 0 && lin >= 0)
+                {
+                    System.Data.DataRow row = gridView3.GetDataRow(gridView3.FocusedRowHandle);
+                    DialogResult resultado = MessageBox.Show("¿Esta realmente seguro, se borrará el dato seleccionado?", "Confirmación", MessageBoxButtons.YesNo);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        ds_nc.Tables[0].Rows[lin]["borrar"] = "S";
+                }
+                #endregion
+            }
+
+            if (noGrid == 4)
+            {
+                #region Marcando_Borrado SemiElaborado
+                if (gridView4.RowCount == 0) return;
+                int lin = gridView4.GetVisibleIndex(gridView4.FocusedRowHandle);
+                if (gridView4.RowCount > 0 && lin >= 0)
+                {
+                    System.Data.DataRow row = gridView4.GetDataRow(gridView4.FocusedRowHandle);
+                    DialogResult resultado = MessageBox.Show("¿Esta realmente seguro, se borrará el dato seleccionado?", "Confirmación", MessageBoxButtons.YesNo);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        ds_sfp.Tables[0].Rows[lin]["borrar"] = "S";
+                }
+                #endregion
+            }
+        }
+
+
+        Boolean existeDatoEnGrid(GridView Grid, string Columna, string BuscarDato)
+        {
+            try
+            {
+                DataView dataView = Grid.DataSource as DataView;
+                for (int i = 0; i < dataView.Count; i++)
+                {
+                    DataRow currentRow = dataView[i].Row;
+
+                    if (currentRow[Columna].ToString() == BuscarDato)
+                        return true;
+                }
+            }
+            catch (Exception) { throw; }
+            return false;
+        }
+
+    }
+}

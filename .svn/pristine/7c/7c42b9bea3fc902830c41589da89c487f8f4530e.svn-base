@@ -1,0 +1,289 @@
+﻿namespace ARM.Mants
+{
+    partial class Mants_Bins
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btn_Salir = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Guardar = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_Cancelar = new DevExpress.XtraEditors.SimpleButton();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.cmbl_gruposBin = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLongName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptFM = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptRM = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptFP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptNC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btn_Editar = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbl_gruposBin.Properties)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(2, 2);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(797, 371);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colID,
+            this.colLongName,
+            this.colAcceptFM,
+            this.colAcceptRM,
+            this.colAcceptFP,
+            this.colAcceptNC});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.btn_Editar);
+            this.panelControl1.Controls.Add(this.btn_Cancelar);
+            this.panelControl1.Controls.Add(this.btn_Guardar);
+            this.panelControl1.Controls.Add(this.btn_Salir);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(801, 57);
+            this.panelControl1.TabIndex = 1;
+            // 
+            // btn_Salir
+            // 
+            this.btn_Salir.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_Salir.Image = global::ARM.Properties.Resources.cancel2_32;
+            this.btn_Salir.Location = new System.Drawing.Point(2, 2);
+            this.btn_Salir.Name = "btn_Salir";
+            this.btn_Salir.Size = new System.Drawing.Size(120, 53);
+            this.btn_Salir.TabIndex = 0;
+            this.btn_Salir.Text = "Salir";
+            this.btn_Salir.Click += new System.EventHandler(this.btn_Salir_Click);
+            // 
+            // btn_Guardar
+            // 
+            this.btn_Guardar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Guardar.Image = global::ARM.Properties.Resources.saveChanges_32x32;
+            this.btn_Guardar.Location = new System.Drawing.Point(679, 2);
+            this.btn_Guardar.Name = "btn_Guardar";
+            this.btn_Guardar.Size = new System.Drawing.Size(120, 53);
+            this.btn_Guardar.TabIndex = 0;
+            this.btn_Guardar.Text = "Guardar";
+            this.btn_Guardar.Visible = false;
+            this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
+            // 
+            // btn_Cancelar
+            // 
+            this.btn_Cancelar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Cancelar.Image = global::ARM.Properties.Resources.cancel2_32;
+            this.btn_Cancelar.Location = new System.Drawing.Point(559, 2);
+            this.btn_Cancelar.Name = "btn_Cancelar";
+            this.btn_Cancelar.Size = new System.Drawing.Size(120, 53);
+            this.btn_Cancelar.TabIndex = 0;
+            this.btn_Cancelar.Text = "Cancelar";
+            this.btn_Cancelar.Visible = false;
+            this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.panelControl3);
+            this.panelControl2.Controls.Add(this.gridControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 57);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(801, 375);
+            this.panelControl2.TabIndex = 2;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.labelControl1);
+            this.panelControl3.Controls.Add(this.cmbl_gruposBin);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl3.Location = new System.Drawing.Point(2, 2);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(797, 35);
+            this.panelControl3.TabIndex = 1;
+            // 
+            // cmbl_gruposBin
+            // 
+            this.cmbl_gruposBin.Location = new System.Drawing.Point(121, 5);
+            this.cmbl_gruposBin.Name = "cmbl_gruposBin";
+            this.cmbl_gruposBin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbl_gruposBin.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("long_name", "Grupo")});
+            this.cmbl_gruposBin.Properties.DisplayMember = "long_name";
+            this.cmbl_gruposBin.Properties.ValueMember = "id";
+            this.cmbl_gruposBin.Size = new System.Drawing.Size(167, 20);
+            this.cmbl_gruposBin.TabIndex = 0;
+            this.cmbl_gruposBin.EditValueChanged += new System.EventHandler(this.cmbl_gruposBin_EditValueChanged);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Location = new System.Drawing.Point(48, 8);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(67, 13);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "Grupo Bines";
+            // 
+            // colID
+            // 
+            this.colID.Caption = "ID";
+            this.colID.FieldName = "id";
+            this.colID.Name = "colID";
+            this.colID.OptionsColumn.AllowEdit = false;
+            this.colID.Visible = true;
+            this.colID.VisibleIndex = 0;
+            this.colID.Width = 71;
+            // 
+            // colLongName
+            // 
+            this.colLongName.Caption = "Bin";
+            this.colLongName.FieldName = "long_name";
+            this.colLongName.Name = "colLongName";
+            this.colLongName.OptionsColumn.AllowEdit = false;
+            this.colLongName.Visible = true;
+            this.colLongName.VisibleIndex = 1;
+            this.colLongName.Width = 490;
+            // 
+            // colAcceptFM
+            // 
+            this.colAcceptFM.Caption = "FM";
+            this.colAcceptFM.FieldName = "allow_fm";
+            this.colAcceptFM.Name = "colAcceptFM";
+            this.colAcceptFM.OptionsColumn.ReadOnly = true;
+            this.colAcceptFM.Visible = true;
+            this.colAcceptFM.VisibleIndex = 2;
+            this.colAcceptFM.Width = 50;
+            // 
+            // colAcceptRM
+            // 
+            this.colAcceptRM.Caption = "RM";
+            this.colAcceptRM.FieldName = "allow_rm";
+            this.colAcceptRM.Name = "colAcceptRM";
+            this.colAcceptRM.OptionsColumn.ReadOnly = true;
+            this.colAcceptRM.Visible = true;
+            this.colAcceptRM.VisibleIndex = 3;
+            this.colAcceptRM.Width = 50;
+            // 
+            // colAcceptFP
+            // 
+            this.colAcceptFP.Caption = "FP";
+            this.colAcceptFP.FieldName = "allow_fp";
+            this.colAcceptFP.Name = "colAcceptFP";
+            this.colAcceptFP.OptionsColumn.ReadOnly = true;
+            this.colAcceptFP.Visible = true;
+            this.colAcceptFP.VisibleIndex = 4;
+            this.colAcceptFP.Width = 50;
+            // 
+            // colAcceptNC
+            // 
+            this.colAcceptNC.Caption = "NC";
+            this.colAcceptNC.FieldName = "allow_nc";
+            this.colAcceptNC.Name = "colAcceptNC";
+            this.colAcceptNC.OptionsColumn.ReadOnly = true;
+            this.colAcceptNC.Visible = true;
+            this.colAcceptNC.VisibleIndex = 5;
+            this.colAcceptNC.Width = 50;
+            // 
+            // btn_Editar
+            // 
+            this.btn_Editar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Editar.Image = global::ARM.Properties.Resources.edit_32x32;
+            this.btn_Editar.Location = new System.Drawing.Point(439, 2);
+            this.btn_Editar.Name = "btn_Editar";
+            this.btn_Editar.Size = new System.Drawing.Size(120, 53);
+            this.btn_Editar.TabIndex = 0;
+            this.btn_Editar.Text = "Editar";
+            this.btn_Editar.Click += new System.EventHandler(this.btn_Editar_Click);
+            // 
+            // Mants_Bins
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(801, 432);
+            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.panelControl1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Mants_Bins";
+            this.Text = "Mants_Bins";
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbl_gruposBin.Properties)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.SimpleButton btn_Salir;
+        private DevExpress.XtraEditors.SimpleButton btn_Cancelar;
+        private DevExpress.XtraEditors.SimpleButton btn_Guardar;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LookUpEdit cmbl_gruposBin;
+        private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraGrid.Columns.GridColumn colLongName;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptFM;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptRM;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptFP;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptNC;
+        private DevExpress.XtraEditors.SimpleButton btn_Editar;
+    }
+}

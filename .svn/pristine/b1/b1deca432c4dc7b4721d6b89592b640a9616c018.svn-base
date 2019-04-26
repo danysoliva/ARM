@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace ARM
+{
+    public partial class Main_Form : DevExpress.XtraEditors.XtraForm
+    {
+        private bool allowVisible = true;
+        private bool allowClose;
+        private bool menuallowvisible = true;
+
+        public Main_Form()
+        {
+            InitializeComponent();
+            //notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+            //this.mostrarOpcionesToolStripMenuItem.Click += mostrarOpcionesToolStripMenuItem_Click;
+            //this.salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
+            //this.ocultarOpcionesToolStripMenuItem.Click += ocultarOpcionesToolStripMenuItem_Click;
+            //rd_menu.ShowPopup(new Point(40, 40/*(this.Width / 2), (this.Height / 2)*/));
+        }
+
+        protected override void SetVisibleCore(bool value)
+        {
+            if (!allowVisible)
+            {
+                value = false;
+                if (!this.IsHandleCreated) CreateHandle();
+            }
+            base.SetVisibleCore(value);
+            allowVisible = false;
+            base.SetVisibleCore(allowVisible);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!allowClose)
+            {
+                this.Hide();
+                e.Cancel = true;
+            }
+            base.OnFormClosing(e);
+        }
+
+        private void Main_Form_Load(object sender, EventArgs e)
+        {
+            Thread.Sleep(4000);
+            rd_menu.ShowPopup(new Point((this.Width / 2), (this.Height / 2)));
+        }
+
+        private void rd_menu_CloseUp(object sender, EventArgs e)
+        {
+            if (menuallowvisible == true)
+                rd_menu.ShowPopup(new Point((this.Width / 2), (this.Height / 2)));
+        }
+
+        private void btn_aqua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            rd_menu.HidePopup();
+            Formulas.Aqua.formula_viewer form = new Formulas.Aqua.formula_viewer();
+            form.TopMost = true;
+            form.ShowDialog();
+        }
+
+        private void btn_plc_test_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            rd_menu.HidePopup();
+            DUO.SOCP form = new DUO.SOCP();
+            form.TopMost = true;
+            form.ShowDialog();
+        }
+
+        private void btn_ProductionOrders_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Production.OP_Production_Orders_Planner_Old form = new Production.OP_Production_Orders_Planner_Old();
+            menuallowvisible = false;
+            rd_menu.HidePopup();
+            form.ShowDialog();
+            menuallowvisible = true;
+            rd_menu.ShowPopup(new Point((this.Width / 2), (this.Height / 2)));
+        }
+
+        private void btn_BinMaintenance_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Mants.Mants_Bins form = new Mants.Mants_Bins();
+            form.ShowDialog();
+        }
+
+        private void btn_AllowedMaterials_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Mants.Mant_MP_xBin form = new Mants.Mant_MP_xBin();
+            form.ShowDialog();
+        }
+    }
+}

@@ -1,0 +1,363 @@
+﻿namespace ARM.Mants
+{
+    partial class Mants_Bins
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLongName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptRM = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptFP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAcceptNC = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccepSFP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cmbl_gruposBin = new DevExpress.XtraEditors.LookUpEdit();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.bar1 = new DevExpress.XtraBars.Bar();
+            this.btn_Salir = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Editar = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Cancelar = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_Guardar = new DevExpress.XtraBars.BarButtonItem();
+            this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
+            this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbl_gruposBin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(2, 2);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(797, 358);
+            this.gridControl1.TabIndex = 0;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colID,
+            this.colLongName,
+            this.colAcceptRM,
+            this.colAcceptFP,
+            this.colAcceptNC,
+            this.colAccepSFP});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanging);
+            // 
+            // colID
+            // 
+            this.colID.Caption = "ID";
+            this.colID.FieldName = "id";
+            this.colID.Name = "colID";
+            this.colID.OptionsColumn.AllowEdit = false;
+            this.colID.Visible = true;
+            this.colID.VisibleIndex = 0;
+            this.colID.Width = 71;
+            // 
+            // colLongName
+            // 
+            this.colLongName.Caption = "Bin";
+            this.colLongName.FieldName = "long_name";
+            this.colLongName.Name = "colLongName";
+            this.colLongName.OptionsColumn.AllowEdit = false;
+            this.colLongName.Visible = true;
+            this.colLongName.VisibleIndex = 1;
+            this.colLongName.Width = 490;
+            // 
+            // colAcceptRM
+            // 
+            this.colAcceptRM.Caption = "RM";
+            this.colAcceptRM.FieldName = "allow_rm";
+            this.colAcceptRM.Name = "colAcceptRM";
+            this.colAcceptRM.OptionsColumn.ReadOnly = true;
+            this.colAcceptRM.Visible = true;
+            this.colAcceptRM.VisibleIndex = 2;
+            this.colAcceptRM.Width = 50;
+            // 
+            // colAcceptFP
+            // 
+            this.colAcceptFP.Caption = "FP";
+            this.colAcceptFP.FieldName = "allow_fp";
+            this.colAcceptFP.Name = "colAcceptFP";
+            this.colAcceptFP.OptionsColumn.ReadOnly = true;
+            this.colAcceptFP.Visible = true;
+            this.colAcceptFP.VisibleIndex = 3;
+            this.colAcceptFP.Width = 50;
+            // 
+            // colAcceptNC
+            // 
+            this.colAcceptNC.Caption = "NC";
+            this.colAcceptNC.FieldName = "allow_nc";
+            this.colAcceptNC.Name = "colAcceptNC";
+            this.colAcceptNC.OptionsColumn.ReadOnly = true;
+            this.colAcceptNC.Visible = true;
+            this.colAcceptNC.VisibleIndex = 4;
+            this.colAcceptNC.Width = 50;
+            // 
+            // colAccepSFP
+            // 
+            this.colAccepSFP.Caption = "SFP";
+            this.colAccepSFP.FieldName = "allow_sfp";
+            this.colAccepSFP.Name = "colAccepSFP";
+            this.colAccepSFP.OptionsColumn.ReadOnly = true;
+            this.colAccepSFP.Visible = true;
+            this.colAccepSFP.VisibleIndex = 5;
+            this.colAccepSFP.Width = 50;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.panelControl3);
+            this.panelControl2.Controls.Add(this.gridControl1);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 47);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(801, 362);
+            this.panelControl2.TabIndex = 2;
+            // 
+            // panelControl3
+            // 
+            this.panelControl3.Controls.Add(this.labelControl1);
+            this.panelControl3.Controls.Add(this.cmbl_gruposBin);
+            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl3.Location = new System.Drawing.Point(2, 2);
+            this.panelControl3.Name = "panelControl3";
+            this.panelControl3.Size = new System.Drawing.Size(797, 32);
+            this.panelControl3.TabIndex = 1;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Location = new System.Drawing.Point(10, 8);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(67, 13);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "Grupo Bines";
+            // 
+            // cmbl_gruposBin
+            // 
+            this.cmbl_gruposBin.Location = new System.Drawing.Point(83, 5);
+            this.cmbl_gruposBin.Name = "cmbl_gruposBin";
+            this.cmbl_gruposBin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbl_gruposBin.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("id", "ID"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("long_name", "Grupo")});
+            this.cmbl_gruposBin.Properties.DisplayMember = "long_name";
+            this.cmbl_gruposBin.Properties.ValueMember = "id";
+            this.cmbl_gruposBin.Size = new System.Drawing.Size(167, 20);
+            this.cmbl_gruposBin.TabIndex = 0;
+            this.cmbl_gruposBin.EditValueChanged += new System.EventHandler(this.cmbl_gruposBin_EditValueChanged);
+            // 
+            // barManager1
+            // 
+            this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
+            this.bar1,
+            this.bar3});
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btn_Salir,
+            this.btn_Editar,
+            this.btn_Cancelar,
+            this.btn_Guardar});
+            this.barManager1.MaxItemId = 4;
+            this.barManager1.StatusBar = this.bar3;
+            // 
+            // bar1
+            // 
+            this.bar1.BarName = "Tools";
+            this.bar1.DockCol = 0;
+            this.bar1.DockRow = 0;
+            this.bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_Salir),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_Editar),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_Cancelar),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btn_Guardar)});
+            this.bar1.OptionsBar.DrawBorder = false;
+            this.bar1.OptionsBar.DrawDragBorder = false;
+            this.bar1.OptionsBar.UseWholeRow = true;
+            this.bar1.Text = "Tools";
+            // 
+            // btn_Salir
+            // 
+            this.btn_Salir.Caption = "Salir";
+            this.btn_Salir.Glyph = global::ARM.Properties.Resources.cancel2_32;
+            this.btn_Salir.Id = 0;
+            this.btn_Salir.Name = "btn_Salir";
+            this.btn_Salir.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btn_Salir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Salir_ItemClick);
+            // 
+            // btn_Editar
+            // 
+            this.btn_Editar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Editar.Caption = "Editar";
+            this.btn_Editar.Glyph = global::ARM.Properties.Resources.edit_32x32;
+            this.btn_Editar.Id = 1;
+            this.btn_Editar.Name = "btn_Editar";
+            this.btn_Editar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btn_Editar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Editar_ItemClick);
+            // 
+            // btn_Cancelar
+            // 
+            this.btn_Cancelar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Cancelar.Caption = "Cancelar";
+            this.btn_Cancelar.Glyph = global::ARM.Properties.Resources.cancel_32x32;
+            this.btn_Cancelar.Id = 2;
+            this.btn_Cancelar.Name = "btn_Cancelar";
+            this.btn_Cancelar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btn_Cancelar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btn_Cancelar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Cancelar_ItemClick);
+            // 
+            // btn_Guardar
+            // 
+            this.btn_Guardar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Guardar.Caption = "Guardar";
+            this.btn_Guardar.Glyph = global::ARM.Properties.Resources.saveChanges_32x32;
+            this.btn_Guardar.Id = 3;
+            this.btn_Guardar.Name = "btn_Guardar";
+            this.btn_Guardar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btn_Guardar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btn_Guardar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Guardar_ItemClick);
+            // 
+            // bar3
+            // 
+            this.bar3.BarName = "Status bar";
+            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
+            this.bar3.DockCol = 0;
+            this.bar3.DockRow = 0;
+            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.OptionsBar.AllowQuickCustomization = false;
+            this.bar3.OptionsBar.DrawDragBorder = false;
+            this.bar3.OptionsBar.UseWholeRow = true;
+            this.bar3.Text = "Status bar";
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(801, 47);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 409);
+            this.barDockControlBottom.Size = new System.Drawing.Size(801, 23);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 362);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(801, 47);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 362);
+            // 
+            // Mants_Bins
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(801, 432);
+            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "Mants_Bins";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Mants_Bins";
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
+            this.panelControl3.ResumeLayout(false);
+            this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbl_gruposBin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl panelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LookUpEdit cmbl_gruposBin;
+        private DevExpress.XtraGrid.Columns.GridColumn colID;
+        private DevExpress.XtraGrid.Columns.GridColumn colLongName;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccepSFP;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptRM;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptFP;
+        private DevExpress.XtraGrid.Columns.GridColumn colAcceptNC;
+        private DevExpress.XtraBars.BarManager barManager1;
+        private DevExpress.XtraBars.Bar bar1;
+        private DevExpress.XtraBars.Bar bar3;
+        private DevExpress.XtraBars.BarDockControl barDockControlTop;
+        private DevExpress.XtraBars.BarDockControl barDockControlBottom;
+        private DevExpress.XtraBars.BarDockControl barDockControlLeft;
+        private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraBars.BarButtonItem btn_Salir;
+        private DevExpress.XtraBars.BarButtonItem btn_Editar;
+        private DevExpress.XtraBars.BarButtonItem btn_Cancelar;
+        private DevExpress.XtraBars.BarButtonItem btn_Guardar;
+    }
+}

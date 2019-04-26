@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using ARM.Classes;
+
+namespace ARM.Reports
+{
+    public partial class IntakeReport : DevExpress.XtraEditors.XtraForm
+    {
+        FMOP fmop = new FMOP();
+        
+        public IntakeReport()
+        {
+            InitializeComponent();
+        }
+
+        private void btn_exit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+    }
+}

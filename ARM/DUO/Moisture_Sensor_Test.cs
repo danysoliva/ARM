@@ -1,0 +1,211 @@
+﻿using S7.Net;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+
+namespace ARM.DUO
+{
+    public partial class Moisture_Sensor_Test : DevExpress.XtraEditors.XtraForm
+    {
+        #region Developer Private Variables
+
+        Plc S7_300_317; 
+
+        string S7_300_317_IPAddress = "";
+
+        DataTable mix1;
+        DataTable mix2;
+
+        #endregion
+
+        private void Check_PLC_Availability()
+        {
+            try
+            {
+                S7_300_317_IPAddress = txt_cpu_address.Text.ToString();
+                S7_300_317 = new Plc(CpuType.S7300, S7_300_317_IPAddress, 0, 2);
+
+                if (S7_300_317.IsAvailable)
+                {
+                    lbl_available.Text = "LA CPU ESTA DISPONIBLE";
+                    lbl_available.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lbl_available.Text = "LA CPU NO ESTA DISPONIBLE";
+                    lbl_available.ForeColor = System.Drawing.Color.Red;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Disconect_PLC()
+        {
+            try
+            {
+                if (S7_300_317.IsConnected)
+                {
+                    S7_300_317.Close();
+                    txt_cpu_address.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("La CPU no esta conectada", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Connect_PLC()
+        {
+            try
+            {
+                if (!S7_300_317.IsConnected)
+                {
+                    S7_300_317.Open();
+                    txt_cpu_address.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Ya estas conectado con esta CPU", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Check_PLC_Connectivity()
+        {
+            try
+            {
+                if (S7_300_317.IsConnected)
+                {
+                    lbl_connected.Text = "LA CPU ESTA CONECTADA";
+                    lbl_connected.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lbl_connected.Text = "LA CPU NO ESTA CONECTADA";
+                    lbl_connected.ForeColor = System.Drawing.Color.Red;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ini_datatable()
+        {
+            mix1 = new DataTable();
+            mix1.Columns.Add("datetime_m1");
+            mix1.Columns.Add("moisture_m1");
+            mix1.Columns["datetime_m1"].DataType = typeof(DateTime);
+            mix1.Columns["moisture_m1"].DataType = typeof(double);
+            mix1.AcceptChanges();
+
+            mix2 = new DataTable();
+            mix2.Columns.Add("datetime_m2");
+            mix2.Columns.Add("moisture_m2");
+            mix2.Columns["datetime_m2"].DataType = typeof(DateTime);
+            mix2.Columns["moisture_m2"].DataType = typeof(double);
+            mix2.AcceptChanges();
+        }
+
+        private void add_rows()
+        {
+            double moisture_mix1 = ((uint)S7_300_317.Read(txt_DB_M1.Text.ToString())).ConvertToDouble();
+            double moisture_mix2 = ((uint)S7_300_317.Read(txt_DB_M2.Text.ToString())).ConvertToDouble();
+
+            DataRow row = mix1.NewRow();
+            row["datetime_m1"] = System.DateTime.Now;
+            row["moisture_m1"] = moisture_mix1;
+            mix1.Rows.Add(row);
+            mix1.AcceptChanges();
+
+            row = mix2.NewRow();
+            row["datetime_m2"] = System.DateTime.Now;
+            row["moisture_m2"] = moisture_mix2;
+            mix2.Rows.Add(row);
+            mix2.AcceptChanges();
+        }
+
+        public Moisture_Sensor_Test()
+        {
+            InitializeComponent();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Check_PLC_Availability();
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Connect_PLC();
+            Check_PLC_Connectivity();
+        }
+
+        private void Moisture_Sensor_Test_Load(object sender, EventArgs e)
+        {
+            ini_datatable();
+
+            grd_mix1.DataSource = mix1;
+            grd_mix2.DataSource = mix2;
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            timer1.Interval = int.Parse(txt_interval.Text.ToString());
+            timer1.Start();
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            timer1.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            add_rows();
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Excel File (.xlsx)|*.xlsx";
+            dialog.FilterIndex = 0;
+
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                grdv_mix1.ExportToXlsx((string.Format("{0} - Mix1.xlsx", dialog.FileName.Substring(0, (dialog.FileName.Length - 5)))));
+                grdv_mix2.ExportToXlsx((string.Format("{0} - Mix2.xlsx", dialog.FileName.Substring(0, (dialog.FileName.Length - 5)))));
+            }
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Disconect_PLC();
+            Check_PLC_Connectivity();
+        }
+    }
+}

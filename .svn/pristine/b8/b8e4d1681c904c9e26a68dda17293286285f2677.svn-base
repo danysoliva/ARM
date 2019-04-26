@@ -1,0 +1,185 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using ARM.Classes;
+
+using System.Data.SqlClient;
+using System.Data;
+
+namespace ARM.Production
+{
+    public partial class OP_Production_Orders_Planner : DevExpress.XtraEditors.XtraForm
+    {
+        #region Developer Defined Varibles
+
+        DataOperations dp = new DataOperations();
+        FMOP fmop = new FMOP();
+
+        int selected_order_id;  
+      
+        #endregion
+
+        #region Constructors
+
+        public OP_Production_Orders_Planner()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
+
+
+        #region Developer defined Methods
+
+
+        #endregion
+
+        #region Form Events
+
+        private void btn_exit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void OP_Production_Orders_Planner_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                grd_Orders.DataSource = fmop.apms_get_orders_by_status(40, 80);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdv_Orders_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            try
+            {
+                selected_order_id = Convert.ToInt32(grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "ID"));
+
+                //np_Materiales.Caption = "Materiales Orden " + grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción").ToString();
+                grp_mix1.Text = string.Format("Primer Mezclado\t-\t{0}P", grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción"));
+                grp_mix2.Text = string.Format("Segundo Mezclado\t-\t{0}S", grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción"));
+
+                grd_Mix1.DataSource = fmop.apms_get_order_structure_per_mix(selected_order_id, 1);
+                grd_Mix2.DataSource = fmop.apms_get_order_structure_per_mix(selected_order_id, 2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdv_Orders_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Orders.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        private void grdv_Mix1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Mix1.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        private void grdv_Mix2_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Mix2.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        #endregion
+
+        private void btn_ProduceMix1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) // Activando Ordenes ..
+        {
+            // JV, no debe existir otro MIX con ese mismo STS:
+            if (existenOP_Mix_Status(selected_order_id, 1, 50))
+            {
+                MessageBox.Show("Ya existe un mesclado con ese estado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int idMIX = Convert.ToInt32(grdv_Mix1.GetRowCellValue(grdv_Mix1.FocusedRowHandle, "record_id")) ;
+            setStatus_OP_mix(idMIX, 1, 50); // STS: 50=Activar
+        }
+
+
+        /// <summary>
+        /// Cambia Status a los MIX de las OP
+        /// </summary>
+        /// <param name="order_mix_id">Numero de la Orden de Producción</param>
+        /// <param name="mix_num">1=Primer Mesclado, 2=Segundo Mesclado</param>
+        /// <param name="status">50=Activar, 60=Suspender</param>
+        void setStatus_OP_mix(int order_mix_id, int mix_num, int status)    // Seteando Status de MIX de OP ..
+        {
+            if (status != 50 || status != 60) return;
+            try
+            {
+                #region Parametros_SP_Entrada
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add(new SqlParameter("@order_mix_id", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@mix_num", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@status", SqlDbType.Int));
+                cmd.Parameters["@order_mix_id"].Value = order_mix_id ; 
+                cmd.Parameters["@mix_num"].Value = mix_num ;
+                cmd.Parameters["@status"].Value = status ;
+                #endregion
+
+                dp.APMS_Exec_SP_Get_Data("OP_Set_Mix_Status_by_Orders", cmd);
+            }
+            catch (Exception) { throw; }
+        }
+
+        /// <summary>
+        /// Revisa si ya existe un MIX de la OP con status indicado
+        /// </summary>
+        /// <param name="order_id">Numero de OP</param>
+        /// <param name="mix_num">1=Primer Mesclado, 2=Segundo Mesclado</param>
+        /// <param name="status">50=Activado, 60=Suspendido</param>
+        /// <returns></returns>
+        bool existenOP_Mix_Status(int order_id, int mix_num, int status)
+        {
+            #region query
+            String query = String.Format(@"SELECT Count(*) cantidad FROM OP_Production_Orders_Main_Mix where mix_num= {0} and order_id= {1} and status= {2}"
+                ,order_id
+                ,mix_num
+                ,status                
+                );
+            #endregion
+
+            DataTable dtTEMP = new DataTable();
+            dtTEMP = dp.APMS_GetSelectData(query).Tables[0];
+            
+            return (Convert.ToInt32(dtTEMP.Rows[0]["cantidad"])>0 ? true : false);
+        }
+    }
+}

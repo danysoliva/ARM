@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
+using ARM.Classes;
+
+namespace ARM.Production
+{
+    public partial class OP_Production_Orders_Planner : DevExpress.XtraEditors.XtraForm
+    {
+        #region Developer Defined Varibles
+
+        DataOperations dp = new DataOperations();
+        FMOP fmop = new FMOP();
+
+        int selected_order_id;  
+      
+        #endregion
+
+        #region Constructors
+
+        public OP_Production_Orders_Planner()
+        {
+            InitializeComponent();
+        }
+
+        #endregion
+
+
+        #region Developer defined Methods
+
+
+        #endregion
+
+        #region Form Events
+
+        private void btn_exit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void OP_Production_Orders_Planner_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                grd_Orders.DataSource = fmop.apms_get_orders_by_status(40, 80);
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdv_Orders_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+            try
+            {
+                selected_order_id = Convert.ToInt32(grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "ID"));
+
+                //np_Materiales.Caption = "Materiales Orden " + grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción").ToString();
+                grp_mix1.Text = string.Format("Primer Mezclado\t-\t{0}P", grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción"));
+                grp_mix2.Text = string.Format("Primer Mezclado\t-\t{0}S", grdv_Orders.GetRowCellValue(e.FocusedRowHandle, "Orden Producción"));
+
+                grd_Mix1.DataSource = fmop.apms_get_order_structure_per_mix(selected_order_id, 1);
+                grd_Mix2.DataSource = fmop.apms_get_order_structure_per_mix(selected_order_id, 2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void grdv_Orders_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Orders.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        private void grdv_Mix1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Mix1.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        private void grdv_Mix2_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            try
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    ContextMenu_Mix2.ShowPopup(Cursor.Position);
+                }
+            }
+            catch { }
+        }
+
+        #endregion
+    }
+}
