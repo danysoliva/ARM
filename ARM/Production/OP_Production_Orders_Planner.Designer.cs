@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
@@ -42,6 +38,10 @@
             DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OP_Production_Orders_Planner));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule7 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue7 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule8 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue8 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.col_batch_restantes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Orders = new DevExpress.XtraGrid.GridControl();
             this.grdv_Orders = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -81,6 +81,7 @@
             this.btn_Details = new DevExpress.XtraBars.BarButtonItem();
             this.btn_Actualizar = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -99,8 +100,16 @@
             this.btn_esPostpellet = new DevExpress.XtraBars.BarButtonItem();
             this.btn_espospelet = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.grp_Orders = new DevExpress.XtraEditors.GroupControl();
             this.grp_Structure = new DevExpress.XtraEditors.GroupControl();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.dsARM1 = new ARM.Production.dsARM();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPesoporBatch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBatchPlan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Structure = new DevExpress.XtraGrid.GridControl();
             this.grdv_Structure = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_record_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -122,6 +131,7 @@
             this.col_postpellet_cant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.label1 = new System.Windows.Forms.Label();
             this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -144,6 +154,9 @@
             this.grp_Orders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).BeginInit();
             this.grp_Structure.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -177,7 +190,7 @@
             this.grd_Orders.Location = new System.Drawing.Point(2, 70);
             this.grd_Orders.MainView = this.grdv_Orders;
             this.grd_Orders.Name = "grd_Orders";
-            this.grd_Orders.Size = new System.Drawing.Size(831, 123);
+            this.grd_Orders.Size = new System.Drawing.Size(1279, 123);
             this.grd_Orders.TabIndex = 0;
             this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Orders});
@@ -230,58 +243,58 @@
             this.col_acs_id,
             this.col_formula,
             this.col_batch_mp});
-            gridFormatRule1.ApplyToRow = true;
-            gridFormatRule1.Name = "Activas";
-            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            formatConditionRuleValue1.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
-            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue1.Appearance.Options.UseFont = true;
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue1.Expression = "[mix_status] = 70";
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Name = "Ensacado";
-            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
-            formatConditionRuleValue2.Appearance.BackColor2 = System.Drawing.Color.PapayaWhip;
-            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue2.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.OrangeRed;
-            formatConditionRuleValue2.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue2.Appearance.Options.UseFont = true;
-            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue2.Expression = "[mix_status] = 80";
-            gridFormatRule2.Rule = formatConditionRuleValue2;
             gridFormatRule3.ApplyToRow = true;
-            gridFormatRule3.Name = "Format0";
-            formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
-            formatConditionRuleValue3.Appearance.BackColor2 = System.Drawing.Color.PowderBlue;
-            formatConditionRuleValue3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.SteelBlue;
+            gridFormatRule3.Name = "Activas";
+            formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            formatConditionRuleValue3.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            formatConditionRuleValue3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
             formatConditionRuleValue3.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             formatConditionRuleValue3.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue3.Appearance.Options.UseFont = true;
             formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue3.Expression = "[mix_status] = 60";
+            formatConditionRuleValue3.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue3.Expression = "[mix_status] = 70";
             gridFormatRule3.Rule = formatConditionRuleValue3;
-            gridFormatRule4.Column = this.col_batch_restantes;
-            gridFormatRule4.ColumnApplyTo = this.col_batch_restantes;
-            gridFormatRule4.Name = "Batch_Restantes";
-            formatConditionRuleValue4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            gridFormatRule4.ApplyToRow = true;
+            gridFormatRule4.Name = "Ensacado";
+            formatConditionRuleValue4.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
+            formatConditionRuleValue4.Appearance.BackColor2 = System.Drawing.Color.PapayaWhip;
+            formatConditionRuleValue4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue4.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.OrangeRed;
+            formatConditionRuleValue4.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue4.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue4.Appearance.Options.UseFont = true;
             formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue4.Expression = "[batch_restantes] > 0";
+            formatConditionRuleValue4.Expression = "[mix_status] = 80";
             gridFormatRule4.Rule = formatConditionRuleValue4;
-            this.grdv_Orders.FormatRules.Add(gridFormatRule1);
-            this.grdv_Orders.FormatRules.Add(gridFormatRule2);
+            gridFormatRule5.ApplyToRow = true;
+            gridFormatRule5.Name = "Format0";
+            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.PowderBlue;
+            formatConditionRuleValue5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.SteelBlue;
+            formatConditionRuleValue5.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue5.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue5.Appearance.Options.UseFont = true;
+            formatConditionRuleValue5.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue5.Expression = "[mix_status] = 60";
+            gridFormatRule5.Rule = formatConditionRuleValue5;
+            gridFormatRule6.Column = this.col_batch_restantes;
+            gridFormatRule6.ColumnApplyTo = this.col_batch_restantes;
+            gridFormatRule6.Name = "Batch_Restantes";
+            formatConditionRuleValue6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue6.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue6.Appearance.Options.UseFont = true;
+            formatConditionRuleValue6.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue6.Expression = "[batch_restantes] > 0";
+            gridFormatRule6.Rule = formatConditionRuleValue6;
             this.grdv_Orders.FormatRules.Add(gridFormatRule3);
             this.grdv_Orders.FormatRules.Add(gridFormatRule4);
+            this.grdv_Orders.FormatRules.Add(gridFormatRule5);
+            this.grdv_Orders.FormatRules.Add(gridFormatRule6);
             this.grdv_Orders.GridControl = this.grd_Orders;
             this.grdv_Orders.GroupCount = 1;
             this.grdv_Orders.Name = "grdv_Orders";
@@ -493,8 +506,10 @@
             this.barButtonItem3,
             this.btn_esPostpellet,
             this.btn_espospelet,
-            this.barButtonItem2});
-            this.barManager1.MaxItemId = 27;
+            this.barButtonItem2,
+            this.barButtonItem4,
+            this.barButtonItem5});
+            this.barManager1.MaxItemId = 29;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -516,17 +531,16 @@
             // 
             // barStaticItem1
             // 
-            this.barStaticItem1.Glyph = global::ARM.Properties.Resources.Logo_x32;
             this.barStaticItem1.Id = 4;
+            this.barStaticItem1.ImageOptions.Image = global::ARM.Properties.Resources.Logo_x32;
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             this.barStaticItem1.ItemDoubleClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticItem1_ItemDoubleClick);
             // 
             // barHeaderItem1
             // 
             this.barHeaderItem1.AllowRightClickInMenu = false;
-            this.barHeaderItem1.Caption = "Planificador de Ordenes de Producción";
+            this.barHeaderItem1.Caption = "Planificador de Ordenes de Producción v2";
             this.barHeaderItem1.Id = 5;
             this.barHeaderItem1.Name = "barHeaderItem1";
             this.barHeaderItem1.ShowItemShortcut = DevExpress.Utils.DefaultBoolean.False;
@@ -535,8 +549,8 @@
             // 
             this.btn_exit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_exit.Caption = "Salir";
-            this.btn_exit.Glyph = global::ARM.Properties.Resources.Salir_32;
             this.btn_exit.Id = 6;
+            this.btn_exit.ImageOptions.Image = global::ARM.Properties.Resources.Salir_32;
             this.btn_exit.ItemAppearance.Normal.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.btn_exit.ItemAppearance.Normal.Options.UseFont = true;
             this.btn_exit.Name = "btn_exit";
@@ -546,8 +560,8 @@
             // btngrp_Reports
             // 
             this.btngrp_Reports.Caption = "Reportes";
-            this.btngrp_Reports.Glyph = global::ARM.Properties.Resources.Reports_32;
             this.btngrp_Reports.Id = 19;
+            this.btngrp_Reports.ImageOptions.Image = global::ARM.Properties.Resources.Reports_32;
             this.btngrp_Reports.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_IntakeReport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_IntakeLiveReport),
@@ -558,16 +572,16 @@
             // btn_IntakeReport
             // 
             this.btn_IntakeReport.Caption = "Consumo de Materiales";
-            this.btn_IntakeReport.Glyph = global::ARM.Properties.Resources.rm_32x32;
             this.btn_IntakeReport.Id = 20;
+            this.btn_IntakeReport.ImageOptions.Image = global::ARM.Properties.Resources.rm_32x32;
             this.btn_IntakeReport.Name = "btn_IntakeReport";
             this.btn_IntakeReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_IntakeReport_ItemClick);
             // 
             // btn_IntakeLiveReport
             // 
             this.btn_IntakeLiveReport.Caption = "Consumo de Materiales (Live)";
-            this.btn_IntakeLiveReport.Glyph = global::ARM.Properties.Resources.rm_32x32;
             this.btn_IntakeLiveReport.Id = 21;
+            this.btn_IntakeLiveReport.ImageOptions.Image = global::ARM.Properties.Resources.rm_32x32;
             this.btn_IntakeLiveReport.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btn_IntakeLiveReport.ItemAppearance.Normal.Options.UseBackColor = true;
             this.btn_IntakeLiveReport.ItemInMenuAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -578,8 +592,8 @@
             // btn_DetalleBatch
             // 
             this.btn_DetalleBatch.Caption = "Detalle de Batch";
-            this.btn_DetalleBatch.Glyph = global::ARM.Properties.Resources.Reports_32;
             this.btn_DetalleBatch.Id = 22;
+            this.btn_DetalleBatch.ImageOptions.Image = global::ARM.Properties.Resources.Reports_32;
             this.btn_DetalleBatch.Name = "btn_DetalleBatch";
             this.btn_DetalleBatch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_DetalleBatch_ItemClick);
             // 
@@ -609,7 +623,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_Details, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_Actualizar, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.OptionsBar.UseWholeRow = true;
@@ -619,8 +634,8 @@
             // btn_Activar
             // 
             this.btn_Activar.Caption = "Producir";
-            this.btn_Activar.Glyph = global::ARM.Properties.Resources.accept2_32;
             this.btn_Activar.Id = 0;
+            this.btn_Activar.ImageOptions.Image = global::ARM.Properties.Resources.accept2_32;
             this.btn_Activar.Name = "btn_Activar";
             this.btn_Activar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btn_Activar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Activar_ItemClick);
@@ -628,8 +643,8 @@
             // btn_Suspender
             // 
             this.btn_Suspender.Caption = "Suspender";
-            this.btn_Suspender.Glyph = global::ARM.Properties.Resources.suspend_32;
             this.btn_Suspender.Id = 1;
+            this.btn_Suspender.ImageOptions.Image = global::ARM.Properties.Resources.suspend_32;
             this.btn_Suspender.Name = "btn_Suspender";
             this.btn_Suspender.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btn_Suspender.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Suspender_ItemClick);
@@ -637,8 +652,8 @@
             // btn_Finalizar
             // 
             this.btn_Finalizar.Caption = "Finalizar";
-            this.btn_Finalizar.Glyph = global::ARM.Properties.Resources.finish_32;
             this.btn_Finalizar.Id = 2;
+            this.btn_Finalizar.ImageOptions.Image = global::ARM.Properties.Resources.finish_32;
             this.btn_Finalizar.Name = "btn_Finalizar";
             this.btn_Finalizar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btn_Finalizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Finalizar_ItemClick);
@@ -647,8 +662,8 @@
             // 
             this.barButtonItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.barButtonItem1.Caption = "Permitir Suspender";
-            this.barButtonItem1.Glyph = global::ARM.Properties.Resources.Lock_Unlock_icon_24;
             this.barButtonItem1.Id = 15;
+            this.barButtonItem1.ImageOptions.Image = global::ARM.Properties.Resources.Lock_Unlock_icon_24;
             this.barButtonItem1.Name = "barButtonItem1";
             this.barButtonItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
@@ -658,8 +673,8 @@
             // 
             this.btn_Details.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_Details.Caption = "Detalles";
-            this.btn_Details.Glyph = global::ARM.Properties.Resources.detail_32;
             this.btn_Details.Id = 18;
+            this.btn_Details.ImageOptions.Image = global::ARM.Properties.Resources.detail_32;
             this.btn_Details.Name = "btn_Details";
             this.btn_Details.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btn_Details.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Details_ItemClick);
@@ -668,8 +683,8 @@
             // 
             this.btn_Actualizar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_Actualizar.Caption = "Actualizar";
-            this.btn_Actualizar.Glyph = global::ARM.Properties.Resources.refresh_32x32;
             this.btn_Actualizar.Id = 3;
+            this.btn_Actualizar.ImageOptions.Image = global::ARM.Properties.Resources.refresh_32x32;
             this.btn_Actualizar.Name = "btn_Actualizar";
             this.btn_Actualizar.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btn_Actualizar.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Actualizar_ItemClick);
@@ -681,13 +696,24 @@
             this.barButtonItem3.Name = "barButtonItem3";
             this.barButtonItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "Micro Ingredientes Manuales";
+            this.barButtonItem4.Id = 27;
+            this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
+            this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            // 
             // standaloneBarDockControl1
             // 
             this.standaloneBarDockControl1.CausesValidation = false;
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 21);
+            this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(831, 49);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1279, 49);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barDockControlTop
@@ -695,6 +721,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Size = new System.Drawing.Size(1297, 47);
             // 
             // barDockControlBottom
@@ -702,6 +729,7 @@
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 449);
+            this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(1297, 23);
             // 
             // barDockControlLeft
@@ -709,6 +737,7 @@
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
+            this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 402);
             // 
             // barDockControlRight
@@ -716,13 +745,14 @@
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(1297, 47);
+            this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 402);
             // 
             // btn_Refresh
             // 
             this.btn_Refresh.Caption = "Actualizar";
             this.btn_Refresh.Id = 7;
-            this.btn_Refresh.ImageUri.Uri = "Refresh";
+            this.btn_Refresh.ImageOptions.ImageUri.Uri = "Refresh";
             this.btn_Refresh.Name = "btn_Refresh";
             this.btn_Refresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Refresh_ItemClick);
             // 
@@ -730,7 +760,7 @@
             // 
             this.btn_AddComment.Caption = "Agregar Comentario";
             this.btn_AddComment.Id = 8;
-            this.btn_AddComment.ImageUri.Uri = "Add";
+            this.btn_AddComment.ImageOptions.ImageUri.Uri = "Add";
             this.btn_AddComment.Name = "btn_AddComment";
             this.btn_AddComment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_AddComment_ItemClick);
             // 
@@ -738,7 +768,7 @@
             // 
             this.btn_Produce.Caption = "Producir";
             this.btn_Produce.Id = 9;
-            this.btn_Produce.ImageUri.Uri = "Apply";
+            this.btn_Produce.ImageOptions.ImageUri.Uri = "Apply";
             this.btn_Produce.Name = "btn_Produce";
             this.btn_Produce.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_Produce_ItemClick);
             // 
@@ -746,7 +776,7 @@
             // 
             this.btn_StandBy.Caption = "Suspender";
             this.btn_StandBy.Id = 10;
-            this.btn_StandBy.ImageUri.Uri = "Cut";
+            this.btn_StandBy.ImageOptions.ImageUri.Uri = "Cut";
             this.btn_StandBy.Name = "btn_StandBy";
             this.btn_StandBy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_StandBy_ItemClick);
             // 
@@ -754,7 +784,7 @@
             // 
             this.btn_FinishOrder.Caption = "Finalizar";
             this.btn_FinishOrder.Id = 11;
-            this.btn_FinishOrder.ImageUri.Uri = "Cancel";
+            this.btn_FinishOrder.ImageOptions.ImageUri.Uri = "Cancel";
             this.btn_FinishOrder.Name = "btn_FinishOrder";
             this.btn_FinishOrder.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_FinishOrder_ItemClick);
             // 
@@ -762,7 +792,7 @@
             // 
             this.btn_Stock.Caption = "Ver Stock";
             this.btn_Stock.Id = 12;
-            this.btn_Stock.ImageUri.Uri = "Paste";
+            this.btn_Stock.ImageOptions.ImageUri.Uri = "Paste";
             this.btn_Stock.Name = "btn_Stock";
             this.btn_Stock.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -770,15 +800,15 @@
             // 
             this.btn_MixChange.Caption = "Cambiar Mix";
             this.btn_MixChange.Id = 13;
-            this.btn_MixChange.ImageUri.Uri = "AlignHorizontalCenter";
+            this.btn_MixChange.ImageOptions.ImageUri.Uri = "AlignHorizontalCenter";
             this.btn_MixChange.Name = "btn_MixChange";
             this.btn_MixChange.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btn_MarcarManual
             // 
-            this.btn_MarcarManual.Caption = "Habilitar/Inhabilitar Manual";
+            this.btn_MarcarManual.Caption = "Habilitar Manual";
             this.btn_MarcarManual.Id = 14;
-            this.btn_MarcarManual.ImageUri.Uri = "Filter";
+            this.btn_MarcarManual.ImageOptions.ImageUri.Uri = "Filter";
             this.btn_MarcarManual.Name = "btn_MarcarManual";
             this.btn_MarcarManual.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_MarcarManual_ItemClick);
             // 
@@ -786,7 +816,7 @@
             // 
             this.btn_MarcarAlarma.Caption = "Habilitar/Inhabilitar Alarma";
             this.btn_MarcarAlarma.Id = 16;
-            this.btn_MarcarAlarma.ImageUri.Uri = "Stretch";
+            this.btn_MarcarAlarma.ImageOptions.ImageUri.Uri = "Stretch";
             this.btn_MarcarAlarma.Name = "btn_MarcarAlarma";
             this.btn_MarcarAlarma.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_MarcarAlarma_ItemClick);
             // 
@@ -794,7 +824,7 @@
             // 
             this.btnc_Details.Caption = "Ver Detalles";
             this.btnc_Details.Id = 17;
-            this.btnc_Details.ImageUri.Uri = "Paste";
+            this.btnc_Details.ImageOptions.ImageUri.Uri = "Paste";
             this.btnc_Details.Name = "btnc_Details";
             this.btnc_Details.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnc_Details_ItemClick);
             // 
@@ -802,7 +832,7 @@
             // 
             this.btn_esPostpellet.Caption = "Habilitar/Inhabilitar Es pospellet";
             this.btn_esPostpellet.Id = 24;
-            this.btn_esPostpellet.ImageUri.Uri = "AlignHorizontalBottom";
+            this.btn_esPostpellet.ImageOptions.ImageUri.Uri = "AlignHorizontalBottom";
             this.btn_esPostpellet.Name = "btn_esPostpellet";
             this.btn_esPostpellet.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_esPostpellet_ItemClick);
             // 
@@ -810,7 +840,7 @@
             // 
             this.btn_espospelet.Caption = "Habilitar/Inhabilitar Es Pospelet";
             this.btn_espospelet.Id = 25;
-            this.btn_espospelet.ImageUri.Uri = "AlignVerticalRight";
+            this.btn_espospelet.ImageOptions.ImageUri.Uri = "AlignVerticalRight";
             this.btn_espospelet.Name = "btn_espospelet";
             this.btn_espospelet.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_espospelet_ItemClick);
             // 
@@ -819,6 +849,15 @@
             this.barButtonItem2.Caption = "barButtonItem2";
             this.barButtonItem2.Id = 26;
             this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "Inhabilitar Manual";
+            this.barButtonItem5.Id = 28;
+            this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
+            this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // grp_Orders
             // 
@@ -829,7 +868,7 @@
             this.grp_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Orders.Location = new System.Drawing.Point(3, 3);
             this.grp_Orders.Name = "grp_Orders";
-            this.grp_Orders.Size = new System.Drawing.Size(835, 195);
+            this.grp_Orders.Size = new System.Drawing.Size(1283, 195);
             this.grp_Orders.TabIndex = 5;
             this.grp_Orders.Text = "Ordenes de Producción";
             // 
@@ -837,13 +876,80 @@
             // 
             this.grp_Structure.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grp_Structure.AppearanceCaption.Options.UseFont = true;
+            this.grp_Structure.Controls.Add(this.gridControl1);
             this.grp_Structure.Controls.Add(this.grd_Structure);
+            this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Structure.Location = new System.Drawing.Point(3, 204);
             this.grp_Structure.Name = "grp_Structure";
-            this.grp_Structure.Size = new System.Drawing.Size(835, 195);
+            this.grp_Structure.Size = new System.Drawing.Size(1283, 195);
             this.grp_Structure.TabIndex = 6;
             this.grp_Structure.Text = "Estructura de Orden";
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.DataMember = "detalle_micros";
+            this.gridControl1.DataSource = this.dsARM1;
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gridControl1.Location = new System.Drawing.Point(845, 21);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.MenuManager = this.barManager1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(436, 172);
+            this.gridControl1.TabIndex = 1;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // dsARM1
+            // 
+            this.dsARM1.DataSetName = "dsARM";
+            this.dsARM1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.Black;
+            this.gridView1.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
+            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMaterial,
+            this.colPesoporBatch,
+            this.colTotal,
+            this.colBatchPlan});
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // colMaterial
+            // 
+            this.colMaterial.FieldName = "Material";
+            this.colMaterial.Name = "colMaterial";
+            this.colMaterial.Visible = true;
+            this.colMaterial.VisibleIndex = 0;
+            this.colMaterial.Width = 139;
+            // 
+            // colPesoporBatch
+            // 
+            this.colPesoporBatch.FieldName = "Peso por Batch";
+            this.colPesoporBatch.Name = "colPesoporBatch";
+            this.colPesoporBatch.Visible = true;
+            this.colPesoporBatch.VisibleIndex = 1;
+            this.colPesoporBatch.Width = 90;
+            // 
+            // colTotal
+            // 
+            this.colTotal.FieldName = "Total";
+            this.colTotal.Name = "colTotal";
+            this.colTotal.Visible = true;
+            this.colTotal.VisibleIndex = 3;
+            this.colTotal.Width = 126;
+            // 
+            // colBatchPlan
+            // 
+            this.colBatchPlan.FieldName = "Batch Plan";
+            this.colBatchPlan.Name = "colBatchPlan";
+            this.colBatchPlan.Visible = true;
+            this.colBatchPlan.VisibleIndex = 2;
+            this.colBatchPlan.Width = 101;
             // 
             // grd_Structure
             // 
@@ -857,7 +963,7 @@
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1});
-            this.grd_Structure.Size = new System.Drawing.Size(831, 172);
+            this.grd_Structure.Size = new System.Drawing.Size(837, 172);
             this.grd_Structure.TabIndex = 0;
             this.grd_Structure.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Structure});
@@ -906,30 +1012,30 @@
             this.col_is_postpellet,
             this.col_pospelt,
             this.col_postpellet_cant});
-            gridFormatRule5.ApplyToRow = true;
-            gridFormatRule5.Name = "SinBinAsignado";
-            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Salmon;
-            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.White;
-            formatConditionRuleValue5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.DarkRed;
-            formatConditionRuleValue5.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue5.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue5.Appearance.Options.UseFont = true;
-            formatConditionRuleValue5.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue5.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue5.Expression = "[bin_id] = 0 And [bin_longname] <> \'(Manual)\'";
-            gridFormatRule5.Rule = formatConditionRuleValue5;
-            gridFormatRule6.ApplyToRow = true;
-            gridFormatRule6.Name = "Manual";
-            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightCyan;
-            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
-            formatConditionRuleValue6.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue6.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue6.Expression = "[bin_longname] = \'(Manual)\'";
-            gridFormatRule6.Rule = formatConditionRuleValue6;
-            this.grdv_Structure.FormatRules.Add(gridFormatRule5);
-            this.grdv_Structure.FormatRules.Add(gridFormatRule6);
+            gridFormatRule7.ApplyToRow = true;
+            gridFormatRule7.Name = "SinBinAsignado";
+            formatConditionRuleValue7.Appearance.BackColor = System.Drawing.Color.Salmon;
+            formatConditionRuleValue7.Appearance.BackColor2 = System.Drawing.Color.White;
+            formatConditionRuleValue7.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue7.Appearance.ForeColor = System.Drawing.Color.DarkRed;
+            formatConditionRuleValue7.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue7.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue7.Appearance.Options.UseFont = true;
+            formatConditionRuleValue7.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue7.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue7.Expression = "[bin_id] = 0 And [bin_longname] <> \'(Manual)\'";
+            gridFormatRule7.Rule = formatConditionRuleValue7;
+            gridFormatRule8.ApplyToRow = true;
+            gridFormatRule8.Name = "Manual";
+            formatConditionRuleValue8.Appearance.BackColor = System.Drawing.Color.LightCyan;
+            formatConditionRuleValue8.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
+            formatConditionRuleValue8.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue8.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue8.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue8.Expression = "[bin_longname] = \'(Manual)\'";
+            gridFormatRule8.Rule = formatConditionRuleValue8;
+            this.grdv_Structure.FormatRules.Add(gridFormatRule7);
+            this.grdv_Structure.FormatRules.Add(gridFormatRule8);
             this.grdv_Structure.GridControl = this.grd_Structure;
             this.grdv_Structure.Name = "grdv_Structure";
             this.grdv_Structure.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
@@ -1104,6 +1210,17 @@
             // 
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(1054, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(229, 14);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Detalle Micro Ingredientes Manuales";
+            // 
             // ContextMenu_Ordenes
             // 
             this.ContextMenu_Ordenes.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -1122,6 +1239,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_Stock),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_MixChange),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_MarcarManual),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_MarcarAlarma),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_espospelet)});
             this.ContextMenu_Estructura.Manager = this.barManager1;
@@ -1130,8 +1248,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.90872F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.09128F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.38319F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.616808F));
             this.tableLayoutPanel1.Controls.Add(this.grp_events, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.grp_Orders, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.grp_Structure, 0, 1);
@@ -1151,11 +1269,12 @@
             this.grp_events.AppearanceCaption.Options.UseFont = true;
             this.grp_events.Controls.Add(this.grd_Events);
             this.grp_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_events.Location = new System.Drawing.Point(844, 204);
+            this.grp_events.Location = new System.Drawing.Point(1292, 204);
             this.grp_events.Name = "grp_events";
-            this.grp_events.Size = new System.Drawing.Size(450, 195);
+            this.grp_events.Size = new System.Drawing.Size(2, 195);
             this.grp_events.TabIndex = 8;
             this.grp_events.Text = "Eventos";
+            this.grp_events.Visible = false;
             // 
             // grd_Events
             // 
@@ -1164,10 +1283,11 @@
             this.grd_Events.MainView = this.grdv_Events;
             this.grd_Events.MenuManager = this.barManager1;
             this.grd_Events.Name = "grd_Events";
-            this.grd_Events.Size = new System.Drawing.Size(446, 172);
+            this.grd_Events.Size = new System.Drawing.Size(0, 172);
             this.grd_Events.TabIndex = 1;
             this.grd_Events.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Events});
+            this.grd_Events.Visible = false;
             // 
             // grdv_Events
             // 
@@ -1225,11 +1345,12 @@
             this.grp_Comments.AppearanceCaption.Options.UseFont = true;
             this.grp_Comments.Controls.Add(this.grd_Comments);
             this.grp_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Comments.Location = new System.Drawing.Point(844, 3);
+            this.grp_Comments.Location = new System.Drawing.Point(1292, 3);
             this.grp_Comments.Name = "grp_Comments";
-            this.grp_Comments.Size = new System.Drawing.Size(450, 195);
+            this.grp_Comments.Size = new System.Drawing.Size(2, 195);
             this.grp_Comments.TabIndex = 7;
             this.grp_Comments.Text = "Comentarios";
+            this.grp_Comments.Visible = false;
             // 
             // grd_Comments
             // 
@@ -1238,7 +1359,7 @@
             this.grd_Comments.MainView = this.grdv_Comments;
             this.grd_Comments.MenuManager = this.barManager1;
             this.grd_Comments.Name = "grd_Comments";
-            this.grd_Comments.Size = new System.Drawing.Size(446, 172);
+            this.grd_Comments.Size = new System.Drawing.Size(0, 172);
             this.grd_Comments.TabIndex = 0;
             this.grd_Comments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Comments});
@@ -1317,6 +1438,10 @@
             this.grp_Orders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).EndInit();
             this.grp_Structure.ResumeLayout(false);
+            this.grp_Structure.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
@@ -1434,5 +1559,15 @@
         public DevExpress.XtraGrid.GridControl grd_Structure;
         public DevExpress.XtraGrid.Views.Grid.GridView grdv_Structure;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private dsARM dsARM1;
+        private DevExpress.XtraGrid.Columns.GridColumn colMaterial;
+        private DevExpress.XtraGrid.Columns.GridColumn colPesoporBatch;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn colBatchPlan;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
     }
 }

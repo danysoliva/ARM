@@ -7,7 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-using Npgsql;
+//using Npgsql;
+using System.Windows.Forms;
 
 namespace ARM.Classes
 {
@@ -348,8 +349,7 @@ namespace ARM.Classes
             }
             catch (Exception ec)
             {
-                //MessageBox.Show(ec.Message);
-                
+                MessageBox.Show(ec.Message);
             }
             return r;
         }
@@ -376,141 +376,141 @@ namespace ARM.Classes
 
         #region ODOO Related Methods
 
-        public DataSet ODOO_GetSelectData(string FixedQuery)
-        {
-            DataSet data = new DataSet();
+        //public DataSet ODOO_GetSelectData(string FixedQuery)
+        //{
+        //    DataSet data = new DataSet();
 
-            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
-            Conn.Open();
+        //    NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+        //    Conn.Open();
 
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(FixedQuery, Conn);
-            adapter.Fill(data);
+        //    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(FixedQuery, Conn);
+        //    adapter.Fill(data);
 
-            Conn.Close();
+        //    Conn.Close();
 
-            return data;
-        }
+        //    return data;
+        //}
 
-        public DataSet ODOO_GetSP_Results(string ProcedureName, NpgsqlCommand cmd)
-        {
-            DataSet data = new DataSet();
+        //public DataSet ODOO_GetSP_Results(string ProcedureName, NpgsqlCommand cmd)
+        //{
+        //    DataSet data = new DataSet();
 
-            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+        //    NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
 
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = ProcedureName;
-            cmd.Connection = Conn;
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = ProcedureName;
+        //    cmd.Connection = Conn;
 
-            Conn.Open();
+        //    Conn.Open();
 
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd);
-            adapter.Fill(data);
+        //    NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd);
+        //    adapter.Fill(data);
 
-            Conn.Close();
+        //    Conn.Close();
 
-            return data;
-        }
+        //    return data;
+        //}
 
-        public Double ODOO_Get_Exchange_Rate(int currency_id, string date)
-        {
-            string query = string.Format(@"SELECT rate
-	                                         FROM public.res_currency_rate
-                                            WHERE currency_id = {0}
-                                              AND x_fecha = to_date('{1}','MM-dd-yyyy')", currency_id, date);
+//        public Double ODOO_Get_Exchange_Rate(int currency_id, string date)
+//        {
+//            string query = string.Format(@"SELECT rate
+//	                                         FROM public.res_currency_rate
+//                                            WHERE currency_id = {0}
+//                                              AND x_fecha = to_date('{1}','MM-dd-yyyy')", currency_id, date);
 
-            return Convert.ToDouble(ODOO_GetSelectData(query).Tables[0].Rows[0][0].ToString());
-        }
+//            return Convert.ToDouble(ODOO_GetSelectData(query).Tables[0].Rows[0][0].ToString());
+//        }
 
-        public void ODOO_Exec_Command(string FixedQuery, NpgsqlCommand cmd)
-        {
-            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
-            Conn.Open();
-            NpgsqlTransaction trans = Conn.BeginTransaction();
+//        public void ODOO_Exec_Command(string FixedQuery, NpgsqlCommand cmd)
+//        {
+//            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+//            Conn.Open();
+//            NpgsqlTransaction trans = Conn.BeginTransaction();
 
-            cmd.CommandText = FixedQuery;
-            cmd.Connection = Conn;
-            cmd.ExecuteNonQuery();
+//            cmd.CommandText = FixedQuery;
+//            cmd.Connection = Conn;
+//            cmd.ExecuteNonQuery();
 
-            trans.Commit();
-            Conn.Close();
-        }
+//            trans.Commit();
+//            Conn.Close();
+//        }
 
-        public void ODOO_Exec_SP(string procedure_name, NpgsqlCommand command)
-        {
-            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
-            Conn.Open();
+//        public void ODOO_Exec_SP(string procedure_name, NpgsqlCommand command)
+//        {
+//            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+//            Conn.Open();
 
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = procedure_name;
-            command.Connection = Conn;
-            command.ExecuteNonQuery();
+//            command.CommandType = CommandType.StoredProcedure;
+//            command.CommandText = procedure_name;
+//            command.Connection = Conn;
+//            command.ExecuteNonQuery();
 
-            Conn.Close();
-        }
+//            Conn.Close();
+//        }
 
-        public int ODOO_Exec_SP_GetID(string procedure_name, NpgsqlCommand command, NpgsqlParameter returnParameter)
-        {
-            //Antes: SqlParameter returnParameter
-            //NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
-            //Conn.Open();
+        //public int ODOO_Exec_SP_GetID(string procedure_name, NpgsqlCommand command, NpgsqlParameter returnParameter)
+        //{
+        //    //Antes: SqlParameter returnParameter
+        //    //NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+        //    //Conn.Open();
 
-            //command.CommandType = CommandType.StoredProcedure;
-            //command.CommandText = procedure_name;
-            //command.Connection = Conn;
-            //command.ExecuteNonQuery();
+        //    //command.CommandType = CommandType.StoredProcedure;
+        //    //command.CommandText = procedure_name;
+        //    //command.Connection = Conn;
+        //    //command.ExecuteNonQuery();
 
-            //Int32 ID = Convert.ToInt32(returnParameter.Value);
+        //    //Int32 ID = Convert.ToInt32(returnParameter.Value);
 
-            //Conn.Close();
+        //    //Conn.Close();
 
-            //return ID;
+        //    //return ID;
 
-            Int32 ID;
+        //    Int32 ID;
 
-            NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
+        //    NpgsqlConnection Conn = new NpgsqlConnection(ConnectionStringODOO);
 
-            command.Connection = Conn;
-            command.CommandText = procedure_name;
-            Conn.Open();
+        //    command.Connection = Conn;
+        //    command.CommandText = procedure_name;
+        //    Conn.Open();
 
-            command.CommandType = CommandType.StoredProcedure;
-            //command.ExecuteNonQuery();
-            ID = Convert.ToInt32(command.ExecuteScalar());
+        //    command.CommandType = CommandType.StoredProcedure;
+        //    //command.ExecuteNonQuery();
+        //    ID = Convert.ToInt32(command.ExecuteScalar());
 
-            //ID = Convert.ToInt32(returnParameter.Value);
+        //    //ID = Convert.ToInt32(returnParameter.Value);
 
-            Conn.Close();
+        //    Conn.Close();
 
-            return ID;
+        //    return ID;
 
 
-        }
+        //}
 
-        public int ODOO_InsertAndReturnID(string Command)
-        {
-            Int32 InsertedID;
-            NpgsqlConnection conn = new NpgsqlConnection(ConnectionStringODOO);
-            conn.Open();
+        //public int ODOO_InsertAndReturnID(string Command)
+        //{
+        //    Int32 InsertedID;
+        //    NpgsqlConnection conn = new NpgsqlConnection(ConnectionStringODOO);
+        //    conn.Open();
 
-            NpgsqlCommand cmd = new NpgsqlCommand(Command, conn);
+        //    NpgsqlCommand cmd = new NpgsqlCommand(Command, conn);
 
-            InsertedID = Convert.ToInt32(cmd.ExecuteScalar());
+        //    InsertedID = Convert.ToInt32(cmd.ExecuteScalar());
 
-            conn.Close();
+        //    conn.Close();
 
-            return InsertedID;
-        }
+        //    return InsertedID;
+        //}
 
-        public void ODOO_DoSmallDBOperation(string Command)
-        {
-            NpgsqlConnection con = new NpgsqlConnection(ConnectionStringODOO);
-            con.Open();
+        //public void ODOO_DoSmallDBOperation(string Command)
+        //{
+        //    NpgsqlConnection con = new NpgsqlConnection(ConnectionStringODOO);
+        //    con.Open();
 
-            NpgsqlCommand cmd = new NpgsqlCommand(Command, con);
-            cmd.ExecuteNonQuery();
+        //    NpgsqlCommand cmd = new NpgsqlCommand(Command, con);
+        //    cmd.ExecuteNonQuery();
 
-            con.Close();
-        }
+        //    con.Close();
+        //}
 
         #endregion
 

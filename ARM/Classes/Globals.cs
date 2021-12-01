@@ -30,7 +30,7 @@ namespace ARM.Classes
         public static string CTS_DB_Pass = "AquaF33dHN2014";
 
         //APMS (Aquafeed Pocess Management System)
-        public static string APMS_Server = @"AQFSVR005";
+        public static string APMS_Server = @"AQFSVR008\AQFSVR008";
         public static string APMS_DB_User = "sa";
         public static string APMS_DB_Pass = "AquaF33dHN2017";
         public static string APMS_ActiveDB = "APMS";

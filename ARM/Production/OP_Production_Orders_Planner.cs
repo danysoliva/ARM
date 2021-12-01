@@ -20,7 +20,7 @@ using System.Data.SqlClient;
 //using System.Windows.Forms;
 //using System.Drawing;
 //--
-using Npgsql;
+//using Npgsql;
 using DevExpress.XtraGrid.Views.Grid;
 using S7.Net;
 
@@ -58,7 +58,10 @@ namespace ARM.Production
         String itemType     = "" ;
         String codigoMP     = "" ;
         String mix_fullCode = "";
-        
+
+        string sIdle = "";
+        int sStatus = 0;
+
         #endregion
 
         #region Form Contructors
@@ -67,27 +70,27 @@ namespace ARM.Production
             InitializeComponent();
 
             #region Screen Selection
-            if (Screen.AllScreens.Count() > 1) 
-            {
-                switch (Screen.AllScreens.Count()) 
-                {
-                    case 2:
-                        this.Location = Screen.AllScreens[1].WorkingArea.Location;
-                        break;
-                    case 3:
-                        this.Location = Screen.AllScreens[2].WorkingArea.Location;
-                        break;
-                    case 4:
-                        this.Location = Screen.AllScreens[3].WorkingArea.Location;
-                        break;
-                    case 5:
-                        this.Location = Screen.AllScreens[5].WorkingArea.Location;
-                        break;
-                    case 6://Configuración Actual Consola
-                        this.Location = Screen.AllScreens[4].WorkingArea.Location;
-                        break;
-                }
-            }
+            //if (Screen.AllScreens.Count() > 1) 
+            //{
+            //    switch (Screen.AllScreens.Count()) 
+            //    {
+            //        case 2:
+            //            this.Location = Screen.AllScreens[1].WorkingArea.Location;
+            //            break;
+            //        case 3:
+            //            this.Location = Screen.AllScreens[2].WorkingArea.Location;
+            //            break;
+            //        case 4:
+            //            this.Location = Screen.AllScreens[3].WorkingArea.Location;
+            //            break;
+            //        case 5:
+            //            this.Location = Screen.AllScreens[5].WorkingArea.Location;
+            //            break;
+            //        case 6://Configuración Actual Consola
+            //            this.Location = Screen.AllScreens[4].WorkingArea.Location;
+            //            break;
+            //    }
+            //}
             #endregion
 
             this.ActiveUserCode = ActiveUserCode;
@@ -125,6 +128,7 @@ namespace ARM.Production
             try
             {
                 grd_Structure.DataSource = fmop.apms_get_order_structure_per_mix(idOrden, mix_num);
+                //cargar_grd_ordenes_estructuras();
             }
             catch (Exception ex)
             {
@@ -157,15 +161,117 @@ namespace ARM.Production
         //----------------------------------------------------------------------------------
 
 
-        bool PermiteSuspender(int vMixID)
+        bool PermiteFinalizar(int vMixID)
         {
+            bool Permite = false;
             try
             {
-                DataTable dtTEMP = new DataTable();
-                dtTEMP = dp.APMS_GetSelectData(@"SELECT Coalesce(allow_suspend,0) allow_suspend FROM [OP_Production_Orders_Main_Mix] where id=" + vMixID).Tables[0];
-                return Convert.ToBoolean(dtTEMP.Rows[0]["allow_suspend"]);
+                string sql = @"SELECT [mix_num]
+                                FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
+                                where [id] = " + vMixID;
+                int mix_num = dp.APMS_Do_SmallOperationInt(sql);
+
+                string sql2 = @"SELECT status
+                                FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
+                                where [id] =  " + vMixID;
+                int status = dp.APMS_Do_SmallOperationInt(sql2);
+
+                if (mix_num == 1)
+                {
+                    sStatus = status;
+
+                    //if (idle1 == false && ActiveMix1)
+                    if (status == 70)
+                        Permite = false;
+                    else
+                        Permite = true;   
+                }
+                if (mix_num == 2)
+                {
+                    sStatus = status;
+                    if (status == 70)
+                        Permite = false;
+                    else
+                        Permite = true;
+                    
+                }
             }
-            catch (Exception) { throw; return false; }
+            catch (Exception ec) { throw new Exception(ec.Message); }
+            return Permite;
+        }
+
+
+        bool PermiteSuspender(int vMixID)
+        {
+            bool Permite = false;
+            try
+            {
+                //DataTable dtTEMP = new DataTable();
+                //dtTEMP = dp.APMS_GetSelectData(@"SELECT Coalesce(allow_suspend,0) allow_suspend FROM [OP_Production_Orders_Main_Mix] where id=" + vMixID).Tables[0];
+                //return Convert.ToBoolean(dtTEMP.Rows[0]["allow_suspend"]);
+                string sql = @"SELECT [mix_num]
+                                FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
+                                where [id] = "+ vMixID;
+                int mix_num = dp.APMS_Do_SmallOperationInt(sql);
+
+                string sql2 = @"SELECT status
+                                FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
+                                where [id] =  " + vMixID;
+                int status = dp.APMS_Do_SmallOperationInt(sql2);
+
+                if (mix_num == 1)
+                {
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                    if (plc319.IsAvailable)
+                    {
+                        if (!plc319.IsConnected)
+                            plc319.Open();
+
+                        bool idle1 = (bool)plc319.Read("db414.dbx1.0");
+                        //bool ActiveMix1 = (bool)plc319.Read("db557.dbx0.0");
+                        sIdle = Convert.ToInt32(idle1).ToString();
+                        sStatus = status;
+
+                        //if (idle1 == false && ActiveMix1)
+                        if(idle1 == false && status == 70)
+                            Permite = true;
+                    }
+                }
+                if (mix_num == 2)
+                {
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                    if (plc319.IsAvailable)
+                    {
+                        if (!plc319.IsConnected)
+                            plc319.Open();
+
+                        bool idle2 = (bool)plc319.Read("DB414.dbx3.0");
+                        //bool ActiveMix2 = (bool)plc319.Read("db557.dbx0.1");
+                        sIdle = Convert.ToInt32(idle2).ToString();
+                        sStatus = status;
+
+                        //if (idle2 == false && ActiveMix2)
+                        if (idle2 == false && status == 70)
+                            Permite = true;
+                    }
+                }
+            }
+            catch (Exception ec) { throw new Exception(ec.Message);}
+
+
+            //if (!Permite)
+            //{
+            //    DialogResult r = MessageBox.Show("No se permite desmontar el mezclado, aún hay un pesaje activo. ¿Desea Ingresar una Autorización para forzar el desmontaje?",
+            //                                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+            //    if (r != DialogResult.Yes)
+            //        Permite = false;
+
+
+            //}
+
+            return Permite;
         }
 
         void registrarEvento(String evento)
@@ -232,7 +338,10 @@ namespace ARM.Production
 
                 dp.APMS_Exec_SP_Get_Data("OP_Set_Mix_Status_by_MixID", cmd);
             }
-            catch (Exception) { throw; }
+            catch (Exception ec)
+            {
+                MessageBox.Show(ec.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
         }
 
         void set_active_mix_OP_mix(int mix_id, int status)    // Seteando Status Active_mix MIX de OP ..
@@ -261,6 +370,15 @@ namespace ARM.Production
                         else
                             return;
 
+                        //Obtener en que mezclado estan las tolvas adicionales WL7 y WL8
+                        bool wl7_wl8_al_primero = (bool)plc319.Read("db567.dbx0.2");
+
+                        //Definimos el id Mezclado donde se va a guardar
+                        int wl7_wl8_position = 2;
+
+                        if (wl7_wl8_al_primero)//true primer mezclado
+                            wl7_wl8_position = 1;
+
                         //Vamos a leer el bit
                         bool check_micro_in_mix1 = (bool)plc319.Read("db536.dbx0.2");
                         if (check_micro_in_mix1)
@@ -270,8 +388,10 @@ namespace ARM.Production
                             int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
 
                             //Update Order Mixta
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1 WHERE [order_id] = " + order_id + " and mix_num = 2;");
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1 WHERE [order_id] = " + order_id + " and mix_num = 1;");
+                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1, [bin_add_position] = " + 
+                                                     Convert.ToInt32(wl7_wl8_al_primero ? 1 : 0) + " WHERE [order_id] = " + order_id);
+                            //dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1, [bin_add_position] = " + 
+                            //                          wl7_wl8_al_primero + " WHERE [order_id] = " + order_id + " and mix_num = 1;");
                         }
                         else
                         {
@@ -280,15 +400,33 @@ namespace ARM.Production
                             int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
 
                             //Update Order NO Mixta
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0 WHERE [order_id] = " + order_id + " and mix_num = 2;");
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0 WHERE [order_id] = " + order_id + " and mix_num = 1;");
+                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0, [bin_add_position] = "+
+                                                        Convert.ToInt32(wl7_wl8_al_primero ? 1 : 0) + " WHERE [order_id] = " + order_id);
+                            //dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0, [bin_add_position] = "+ 
+                            //                            wl7_wl8_al_primero +" WHERE [order_id] = " + order_id + " and mix_num = 1;");
+                        }
+
+                        //Udpate de las tolvas nuevas
+                        if (wl7_wl8_al_primero)
+                        {
+                            //Vamos a setear en el mix A
+                            int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
+                            string query_up = "EXEC	[dbo].[st_order_update_mix_wl7_wl8] @order_id = "+ order_id + ",@mix_num = 1";
+                            dp.APMS_Do_SmallOperation(query_up);
+                        }
+                        else
+                        {
+                            //Vamos a setear en el mix B
+                            int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
+                            string query_up = "EXEC	[dbo].[st_order_update_mix_wl7_wl8] @order_id = " + order_id + ",@mix_num = 2";
+                            dp.APMS_Do_SmallOperation(query_up);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     //SEND E-MAIL Message on Service Failure.
-                    //MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Detalle del Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 dp.APMS_Exec_SP_Get_Data("OP_Set_activeMix_sts_by_MixID", cmd);
@@ -315,33 +453,33 @@ namespace ARM.Production
             catch (Exception) { throw; }
         }
 
-        void set_sts_xOrden_Odoo(string orden, int status)
-        {
-            try
-            {
-                NpgsqlCommand cmd = new NpgsqlCommand();
-                cmd.Parameters.Add(new NpgsqlParameter(":orden", DbType.AnsiString));
-                cmd.Parameters.Add(new NpgsqlParameter(":status", DbType.Int32));
+        //void set_sts_xOrden_Odoo(string orden, int status)
+        //{
+        //    try
+        //    {
+        //        NpgsqlCommand cmd = new NpgsqlCommand();
+        //        cmd.Parameters.Add(new NpgsqlParameter(":orden", DbType.AnsiString));
+        //        cmd.Parameters.Add(new NpgsqlParameter(":status", DbType.Int32));
 
-                cmd.Parameters[":orden"].Value  = orden ;
-                cmd.Parameters[":status"].Value = status ;
+        //        cmd.Parameters[":orden"].Value  = orden ;
+        //        cmd.Parameters[":status"].Value = status ;
 
-                dp.ODOO_Exec_SP("x_sp_set_sts_OrdenProd", cmd);
-            }
-            catch (Exception ex)
-            {
-                #region Try-Catch_Mensaje-Error
-                var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
-                var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
-                var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
-                dialog.Text = "Error";
-                dialogType.GetProperty("Message").SetValue(dialog, "Error: " + ex.Message, null);
-                dialogType.GetProperty("Details").SetValue(dialog, ex.StackTrace, null);
-                var result = dialog.ShowDialog();
-                #endregion
-            }
+        //        dp.ODOO_Exec_SP("x_sp_set_sts_OrdenProd", cmd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        #region Try-Catch_Mensaje-Error
+        //        var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
+        //        var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
+        //        var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
+        //        dialog.Text = "Error";
+        //        dialogType.GetProperty("Message").SetValue(dialog, "Error: " + ex.Message, null);
+        //        dialogType.GetProperty("Details").SetValue(dialog, ex.StackTrace, null);
+        //        var result = dialog.ShowDialog();
+        //        #endregion
+        //    }
 
-        }
+        //}
 
 
         /// <summary>
@@ -439,10 +577,32 @@ namespace ARM.Production
                     cargar_grd_ordenes_estructuras();
                     cargar_grd_comentarios();
                     cargar_grd_eventos();
+                    CargarOrdenMicros(idOrden);
                 }
                 #endregion
             }
             catch { }
+        }
+
+        private void CargarOrdenMicros(int idOrden)
+        {
+            try
+            {
+                DataOperations op = new DataOperations();
+                SqlConnection Conn = new SqlConnection(op.ConnectionStringAPMS);
+                Conn.Open();
+                SqlCommand cmd = new SqlCommand("sp_get_detalle_orden_pesaje_micros_interfacev3", Conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@orden_id",idOrden);
+                SqlDataAdapter adat = new SqlDataAdapter(cmd);
+                dsARM1.detalle_micros.Clear();
+                adat.Fill(dsARM1.detalle_micros);
+
+            }
+            catch (Exception ec)
+            {
+                MessageBox.Show(ec.Message);
+            }
         }
 
         private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
@@ -532,7 +692,7 @@ namespace ARM.Production
             SplashScreenManager.CloseForm();
             #endregion
 
-            //setStatus_OP_mix(idMix, 50);
+            //setStatus_OP_mix(idMix, 70);
             set_active_mix_OP_mix(idMix, 1);    // active_mix= 1
             registrarEvento("[Activando] Enviado a producir correctamente.");
             btn_Actualizar.PerformClick();
@@ -543,11 +703,14 @@ namespace ARM.Production
             if (Convert.ToInt32(grdv_Orders.RowCount) <= 0) return;
 
             string mensaje = "";
-            //if (getStatus_OP_mix(idMix)== 60) mensaje = "La orden ya está en estado suspendido.";
-            if (getStatus_activeMix_Sts_mix(idMix) == 0) mensaje = "El mezclado no está activo, no se puede suspender.";
-            if (!PermiteSuspender(idMix))                mensaje = "El mezclado no permite suspender.";
+            if (getStatus_OP_mix(idMix)== 60) mensaje = "La orden ya está en estado suspendido.";
+            //if (getStatus_activeMix_Sts_mix(idMix) == 0) mensaje = "El mezclado no está activo, no se puede suspender.";
+            if (!PermiteSuspender(idMix))                mensaje = "El mezclado no permite suspender \n"+
+                                                                    "El valor de idle es: " + sIdle + "\n" +
+                                                                    "El valor de status es: " + sStatus;
             if (getStatus_OP_mix(idMix) != 70)           mensaje = "El estado del mezclado no permite suspender.";
-            
+            //if (!ValidarMezcladoPermiteSuspender(idMix)) mensaje = "El estado del mezclado no permite suspender.";
+
             if (mensaje != "")
             {
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -573,6 +736,8 @@ namespace ARM.Production
             btn_Actualizar.PerformClick();
         }
 
+       
+
         private void btn_Finalizar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (Convert.ToInt32(grdv_Orders.RowCount) <= 0) return;
@@ -584,7 +749,9 @@ namespace ARM.Production
             // allow_suspend=1
             //if (getStatus_OP_mix(idMix) == 70 & getStatus_activeMix_Sts_mix(idMix) != 1 & !PermiteSuspender(idMix)) mensaje = "El mezclado .";
             if (getStatus_OP_mix(idMix) == 70) mensaje = "La orden está activa, primero debe suspender antes de finalizar.";
-            if (!PermiteSuspender(idMix) && getStatus_OP_mix(idMix) != 80) mensaje = "No se puede finalizar el mezclado.";
+            if (!PermiteFinalizar(idMix) && getStatus_OP_mix(idMix) != 70) mensaje = "No se puede finalizar el mezclado.";
+
+            //DialogResult r = MessageBox.Show("¿Está seguro de finalizar ésta orden? \nLa orden pasará a estado 80...", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (mensaje != "")
             {
@@ -599,10 +766,10 @@ namespace ARM.Production
 
             // Seteando valores en tablas:
             setStatus_OP_mix(idMix, 95);
-            set_active_mix_OP_mix(idMix, 0);
-            set_allow_suspend_OP_mix(idMix, 0);
+            //set_active_mix_OP_mix(idMix, 0);
+            //set_allow_suspend_OP_mix(idMix, 0);
 
-            if (mix_fullCode.EndsWith("S")) set_sts_xOrden_Odoo(mix_fullCode.Substring(0, 10), 95); // Marcará como finalizado cuando se finalice el Mix-2 "S" 
+            //if (mix_fullCode.EndsWith("S")) set_sts_xOrden_Odoo(mix_fullCode.Substring(0, 10), 95); // Marcará como finalizado cuando se finalice el Mix-2 "S" 
             // ---------------------------------
 
             registrarEvento("[Finalizando] Mezclado finalizado manualmente.");
@@ -751,6 +918,12 @@ namespace ARM.Production
             if (idBin_Structure > 0)
             {
                 MessageBox.Show("El material ya está asignado a un Bin.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (material_is_manual)
+            {
+                MessageBox.Show("¡El material ya está de forma Manual!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -945,6 +1118,44 @@ namespace ARM.Production
                 MessageBox.Show("No puede ingresar un valor mayor al de la formula!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //gridView.SetFocusedRowCellValue("kg_batch", postP);
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            frmOrdersMicro frm = new frmOrdersMicro();
+            frm.Show();
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Revertir poner en manual el material
+            if (material_is_manual)
+            {
+                try
+                {
+                    #region Parametros_SP_Entrada
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@material_id", SqlDbType.Int));
+                    //cmd.Parameters.Add(new SqlParameter("@status", SqlDbType.Int));
+                    cmd.Parameters["@material_id"].Value = idStructure;
+                    //cmd.Parameters["@status"].Value = material_is_manual ? 0 : 1;  // Si tiene 0 pasa a 1, y viceversa.
+                    #endregion
+
+                    dp.APMS_Exec_SP_Get_Data("OP_Structure_Set_Material_is_Manual_revert", cmd);
+                }
+                catch (Exception ec)
+                {
+                    MessageBox.Show(ec.Message);
+                }
+                cargar_grd_ordenes_estructuras();
+            }
+            else
+            {
+                MessageBox.Show("El material no esta seteado en MANUAL, No se ejecuto ninguna accion!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         //-----------------------------------------------------------------------------------------------//

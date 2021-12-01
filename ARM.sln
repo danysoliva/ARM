@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2026
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARM", "ARM\ARM.csproj", "{3F3BAFAD-8141-4B24-8013-709F3FCF7ECD}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ARM_Setup", "ARM_Setup\ARM_Setup.vdproj", "{DFF416A5-FE83-4904-B686-934F948FCC0C}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ARM_Installer", "ARM_Installer\ARM_Installer.vdproj", "{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,12 +30,12 @@ Global
 		{3F3BAFAD-8141-4B24-8013-709F3FCF7ECD}.Release|x64.Build.0 = Release|x64
 		{3F3BAFAD-8141-4B24-8013-709F3FCF7ECD}.Release|x86.ActiveCfg = Release|x64
 		{3F3BAFAD-8141-4B24-8013-709F3FCF7ECD}.Release|x86.Build.0 = Release|x64
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Debug|Any CPU.ActiveCfg = Debug
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Debug|x64.ActiveCfg = Debug
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Debug|x86.ActiveCfg = Debug
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Release|Any CPU.ActiveCfg = Release
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Release|x64.ActiveCfg = Release
-		{DFF416A5-FE83-4904-B686-934F948FCC0C}.Release|x86.ActiveCfg = Release
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Debug|Any CPU.ActiveCfg = Debug
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Debug|x64.ActiveCfg = Debug
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Debug|x86.ActiveCfg = Debug
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Release|Any CPU.ActiveCfg = Release
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Release|x64.ActiveCfg = Release
+		{6A34713D-6019-4B14-ABA8-B3D8E759A2F3}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

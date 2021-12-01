@@ -29,29 +29,29 @@ namespace ARM.Reports
         {
             InitializeComponent();
 
-            #region Screen Selection
-            if (Screen.AllScreens.Count() > 1)
-            {
-                switch (Screen.AllScreens.Count())
-                {
-                    case 2:
-                        this.Location = Screen.AllScreens[1].WorkingArea.Location;
-                        break;
-                    case 3:
-                        this.Location = Screen.AllScreens[2].WorkingArea.Location;
-                        break;
-                    case 4:
-                        this.Location = Screen.AllScreens[3].WorkingArea.Location;
-                        break;
-                    case 5:
-                        this.Location = Screen.AllScreens[5].WorkingArea.Location;
-                        break;
-                    case 6://Configuración Actual Consola
-                        this.Location = Screen.AllScreens[4].WorkingArea.Location;
-                        break;
-                }
-            }
-            #endregion
+            //#region Screen Selection
+            //if (Screen.AllScreens.Count() > 1)
+            //{
+            //    switch (Screen.AllScreens.Count())
+            //    {
+            //        case 2:
+            //            this.Location = Screen.AllScreens[1].WorkingArea.Location;
+            //            break;
+            //        case 3:
+            //            this.Location = Screen.AllScreens[2].WorkingArea.Location;
+            //            break;
+            //        case 4:
+            //            this.Location = Screen.AllScreens[3].WorkingArea.Location;
+            //            break;
+            //        case 5:
+            //            this.Location = Screen.AllScreens[5].WorkingArea.Location;
+            //            break;
+            //        case 6://Configuración Actual Consola
+            //            this.Location = Screen.AllScreens[4].WorkingArea.Location;
+            //            break;
+            //    }
+            //}
+            //#endregion
         }
 
         private void btn_exit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

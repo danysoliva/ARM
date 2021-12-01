@@ -102,6 +102,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Size = new System.Drawing.Size(116, 0);
             // 
             // barDockControlBottom
@@ -109,6 +110,7 @@
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(116, 0);
             // 
             // barDockControlLeft
@@ -116,6 +118,7 @@
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 0);
             // 
             // barDockControlRight
@@ -123,6 +126,7 @@
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(116, 0);
+            this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 0);
             // 
             // btn_formulas
@@ -155,8 +159,8 @@
             // 
             this.rd_menu.SetAutoSize(this.sub_formulas, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.sub_formulas.Caption = "Formulas";
-            this.sub_formulas.Glyph = global::ARM.Properties.Resources.formula_x64;
             this.sub_formulas.Id = 4;
+            this.sub_formulas.ImageOptions.Image = global::ARM.Properties.Resources.formula_x64;
             this.sub_formulas.Name = "sub_formulas";
             this.sub_formulas.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             // 
@@ -164,16 +168,16 @@
             // 
             this.rd_menu.SetAutoSize(this.btn_planProd, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.btn_planProd.Caption = "Plan Producción";
-            this.btn_planProd.Glyph = global::ARM.Properties.Resources.factory_x64;
             this.btn_planProd.Id = 5;
+            this.btn_planProd.ImageOptions.Image = global::ARM.Properties.Resources.factory_x64;
             this.btn_planProd.Name = "btn_planProd";
             // 
             // btn_aqua
             // 
             this.rd_menu.SetAutoSize(this.btn_aqua, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.btn_aqua.Caption = "División Aqua";
-            this.btn_aqua.Glyph = global::ARM.Properties.Resources.LogoAqua_x64;
             this.btn_aqua.Id = 6;
+            this.btn_aqua.ImageOptions.Image = global::ARM.Properties.Resources.LogoAqua_x64;
             this.btn_aqua.Name = "btn_aqua";
             this.btn_aqua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_aqua_ItemClick);
             // 
@@ -188,8 +192,8 @@
             // 
             this.rd_menu.SetAutoSize(this.btn_plc_test, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.btn_plc_test.Caption = "PLC Comunication Test";
-            this.btn_plc_test.Glyph = global::ARM.Properties.Resources.circuit_on_64;
             this.btn_plc_test.Id = 8;
+            this.btn_plc_test.ImageOptions.Image = global::ARM.Properties.Resources.circuit_on_64;
             this.btn_plc_test.Name = "btn_plc_test";
             this.btn_plc_test.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_plc_test_ItemClick);
             // 
@@ -217,8 +221,8 @@
             // 
             this.rd_menu.SetAutoSize(this.sub_planProduccion, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.sub_planProduccion.Caption = "Plan de Producción";
-            this.sub_planProduccion.Glyph = global::ARM.Properties.Resources.factory_x64;
             this.sub_planProduccion.Id = 12;
+            this.sub_planProduccion.ImageOptions.Image = global::ARM.Properties.Resources.factory_x64;
             this.sub_planProduccion.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_ProductionOrders)});
             this.sub_planProduccion.Name = "sub_planProduccion";
@@ -237,8 +241,8 @@
             // 
             this.rd_menu.SetAutoSize(this.sub_Mantos, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.sub_Mantos.Caption = "Mantenimientos";
-            this.sub_Mantos.Glyph = global::ARM.Properties.Resources.maintenance_64;
             this.sub_Mantos.Id = 13;
+            this.sub_Mantos.ImageOptions.Image = global::ARM.Properties.Resources.maintenance_64;
             this.sub_Mantos.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_BinMaintenance),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_AllowedMaterials)});
@@ -249,8 +253,8 @@
             // 
             this.rd_menu.SetAutoSize(this.btn_BinMaintenance, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.btn_BinMaintenance.Caption = "Tolvas, Silos y Tanques";
-            this.btn_BinMaintenance.Glyph = global::ARM.Properties.Resources.Silos_x48;
             this.btn_BinMaintenance.Id = 16;
+            this.btn_BinMaintenance.ImageOptions.Image = global::ARM.Properties.Resources.Silos_x48;
             this.btn_BinMaintenance.Name = "btn_BinMaintenance";
             this.btn_BinMaintenance.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_BinMaintenance_ItemClick);
             // 
@@ -258,8 +262,8 @@
             // 
             this.rd_menu.SetAutoSize(this.btn_AllowedMaterials, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.btn_AllowedMaterials.Caption = "Materiales Permitidos";
-            this.btn_AllowedMaterials.Glyph = global::ARM.Properties.Resources.Silos_MP_x48;
             this.btn_AllowedMaterials.Id = 17;
+            this.btn_AllowedMaterials.ImageOptions.Image = global::ARM.Properties.Resources.Silos_MP_x48;
             this.btn_AllowedMaterials.Name = "btn_AllowedMaterials";
             this.btn_AllowedMaterials.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_AllowedMaterials_ItemClick);
             // 
@@ -267,8 +271,8 @@
             // 
             this.rd_menu.SetAutoSize(this.sub_reportes, DevExpress.XtraBars.Ribbon.RadialMenuContainerItemAutoSize.Spring);
             this.sub_reportes.Caption = "Reportes";
-            this.sub_reportes.Glyph = global::ARM.Properties.Resources.LogoAqua_x64;
             this.sub_reportes.Id = 14;
+            this.sub_reportes.ImageOptions.Image = global::ARM.Properties.Resources.LogoAqua_x64;
             this.sub_reportes.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_BatchReport),
             new DevExpress.XtraBars.LinkPersistInfo(this.btn_ShiftReport)});
@@ -293,9 +297,9 @@
             // barButtonItem5
             // 
             this.barButtonItem5.Caption = "Salir";
-            this.barButtonItem5.Glyph = global::ARM.Properties.Resources.cancel2_48;
             this.barButtonItem5.Id = 20;
-            this.barButtonItem5.LargeGlyph = global::ARM.Properties.Resources.cancel2_48;
+            this.barButtonItem5.ImageOptions.Image = global::ARM.Properties.Resources.cancel2_48;
+            this.barButtonItem5.ImageOptions.LargeImage = global::ARM.Properties.Resources.cancel2_48;
             this.barButtonItem5.Name = "barButtonItem5";
             this.barButtonItem5.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);

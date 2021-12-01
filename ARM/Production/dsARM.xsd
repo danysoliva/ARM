@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsARM" targetNamespace="http://tempuri.org/dsARM.xsd" xmlns:mstns="http://tempuri.org/dsARM.xsd" xmlns="http://tempuri.org/dsARM.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsARM" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsARM" msprop:Generator_UserDSName="dsARM">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="detalle_micros" msprop:Generator_TableClassName="detalle_microsDataTable" msprop:Generator_TableVarName="tabledetalle_micros" msprop:Generator_RowChangedName="detalle_microsRowChanged" msprop:Generator_TablePropName="detalle_micros" msprop:Generator_RowDeletingName="detalle_microsRowDeleting" msprop:Generator_RowChangingName="detalle_microsRowChanging" msprop:Generator_RowEvHandlerName="detalle_microsRowChangeEventHandler" msprop:Generator_RowDeletedName="detalle_microsRowDeleted" msprop:Generator_RowClassName="detalle_microsRow" msprop:Generator_UserTableName="detalle_micros" msprop:Generator_RowEvArgName="detalle_microsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Material" msprop:Generator_ColumnVarNameInTable="columnMaterial" msprop:Generator_ColumnPropNameInRow="Material" msprop:Generator_ColumnPropNameInTable="MaterialColumn" msprop:Generator_UserColumnName="Material" type="xs:string" minOccurs="0" />
+              <xs:element name="Peso_x0020_por_x0020_Batch" msprop:Generator_ColumnVarNameInTable="columnPeso_por_Batch" msprop:Generator_ColumnPropNameInRow="Peso_por_Batch" msprop:Generator_ColumnPropNameInTable="Peso_por_BatchColumn" msprop:Generator_UserColumnName="Peso por Batch" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Batch_x0020_Plan" msprop:Generator_ColumnVarNameInTable="columnBatch_Plan" msprop:Generator_ColumnPropNameInRow="Batch_Plan" msprop:Generator_ColumnPropNameInTable="Batch_PlanColumn" msprop:Generator_UserColumnName="Batch Plan" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ordenh" msprop:Generator_TableClassName="ordenhDataTable" msprop:Generator_TableVarName="tableordenh" msprop:Generator_TablePropName="ordenh" msprop:Generator_RowDeletingName="ordenhRowDeleting" msprop:Generator_RowChangingName="ordenhRowChanging" msprop:Generator_RowEvHandlerName="ordenhRowChangeEventHandler" msprop:Generator_RowDeletedName="ordenhRowDeleted" msprop:Generator_UserTableName="ordenh" msprop:Generator_RowChangedName="ordenhRowChanged" msprop:Generator_RowEvArgName="ordenhRowChangeEvent" msprop:Generator_RowClassName="ordenhRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" minOccurs="0" />
+              <xs:element name="_x0023__x0020_Orden" msprop:Generator_ColumnVarNameInTable="_column__Orden" msprop:Generator_ColumnPropNameInRow="___Orden" msprop:Generator_ColumnPropNameInTable="___OrdenColumn" msprop:Generator_UserColumnName="# Orden" type="xs:int" minOccurs="0" />
+              <xs:element name="Codigo_x0020_Orden" msprop:Generator_ColumnVarNameInTable="columnCodigo_Orden" msprop:Generator_ColumnPropNameInRow="Codigo_Orden" msprop:Generator_ColumnPropNameInTable="Codigo_OrdenColumn" msprop:Generator_UserColumnName="Codigo Orden" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Lote_x0020_PT" msprop:Generator_ColumnVarNameInTable="columnLote_PT" msprop:Generator_ColumnPropNameInRow="Lote_PT" msprop:Generator_ColumnPropNameInTable="Lote_PTColumn" msprop:Generator_UserColumnName="Lote PT" type="xs:int" minOccurs="0" />
+              <xs:element name="Cant._x0020_Batch" msprop:Generator_ColumnVarNameInTable="_columnCant__Batch" msprop:Generator_ColumnPropNameInRow="_Cant__Batch" msprop:Generator_ColumnPropNameInTable="_Cant__BatchColumn" msprop:Generator_UserColumnName="Cant. Batch" type="xs:int" minOccurs="0" />
+              <xs:element name="Cod._x0020_Estado" msprop:Generator_ColumnVarNameInTable="_columnCod__Estado" msprop:Generator_ColumnPropNameInRow="_Cod__Estado" msprop:Generator_ColumnPropNameInTable="_Cod__EstadoColumn" msprop:Generator_UserColumnName="Cod. Estado" type="xs:string" minOccurs="0" />
+              <xs:element name="estado" msprop:Generator_ColumnVarNameInTable="columnestado" msprop:Generator_ColumnPropNameInRow="estado" msprop:Generator_ColumnPropNameInTable="estadoColumn" msprop:Generator_UserColumnName="estado" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
