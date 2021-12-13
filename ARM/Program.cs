@@ -40,7 +40,7 @@ namespace ARM
 
                 //----------------------------------------------------------------------
                 //Application.Run(new Mants.Mants_Bins());    //2 asigna la clasificacion o categoria del bin
-                //Application.Run(new Mants.Mant_MP_xBin());  //3 asignacion de MP permitidas en el bin
+                ////Application.Run(new Mants.Mant_MP_xBin());  //3 asignacion de MP permitidas en el bin
                 Application.Run(new Production.OP_Production_Orders_Planner("1012"));//consola
                 //----------------------------------------------------------------------
 
