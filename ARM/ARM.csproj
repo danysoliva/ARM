@@ -145,6 +145,7 @@
     <Reference Include="System.Core">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -171,11 +172,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CajaDialogo.cs" />
     <Compile Include="Classes\DataOperations.cs" />
     <Compile Include="Classes\FMOP.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\GrupoUser.cs" />
     <Compile Include="Classes\OperationsARMS.cs" />
     <Compile Include="Classes\SecOps.cs" />
+    <Compile Include="Classes\Security.cs" />
+    <Compile Include="Classes\UserLogin.cs" />
     <Compile Include="DUO\Modbus_Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +216,12 @@
     </Compile>
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpciones.Designer.cs">
+      <DependentUpon>frmOpciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -361,6 +372,7 @@
     <EmbeddedResource Include="Production\OP_Production_Orders_Planner_Old.resx">
       <DependentUpon>OP_Production_Orders_Planner_Old.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -671,6 +683,8 @@
   <ItemGroup>
     <Content Include="Manufacturing_icon-hover.ico" />
     <Content Include="Manufacturing_icon-hover2.ico" />
+    <None Include="Resources\Minimize_Icon.png" />
+    <None Include="Resources\Close_Icon.png" />
     <None Include="Resources\PNG\Silos_x48.png" />
     <None Include="Resources\PNG\Silos_x32.png" />
     <None Include="Resources\PNG\Silos_x24.png" />

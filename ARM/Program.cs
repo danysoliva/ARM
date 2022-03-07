@@ -37,10 +37,11 @@ namespace ARM
                 UserLookAndFeel.Default.SetSkinStyle("Whiteprint");
                 //UserLookAndFeel.Default.SetSkinStyle("Sharp");
 
+                Application.Run(new frmLogin());
 
                 //----------------------------------------------------------------------
                 //Application.Run(new Mants.Mants_Bins());    //1 asigna la clasificacion o categoria del bin
-                Application.Run(new Mants.Mant_MP_xBin());    //2 asignacion de MP permitidas en el bin
+                //Application.Run(new Mants.Mant_MP_xBin());    //2 asignacion de MP permitidas en el bin
                 //Application.Run(new Production.OP_Production_Orders_Planner("1012"));//3=consola y gestion de formulas y ordenes de produccion
                 //----------------------------------------------------------------------
 
