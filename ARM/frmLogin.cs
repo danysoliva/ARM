@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ARM.Classes;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace ARM
 {
@@ -84,7 +85,7 @@ namespace ARM
             }
 
             Security sc = new Security();
-            domain = "AQUAFEED";
+            domain = "AQUAFEEDHN";
             if (sc.Validate_Account(domain, user, pass))
             {
                 UserLogin Log1 = new UserLogin();
@@ -93,15 +94,25 @@ namespace ARM
                     Log1.Pass = txtpassword.Text;
                     Log1.GrupoUsuario.GrupoUsuarioActivo = (GrupoUser.GrupoUsuario)Log1.IdGrupo;
 
-                    if (Log1.IdGrupo == 0)
+                    if (Log1.IdGrupo == 0) //ClasificacionBines
                     {
                         Mants.Mants_Bins frm = new Mants.Mants_Bins();
                         frm.Show();
                     }
-                    if (Log1.IdGrupo == 1)
+                    if (Log1.IdGrupo == 1) //AsignacionMP
                     {
                         Mants.Mant_MP_xBin frm = new Mants.Mant_MP_xBin();
                         frm.Show();
+                    }
+                    if (Log1.IdGrupo == 2) //GestionFormulasyOrdenes
+                    {
+                        Production.OP_Production_Orders_Planner frm = new Production.OP_Production_Orders_Planner("1012");
+                        frm.Show();
+                    }
+                    if (Log1.IdGrupo == 3) //NINNGUNA
+                    {
+                        CajaDialogo.Error("No tiene asignado un grupo para usar esta aplicacion! Contacte al Adminsitrador de Sistemas!");
+                        return;
                     }
 
                 }
@@ -110,8 +121,20 @@ namespace ARM
                     CajaDialogo.Error("Usuario No encontrado en AQFSVR003");
                 }
 
-
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnMinim_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

@@ -9,7 +9,7 @@ using ARM.Classes;
 
 namespace ARM.Classes
 {
-    class UserLogin
+    public class UserLogin
     {
         public GrupoUser GrupoUsuario;
         private bool recuperado;
@@ -38,7 +38,7 @@ namespace ARM.Classes
                 DataOperations dp = new DataOperations();
                 SqlConnection conn = new SqlConnection(dp.ConnectionStringCostos);
                 conn.Open();
-                string query = @" SELECT top 1 id, 
+                string query = @"SELECT top 1 id, 
                                        nombre, 
 	                                   id_grupo_arm,
                                        ADUser
@@ -52,10 +52,11 @@ namespace ARM.Classes
                     NombreUser = dr.GetString(1);
                     idGrupo = dr.GetInt32(2);
                     ADuser = dr.GetString(3);
-                    recuperado = false;
+                    recuperado = true;
                 }
                 dr.Close();
                 conn.Close();
+                
             }
             catch (Exception ec)
             {

@@ -82,46 +82,54 @@
             // 
             // txtuser
             // 
+            this.txtuser.EditValue = "Usuario";
             this.txtuser.Location = new System.Drawing.Point(302, 148);
             this.txtuser.Name = "txtuser";
-            this.txtuser.Properties.Appearance.BackColor = System.Drawing.Color.PowderBlue;
+            this.txtuser.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(70)))));
             this.txtuser.Properties.Appearance.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtuser.Properties.Appearance.ForeColor = System.Drawing.Color.Silver;
             this.txtuser.Properties.Appearance.Options.UseBackColor = true;
             this.txtuser.Properties.Appearance.Options.UseFont = true;
             this.txtuser.Properties.Appearance.Options.UseForeColor = true;
-            this.txtuser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtuser.Size = new System.Drawing.Size(406, 26);
-            this.txtuser.TabIndex = 15;
+            this.txtuser.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
+            this.txtuser.Size = new System.Drawing.Size(406, 30);
+            this.txtuser.TabIndex = 1;
             this.txtuser.Enter += new System.EventHandler(this.txtuser_Enter);
             this.txtuser.Leave += new System.EventHandler(this.txtuser_Leave);
             // 
             // txtpassword
             // 
+            this.txtpassword.EditValue = "Contraseña";
             this.txtpassword.Location = new System.Drawing.Point(302, 210);
             this.txtpassword.Name = "txtpassword";
-            this.txtpassword.Properties.Appearance.BackColor = System.Drawing.Color.PowderBlue;
+            this.txtpassword.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(57)))), ((int)(((byte)(70)))));
             this.txtpassword.Properties.Appearance.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpassword.Properties.Appearance.ForeColor = System.Drawing.Color.Silver;
             this.txtpassword.Properties.Appearance.Options.UseBackColor = true;
             this.txtpassword.Properties.Appearance.Options.UseFont = true;
             this.txtpassword.Properties.Appearance.Options.UseForeColor = true;
-            this.txtpassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txtpassword.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.txtpassword.Properties.PasswordChar = '*';
-            this.txtpassword.Size = new System.Drawing.Size(406, 26);
-            this.txtpassword.TabIndex = 14;
+            this.txtpassword.Size = new System.Drawing.Size(406, 30);
+            this.txtpassword.TabIndex = 2;
             this.txtpassword.Enter += new System.EventHandler(this.txtpassword_Enter);
             this.txtpassword.Leave += new System.EventHandler(this.txtpassword_Leave);
             // 
             // btnLogin
             // 
             this.btnLogin.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(53)))), ((int)(((byte)(73)))));
+            this.btnLogin.Appearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(159)))), ((int)(((byte)(127)))));
+            this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Appearance.ForeColor = System.Drawing.Color.LightGray;
             this.btnLogin.Appearance.Options.UseBackColor = true;
+            this.btnLogin.Appearance.Options.UseBorderColor = true;
+            this.btnLogin.Appearance.Options.UseFont = true;
+            this.btnLogin.Appearance.Options.UseForeColor = true;
             this.btnLogin.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.btnLogin.Location = new System.Drawing.Point(302, 275);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(406, 22);
-            this.btnLogin.TabIndex = 17;
+            this.btnLogin.Size = new System.Drawing.Size(406, 31);
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "ACCEDER";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -133,6 +141,7 @@
             this.btnMinim.Size = new System.Drawing.Size(18, 18);
             this.btnMinim.TabIndex = 18;
             this.btnMinim.TabStop = false;
+            this.btnMinim.Click += new System.EventHandler(this.btnMinim_Click);
             // 
             // btnClose
             // 
@@ -142,14 +151,15 @@
             this.btnClose.Size = new System.Drawing.Size(18, 18);
             this.btnClose.TabIndex = 16;
             this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(37, 112);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 112);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(212, 205);
+            this.pictureBox1.Size = new System.Drawing.Size(265, 221);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;

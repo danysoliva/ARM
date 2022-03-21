@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ARM.Classes
 {
-    class GrupoUser
+    public class GrupoUser
     {
         public enum GrupoUsuario
         {
