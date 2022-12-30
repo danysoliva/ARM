@@ -186,6 +186,8 @@
     <Compile Include="Classes\FMOP.cs" />
     <Compile Include="Classes\Globals.cs" />
     <Compile Include="Classes\GrupoUser.cs" />
+    <Compile Include="Classes\LotePT.cs" />
+    <Compile Include="Classes\MateriaPrima.cs" />
     <Compile Include="Classes\OperationsARMS.cs" />
     <Compile Include="Classes\SecOps.cs" />
     <Compile Include="Classes\Security.cs" />
@@ -294,6 +296,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\dsIntakeView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsIntakeView.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmsearchOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmsearchOrder.Designer.cs">
+      <DependentUpon>frmsearchOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\IntakeBatchViewerFull.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\IntakeBatchViewerFull.Designer.cs">
+      <DependentUpon>IntakeBatchViewerFull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\IntakeReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +412,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\frmsearchOrder.resx">
+      <DependentUpon>frmsearchOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\IntakeBatchViewerFull.resx">
+      <DependentUpon>IntakeBatchViewerFull.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\IntakeReport.resx">
       <DependentUpon>IntakeReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -439,6 +464,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reports\dsIntakeView.xsc">
+      <DependentUpon>dsIntakeView.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsIntakeView.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsIntakeView.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsIntakeView.xss">
+      <DependentUpon>dsIntakeView.xsd</DependentUpon>
+    </None>
     <None Include="Resources\Custom Form Designs\Hand_Feed.jpg" />
   </ItemGroup>
   <ItemGroup>

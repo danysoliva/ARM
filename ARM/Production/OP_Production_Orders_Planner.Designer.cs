@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
@@ -63,7 +62,7 @@
             this.col_acs_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_formula = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_batch_mp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barHeaderItem1 = new DevExpress.XtraBars.BarHeaderItem();
@@ -132,8 +131,8 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.label1 = new System.Windows.Forms.Label();
-            this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu();
+            this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grp_events = new DevExpress.XtraEditors.GroupControl();
             this.grd_Events = new DevExpress.XtraGrid.GridControl();
@@ -147,7 +146,7 @@
             this.col_coment_fecha = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_hora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
+            this.timerValidacionStock = new System.Windows.Forms.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
