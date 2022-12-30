@@ -685,7 +685,7 @@ namespace ARM.Classes
                 cmd.Parameters["@mix_num"].Value = mix_num;
                 #endregion
 
-                return dp.APMS_Exec_SP_Get_Data("OP_Get_Order_Structure_v2", cmd);
+                return dp.APMS_Exec_SP_Get_Data("OP_Get_Order_Structure_v3", cmd);
             }
             catch (Exception) { throw; }
         }

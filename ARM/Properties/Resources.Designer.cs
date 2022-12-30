@@ -413,6 +413,16 @@ namespace ARM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Excel_2_icon24px {
+            get {
+                object obj = ResourceManager.GetObject("Excel-2-icon24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap factory_x24 {
             get {
                 object obj = ResourceManager.GetObject("factory_x24", resourceCulture);

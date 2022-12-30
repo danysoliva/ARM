@@ -23,7 +23,7 @@ using System.Data.SqlClient;
 //using Npgsql;
 using DevExpress.XtraGrid.Views.Grid;
 using S7.Net;
-
+using ARM.Reports;
 
 namespace ARM.Production
 {
@@ -36,6 +36,7 @@ namespace ARM.Production
         DataTable dtOrdenes;
         DataTable dtEstructura;
         FMOP fmop = new FMOP();
+        int IdMPSinStock;
 
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S7300;
@@ -676,7 +677,8 @@ namespace ARM.Production
             if (mensaje == "" & mixStatus != 50 & mixStatus != 60) mensaje = "El estado del mezclado no permite activar.";
             if (mensaje == "" & existe_MaterialSinTolva()) mensaje = "El mezclado tiene un material sin tolva asignada.\nDebe marcar como manual en caso que sea así.";
 
-            if (mensaje != "") { 
+            if (mensaje != "") 
+            { 
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 registrarEvento("[Activando] " + mensaje);
                 btn_Actualizar.PerformClick();
@@ -693,9 +695,51 @@ namespace ARM.Production
             #endregion
 
             //setStatus_OP_mix(idMix, 70);
-            set_active_mix_OP_mix(idMix, 1);    // active_mix= 1
-            registrarEvento("[Activando] Enviado a producir correctamente.");
-            btn_Actualizar.PerformClick();
+            if (PermitirMontar(idMix) == 0)
+            {
+                set_active_mix_OP_mix(idMix, 1);    // active_mix= 1
+                registrarEvento("[Activando] Enviado a producir correctamente.");
+                //btn_Actualizar.PerformClick();
+                IdMPSinStock = 0;
+
+                cargar_grd_ordenes();
+                cargar_grd_ordenes_estructuras();
+                cargar_grd_comentarios();
+                cargar_grd_eventos();
+            }
+            else
+            {
+                MateriaPrima mp1 = new MateriaPrima();
+                if (mp1.RecuperarRegistro(IdMPSinStock))
+                {
+                    MessageBox.Show("No hay Inventario en la Bodega BG018 (Producción), de la Materia Prima: " + mp1.ItemCode + " - " + mp1.Nombre + ". " +
+                                    "No se permite operar una orden sin inventario en Kardex en BG018!"
+                                   ,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
+        }
+
+        private int PermitirMontar(Int64 pIdMainMix)
+        {
+            int idmp_ = 0;
+            try
+            {
+                DataOperations dp = new DataOperations();
+                SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_v2", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id_main_mix", pIdMainMix);
+                IdMPSinStock = idmp_ = Convert.ToInt32(cmd.ExecuteScalar());
+                con.Close();
+            }
+            catch (Exception ec)
+            {
+                MessageBox.Show(ec.Message);
+            }
+            return idmp_;
         }
 
         private void btn_Suspender_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -990,11 +1034,12 @@ namespace ARM.Production
         private void OP_Production_Orders_Planner_Load(object sender, EventArgs e)
         {
             if (Classes.Globals.CTS_ServerName == "Servidor de Desarrollo") barHeaderItem1.Appearance.BackColor = Color.Aqua;
+            //timerValidacionStock.Enabled = true;
+            //timerValidacionStock.Start();
         }
 
         private void barStaticItem1_ItemDoubleClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
         }
 
         private void btn_Details_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1053,7 +1098,8 @@ namespace ARM.Production
 
         private void btn_DetalleBatch_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Reports.IntakeBatchViewer form = new Reports.IntakeBatchViewer();
+            //Reports.IntakeBatchViewer form = new Reports.IntakeBatchViewer();
+            IntakeBatchViewerFull form = new IntakeBatchViewerFull();
             form.Show();
         }
 
@@ -1073,51 +1119,82 @@ namespace ARM.Production
 
         private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            
+            GestionPostPellet();
+            //gridView.SetFocusedRowCellValue("kg_batch", postP);
+        }
+
+        void GestionPostPellet()
+        {
             var gridView = (GridView)grd_Structure.FocusedView;
             var row = gridView.GetFocusedDataRow();
-            decimal valor_Form = Convert.ToDecimal(row["kg_batch"]);
-            //MessageBox.Show(Convert.ToDecimal(row["post_pellet_cant"]).ToString());
-            string val ="";
-            InputBox("Cant. para Postpellet", "Indique la cantidad que se va aplicar en postpellet", ref val);
 
-            decimal postP = 0;
-            try
+            if (Convert.ToInt64(row["estado"]) < 70)
             {
-                postP = Convert.ToDecimal(val);
-            }
-            catch
-            {
-                MessageBox.Show("Debe ingresar un numero valido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (postP <= valor_Form)
-            {
-                //Update en la estructura
-                try
+                if (Convert.ToInt64(row["material_group"]) == 3)//3 indica material group de Liquidos
                 {
-                    SqlConnection conn = new SqlConnection(dp.ConnectionStringAPMS);
-                    conn.Open();
-                    idStructure = int.Parse(row["record_id"].ToString());
-                    string sql = @"UPDATE [dbo].[OP_Production_Orders_Structure]
-                                    SET [is_postpellet] = 1
-                                        ,[cant_postpellet] = cast('" + postP + "' as decimal(10,2))," + 
-                                        "[cant_mezcla] = cast('" + (valor_Form - postP).ToString() + "' as decimal(10,2)) " +
-                                  " WHERE id = " + idStructure;
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.ExecuteNonQuery();
-                    cargar_grd_ordenes_estructuras();
+                    decimal valor_Form = Convert.ToDecimal(row["kg_batch"]);
+                    string val = "";
+                    InputBox("Cant. para Postpellet", "Indique la cantidad que se va aplicar en postpellet", ref val);
+
+                    decimal postP = 0;
+                    try
+                    {
+                        postP = Convert.ToDecimal(val);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Debe ingresar un numero valido!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    if (postP <= valor_Form)
+                    {
+                        //Update en la estructura
+                        try
+                        {
+                            SqlConnection conn = new SqlConnection(dp.ConnectionStringAPMS);
+                            conn.Open();
+                            idStructure = int.Parse(row["record_id"].ToString());
+                            string sql = "";
+                            if (postP > 0)
+                            {
+                                sql = @"UPDATE [dbo].[OP_Production_Orders_Structure]
+                                         SET [is_postpellet] = 1
+                                            ,[cant_postpellet] = cast('" + postP + "' as decimal(10,2))," +
+                                                "[cant_mezcla] = cast('" + (valor_Form - postP).ToString() + "' as decimal(10,2)) " +
+                                              " WHERE id = " + idStructure;
+                            }
+                            else
+                            {
+                                sql = @"UPDATE [dbo].[OP_Production_Orders_Structure]
+                                         SET [is_postpellet] = 0
+                                            ,[cant_postpellet] = cast('" + postP + "' as decimal(10,2))," +
+                                                "[cant_mezcla] = cast('" + (valor_Form - postP).ToString() + "' as decimal(10,2)) " +
+                                              " WHERE id = " + idStructure;
+                            }
+                            SqlCommand cmd = new SqlCommand(sql, conn);
+                            cmd.ExecuteNonQuery();
+                            cargar_grd_ordenes_estructuras();
+                        }
+                        catch (Exception ec)
+                        {
+                            MessageBox.Show(ec.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No puede ingresar un valor mayor al de la formula!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch(Exception ec)
+                else
                 {
-                    MessageBox.Show(ec.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);   
+                    MessageBox.Show("Solo se puede dividir la cantidad a dosificar en postpellet para Materiales de tipo liquidos!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("No puede ingresar un valor mayor al de la formula!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Solo se permite modificar la cantidad en postpellet cuando la orden esta desmontada!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            //gridView.SetFocusedRowCellValue("kg_batch", postP);
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1161,5 +1238,41 @@ namespace ARM.Production
         //-----------------------------------------------------------------------------------------------//
 
         #endregion
+
+        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
+        {
+            GestionPostPellet();
+        }
+
+        private void timerValidacionStock_Tick(object sender, EventArgs e)
+        {
+            //sp_get_activate_suspension_out_stock
+            if (ValidacionInventariosPRD())
+            {
+
+            }
+        }
+
+        private bool ValidacionInventariosPRD()
+        {
+            bool r = false;
+            try
+            {
+                DataOperations dp = new DataOperations();
+                SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_out_stock", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@idbodega", idBodega);
+                r = Convert.ToBoolean(cmd.ExecuteScalar());
+                con.Close();
+            }
+            catch (Exception ec)
+            {
+                MessageBox.Show(ec.Message);
+            }
+            return r;
+        }
     }
 }

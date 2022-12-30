@@ -93,7 +93,7 @@
             this.grd_data.Location = new System.Drawing.Point(0, 146);
             this.grd_data.MainView = this.grdv_data;
             this.grd_data.Name = "grd_data";
-            this.grd_data.Size = new System.Drawing.Size(930, 167);
+            this.grd_data.Size = new System.Drawing.Size(1049, 300);
             this.grd_data.TabIndex = 0;
             this.grd_data.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_data});
@@ -431,15 +431,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(930, 63);
+            this.barDockControlTop.Size = new System.Drawing.Size(1049, 63);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 313);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 446);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(930, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1049, 23);
             // 
             // barDockControlLeft
             // 
@@ -447,15 +447,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 250);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 383);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(930, 63);
+            this.barDockControlRight.Location = new System.Drawing.Point(1049, 63);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 250);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 383);
             // 
             // timer
             // 
@@ -473,7 +473,7 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 63);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(930, 83);
+            this.groupControl1.Size = new System.Drawing.Size(1049, 83);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "Parametros";
             // 
@@ -581,7 +581,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 336);
+            this.ClientSize = new System.Drawing.Size(1049, 469);
             this.Controls.Add(this.grd_data);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);

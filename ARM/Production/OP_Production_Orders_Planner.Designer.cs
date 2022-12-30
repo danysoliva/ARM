@@ -147,6 +147,7 @@
             this.col_coment_fecha = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_hora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -1205,6 +1206,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
+            this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
             // 
             // repositoryItemCheckEdit1
             // 
@@ -1414,6 +1416,11 @@
             this.col_coment_nota.VisibleIndex = 2;
             this.col_coment_nota.Width = 221;
             // 
+            // timerValidacionStock
+            // 
+            this.timerValidacionStock.Interval = 35000;
+            this.timerValidacionStock.Tick += new System.EventHandler(this.timerValidacionStock_Tick);
+            // 
             // OP_Production_Orders_Planner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1569,5 +1576,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colBatchPlan;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private System.Windows.Forms.Timer timerValidacionStock;
     }
 }
