@@ -96,6 +96,8 @@ namespace ARM.Production
 
             this.ActiveUserCode = ActiveUserCode;
             cargar_grd_ordenes();
+            timerValidacionStock.Enabled = true;
+            timerValidacionStock.Start();
         }
         #endregion
 
@@ -116,6 +118,7 @@ namespace ARM.Production
                 cmd.Parameters["@status_fin"].Value = 80;
                 #endregion
 
+                grd_Orders.DataSource = null; 
                 grd_Orders.DataSource = dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_Mix_by_Status", cmd);
             }
             catch (Exception ex)
@@ -661,42 +664,45 @@ namespace ARM.Production
             // Solo se activaran los que active_mix=0 y que status=50 o
             // status=60
 
-            if (grdv_Orders.GetVisibleIndex(grdv_Orders.FocusedRowHandle) <=0) return;      // Nuevo 2017-03-06
-            if (Convert.ToInt32(grdv_Orders.RowCount) <= 0) return;
-
-
-            String mensaje = "";
-            int mixStatus  = getStatus_OP_mix(idMix);
-
-            //if (mixStatus == 95) mensaje = "La orden no se puede activar, tiene estado finalizado manual.";
-            //if (mixStatus == 90) mensaje = "La orden no se puede activar, tiene estado finalizado automático.";
-            //if (getStatus_OP_mix(idMix) == 50)     mensaje = "La orden ya se encuentra activa.";
-            //if (getStatus_OP_mix(idMix) > 60)      mensaje = "La orden no se puede activar, ya está en proceso."; 
-            if (existenOP_Mix_Status(mix_num, 70)) mensaje = "No se puede activar, hay otro mezclado activo.";      // Nuevo 2017-03-06
-            if (mensaje == "" & getStatus_activeMix_Sts_mix(idMix) == 1) mensaje = "El mezclado ya se encuentra activo.";
-            if (mensaje == "" & mixStatus != 50 & mixStatus != 60) mensaje = "El estado del mezclado no permite activar.";
-            if (mensaje == "" & existe_MaterialSinTolva()) mensaje = "El mezclado tiene un material sin tolva asignada.\nDebe marcar como manual en caso que sea así.";
-
-            if (mensaje != "") 
-            { 
-                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                registrarEvento("[Activando] " + mensaje);
-                btn_Actualizar.PerformClick();
-                return;           
-            }
-
-            DialogResult resultado = MessageBox.Show("¿Esta realmente seguro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado != System.Windows.Forms.DialogResult.Yes) return;
-
-            #region Wait Window...
-            SplashScreenManager.ShowForm(typeof(WaitForm1));
-            Thread.Sleep(3000);
-            SplashScreenManager.CloseForm();
-            #endregion
+           
 
             //setStatus_OP_mix(idMix, 70);
             if (PermitirMontar(idMix) == 0)
             {
+                if (grdv_Orders.GetVisibleIndex(grdv_Orders.FocusedRowHandle) <= 0) return;      // Nuevo 2017-03-06
+                if (Convert.ToInt32(grdv_Orders.RowCount) <= 0) return;
+
+
+                String mensaje = "";
+                int mixStatus = getStatus_OP_mix(idMix);
+
+                //if (mixStatus == 95) mensaje = "La orden no se puede activar, tiene estado finalizado manual.";
+                //if (mixStatus == 90) mensaje = "La orden no se puede activar, tiene estado finalizado automático.";
+                //if (getStatus_OP_mix(idMix) == 50)     mensaje = "La orden ya se encuentra activa.";
+                //if (getStatus_OP_mix(idMix) > 60)      mensaje = "La orden no se puede activar, ya está en proceso."; 
+                if (existenOP_Mix_Status(mix_num, 70)) mensaje = "No se puede activar, hay otro mezclado activo.";      // Nuevo 2017-03-06
+                if (mensaje == "" & getStatus_activeMix_Sts_mix(idMix) == 1) mensaje = "El mezclado ya se encuentra activo.";
+                if (mensaje == "" & mixStatus != 50 & mixStatus != 60) mensaje = "El estado del mezclado no permite activar.";
+                if (mensaje == "" & existe_MaterialSinTolva()) mensaje = "El mezclado tiene un material sin tolva asignada.\nDebe marcar como manual en caso que sea así.";
+
+                if (mensaje != "")
+                {
+                    MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    registrarEvento("[Activando] " + mensaje);
+                    btn_Actualizar.PerformClick();
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("¿Esta realmente seguro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado != System.Windows.Forms.DialogResult.Yes) return;
+
+                #region Wait Window...
+                SplashScreenManager.ShowForm(typeof(WaitForm1));
+                Thread.Sleep(1000);
+                SplashScreenManager.CloseForm();
+                #endregion
+
+
                 set_active_mix_OP_mix(idMix, 1);    // active_mix= 1
                 registrarEvento("[Activando] Enviado a producir correctamente.");
                 //btn_Actualizar.PerformClick();
@@ -1247,10 +1253,12 @@ namespace ARM.Production
         private void timerValidacionStock_Tick(object sender, EventArgs e)
         {
             //sp_get_activate_suspension_out_stock
-            if (ValidacionInventariosPRD())
-            {
+            //if (ValidacionInventariosPRD())
+            //{
 
-            }
+            //}
+
+            cargar_grd_ordenes();
         }
 
         private bool ValidacionInventariosPRD()
