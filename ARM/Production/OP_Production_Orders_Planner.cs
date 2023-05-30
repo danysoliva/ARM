@@ -40,9 +40,9 @@ namespace ARM.Production
 
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S7300;
-        static string plc319_IPAddress = "192.168.10.2";
+        static string plc319_IPAddress = "192.168.12.2";
         static Int16 plc319_Rack = 0;
-        static Int16 plc319_Slot = 2;
+        static Int16 plc319_Slot = 1;
 
         int idOrden     = 0;
         int idMix       = 0;
@@ -56,8 +56,8 @@ namespace ARM.Production
         Boolean is_postpellet;
         int idBin_Structure = 0;
 
-        String itemType     = "" ;
-        String codigoMP     = "" ;
+        String itemType     = "";
+        String codigoMP     = "";
         String mix_fullCode = "";
 
         string sIdle = "";
@@ -222,45 +222,45 @@ namespace ARM.Production
                                 FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
                                 where [id] =  " + vMixID;
                 int status = dp.APMS_Do_SmallOperationInt(sql2);
+                Permite = true;
+                //if (mix_num == 1)
+                //{
+                //    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
 
-                if (mix_num == 1)
-                {
-                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+                //    if (plc319.IsAvailable)
+                //    {
+                //        if (!plc319.IsConnected)
+                //            plc319.Open();
 
-                    if (plc319.IsAvailable)
-                    {
-                        if (!plc319.IsConnected)
-                            plc319.Open();
+                //        bool idle1 = (bool)plc319.Read("db414.dbx1.0");
+                //        //bool ActiveMix1 = (bool)plc319.Read("db557.dbx0.0");
+                //        sIdle = Convert.ToInt32(idle1).ToString();
+                //        sStatus = status;
 
-                        bool idle1 = (bool)plc319.Read("db414.dbx1.0");
-                        //bool ActiveMix1 = (bool)plc319.Read("db557.dbx0.0");
-                        sIdle = Convert.ToInt32(idle1).ToString();
-                        sStatus = status;
+                //        //if (idle1 == false && ActiveMix1)
+                //        if(idle1 == false && status == 70)
+                //            Permite = true;
+                //    }
+                //}
+                //if (mix_num == 2)
+                //{
+                //    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
 
-                        //if (idle1 == false && ActiveMix1)
-                        if(idle1 == false && status == 70)
-                            Permite = true;
-                    }
-                }
-                if (mix_num == 2)
-                {
-                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+                //    if (plc319.IsAvailable)
+                //    {
+                //        if (!plc319.IsConnected)
+                //            plc319.Open();
 
-                    if (plc319.IsAvailable)
-                    {
-                        if (!plc319.IsConnected)
-                            plc319.Open();
+                //        bool idle2 = (bool)plc319.Read("DB414.dbx3.0");
+                //        //bool ActiveMix2 = (bool)plc319.Read("db557.dbx0.1");
+                //        sIdle = Convert.ToInt32(idle2).ToString();
+                //        sStatus = status;
 
-                        bool idle2 = (bool)plc319.Read("DB414.dbx3.0");
-                        //bool ActiveMix2 = (bool)plc319.Read("db557.dbx0.1");
-                        sIdle = Convert.ToInt32(idle2).ToString();
-                        sStatus = status;
-
-                        //if (idle2 == false && ActiveMix2)
-                        if (idle2 == false && status == 70)
-                            Permite = true;
-                    }
-                }
+                //        //if (idle2 == false && ActiveMix2)
+                //        if (idle2 == false && status == 70)
+                //            Permite = true;
+                //    }
+                //}
             }
             catch (Exception ec) { throw new Exception(ec.Message);}
 
@@ -392,7 +392,7 @@ namespace ARM.Production
                             int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
 
                             //Update Order Mixta
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1, [bin_add_position] = " + 
+                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1, [bin_add_position] = " +
                                                      Convert.ToInt32(wl7_wl8_al_primero ? 1 : 0) + " WHERE [order_id] = " + order_id);
                             //dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 1, [bin_add_position] = " + 
                             //                          wl7_wl8_al_primero + " WHERE [order_id] = " + order_id + " and mix_num = 1;");
@@ -404,7 +404,7 @@ namespace ARM.Production
                             int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
 
                             //Update Order NO Mixta
-                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0, [bin_add_position] = "+
+                            dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0, [bin_add_position] = " +
                                                         Convert.ToInt32(wl7_wl8_al_primero ? 1 : 0) + " WHERE [order_id] = " + order_id);
                             //dp.APMS_Do_SmallOperation("UPDATE [dbo].[OP_Production_Orders_Main_Mix] SET [mixta] = 0, [bin_add_position] = "+ 
                             //                            wl7_wl8_al_primero +" WHERE [order_id] = " + order_id + " and mix_num = 1;");
@@ -415,7 +415,7 @@ namespace ARM.Production
                         {
                             //Vamos a setear en el mix A
                             int order_id = dp.APMS_Do_SmallOperationInt("SELECT [order_id] FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix] where id = " + mix_id);
-                            string query_up = "EXEC	[dbo].[st_order_update_mix_wl7_wl8] @order_id = "+ order_id + ",@mix_num = 1";
+                            string query_up = "EXEC	[dbo].[st_order_update_mix_wl7_wl8] @order_id = " + order_id + ",@mix_num = 1";
                             dp.APMS_Do_SmallOperation(query_up);
                         }
                         else
@@ -698,12 +698,12 @@ namespace ARM.Production
 
                 #region Wait Window...
                 SplashScreenManager.ShowForm(typeof(WaitForm1));
-                Thread.Sleep(1000);
+                Thread.Sleep(300);
                 SplashScreenManager.CloseForm();
                 #endregion
 
 
-                set_active_mix_OP_mix(idMix, 1);    // active_mix= 1
+                set_active_mix_OP_mix(idMix, 70);    // active_mix= 1
                 registrarEvento("[Activando] Enviado a producir correctamente.");
                 //btn_Actualizar.PerformClick();
                 IdMPSinStock = 0;
@@ -735,7 +735,8 @@ namespace ARM.Production
                 SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_v2", con);
+                //SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_v2", con);
+                SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_scada", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_main_mix", pIdMainMix);
                 IdMPSinStock = idmp_ = Convert.ToInt32(cmd.ExecuteScalar());
@@ -773,13 +774,13 @@ namespace ARM.Production
             if (resultado != System.Windows.Forms.DialogResult.Yes) return;
 
             setStatus_OP_mix(idMix, 60);
-            set_active_mix_OP_mix(idMix, 0);    // active_mix= 0
+            //set_active_mix_OP_mix(idMix, 0);    // active_mix= 0
 
             registrarEvento("[Suspendiendo] Mezclado suspendido correctamente.");
 
             #region Wait Window...
             SplashScreenManager.ShowForm(typeof(WaitForm1));
-            Thread.Sleep(3000);
+            Thread.Sleep(200);
             SplashScreenManager.CloseForm();
             #endregion
 
