@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule7 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue7 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule8 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue8 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule9 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue9 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule10 = new DevExpress.XtraGrid.GridFormatRule();
-            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue10 = new DevExpress.XtraEditors.FormatConditionRuleValue();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OP_Production_Orders_Planner));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue1 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue2 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue3 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue4 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OP_Production_Orders_Planner));
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue5 = new DevExpress.XtraEditors.FormatConditionRuleValue();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.col_batch_restantes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Orders = new DevExpress.XtraGrid.GridControl();
             this.grdv_Orders = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -188,10 +188,10 @@
             // grd_Orders
             // 
             this.grd_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Orders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Orders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Orders.Location = new System.Drawing.Point(3, 136);
             this.grd_Orders.MainView = this.grdv_Orders;
-            this.grd_Orders.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Orders.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Orders.Name = "grd_Orders";
             this.grd_Orders.Size = new System.Drawing.Size(2560, 243);
             this.grd_Orders.TabIndex = 0;
@@ -248,58 +248,58 @@
             this.col_batch_mp});
             this.grdv_Orders.DetailHeight = 673;
             this.grdv_Orders.FixedLineWidth = 4;
-            gridFormatRule7.ApplyToRow = true;
-            gridFormatRule7.Name = "Activas";
-            formatConditionRuleValue7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            formatConditionRuleValue7.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            formatConditionRuleValue7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue7.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
-            formatConditionRuleValue7.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue7.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue7.Appearance.Options.UseFont = true;
-            formatConditionRuleValue7.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue7.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue7.Expression = "[mix_status] = 70";
-            gridFormatRule7.Rule = formatConditionRuleValue7;
-            gridFormatRule8.ApplyToRow = true;
-            gridFormatRule8.Name = "Ensacado";
-            formatConditionRuleValue8.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
-            formatConditionRuleValue8.Appearance.BackColor2 = System.Drawing.Color.PapayaWhip;
-            formatConditionRuleValue8.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue8.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            formatConditionRuleValue8.Appearance.ForeColor = System.Drawing.Color.OrangeRed;
-            formatConditionRuleValue8.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue8.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue8.Appearance.Options.UseFont = true;
-            formatConditionRuleValue8.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue8.Expression = "[mix_status] = 80";
-            gridFormatRule8.Rule = formatConditionRuleValue8;
-            gridFormatRule9.ApplyToRow = true;
-            gridFormatRule9.Name = "Format0";
-            formatConditionRuleValue9.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
-            formatConditionRuleValue9.Appearance.BackColor2 = System.Drawing.Color.PowderBlue;
-            formatConditionRuleValue9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue9.Appearance.ForeColor = System.Drawing.Color.SteelBlue;
-            formatConditionRuleValue9.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue9.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue9.Appearance.Options.UseFont = true;
-            formatConditionRuleValue9.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue9.Expression = "[mix_status] = 60";
-            gridFormatRule9.Rule = formatConditionRuleValue9;
-            gridFormatRule10.Column = this.col_batch_restantes;
-            gridFormatRule10.ColumnApplyTo = this.col_batch_restantes;
-            gridFormatRule10.Name = "Batch_Restantes";
-            formatConditionRuleValue10.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue10.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            formatConditionRuleValue10.Appearance.Options.UseFont = true;
-            formatConditionRuleValue10.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue10.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue10.Expression = "[batch_restantes] > 0";
-            gridFormatRule10.Rule = formatConditionRuleValue10;
-            this.grdv_Orders.FormatRules.Add(gridFormatRule7);
-            this.grdv_Orders.FormatRules.Add(gridFormatRule8);
-            this.grdv_Orders.FormatRules.Add(gridFormatRule9);
-            this.grdv_Orders.FormatRules.Add(gridFormatRule10);
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Name = "Activas";
+            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            formatConditionRuleValue1.Appearance.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.DarkGreen;
+            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue1.Appearance.Options.UseFont = true;
+            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue1.Expression = "[mix_status] = 70";
+            gridFormatRule1.Rule = formatConditionRuleValue1;
+            gridFormatRule2.ApplyToRow = true;
+            gridFormatRule2.Name = "Ensacado";
+            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
+            formatConditionRuleValue2.Appearance.BackColor2 = System.Drawing.Color.PapayaWhip;
+            formatConditionRuleValue2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue2.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            formatConditionRuleValue2.Appearance.ForeColor = System.Drawing.Color.OrangeRed;
+            formatConditionRuleValue2.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue2.Appearance.Options.UseFont = true;
+            formatConditionRuleValue2.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue2.Expression = "[mix_status] = 80";
+            gridFormatRule2.Rule = formatConditionRuleValue2;
+            gridFormatRule3.ApplyToRow = true;
+            gridFormatRule3.Name = "Format0";
+            formatConditionRuleValue3.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue3.Appearance.BackColor2 = System.Drawing.Color.PowderBlue;
+            formatConditionRuleValue3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue3.Appearance.ForeColor = System.Drawing.Color.SteelBlue;
+            formatConditionRuleValue3.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue3.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue3.Appearance.Options.UseFont = true;
+            formatConditionRuleValue3.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue3.Expression = "[mix_status] = 60";
+            gridFormatRule3.Rule = formatConditionRuleValue3;
+            gridFormatRule4.Column = this.col_batch_restantes;
+            gridFormatRule4.ColumnApplyTo = this.col_batch_restantes;
+            gridFormatRule4.Name = "Batch_Restantes";
+            formatConditionRuleValue4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            formatConditionRuleValue4.Appearance.Options.UseFont = true;
+            formatConditionRuleValue4.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue4.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue4.Expression = "[batch_restantes] > 0";
+            gridFormatRule4.Rule = formatConditionRuleValue4;
+            this.grdv_Orders.FormatRules.Add(gridFormatRule1);
+            this.grdv_Orders.FormatRules.Add(gridFormatRule2);
+            this.grdv_Orders.FormatRules.Add(gridFormatRule3);
+            this.grdv_Orders.FormatRules.Add(gridFormatRule4);
             this.grdv_Orders.GridControl = this.grd_Orders;
             this.grdv_Orders.GroupCount = 1;
             this.grdv_Orders.Name = "grdv_Orders";
@@ -337,7 +337,7 @@
             this.col_order_number.OptionsColumn.AllowEdit = false;
             this.col_order_number.Visible = true;
             this.col_order_number.VisibleIndex = 0;
-            this.col_order_number.Width = 43;
+            this.col_order_number.Width = 62;
             // 
             // col_mix_num
             // 
@@ -717,7 +717,7 @@
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl1.Location = new System.Drawing.Point(3, 42);
             this.standaloneBarDockControl1.Manager = this.barManager1;
-            this.standaloneBarDockControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.standaloneBarDockControl1.Margin = new System.Windows.Forms.Padding(6);
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
             this.standaloneBarDockControl1.Size = new System.Drawing.Size(2560, 94);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
@@ -728,7 +728,7 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(6);
             this.barDockControlTop.Size = new System.Drawing.Size(2594, 92);
             // 
             // barDockControlBottom
@@ -737,7 +737,7 @@
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 880);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(6);
             this.barDockControlBottom.Size = new System.Drawing.Size(2594, 28);
             // 
             // barDockControlLeft
@@ -746,7 +746,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 92);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(6);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 788);
             // 
             // barDockControlRight
@@ -755,7 +755,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(2594, 92);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(6);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 788);
             // 
             // btn_Refresh
@@ -877,7 +877,7 @@
             this.grp_Orders.Controls.Add(this.standaloneBarDockControl1);
             this.grp_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Orders.Location = new System.Drawing.Point(6, 6);
-            this.grp_Orders.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grp_Orders.Margin = new System.Windows.Forms.Padding(6);
             this.grp_Orders.Name = "grp_Orders";
             this.grp_Orders.Size = new System.Drawing.Size(2566, 382);
             this.grp_Orders.TabIndex = 5;
@@ -892,7 +892,7 @@
             this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Structure.Location = new System.Drawing.Point(6, 400);
-            this.grp_Structure.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grp_Structure.Margin = new System.Windows.Forms.Padding(6);
             this.grp_Structure.Name = "grp_Structure";
             this.grp_Structure.Size = new System.Drawing.Size(2566, 382);
             this.grp_Structure.TabIndex = 6;
@@ -903,10 +903,10 @@
             this.gridControl1.DataMember = "detalle_micros";
             this.gridControl1.DataSource = this.dsARM1;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.gridControl1.Location = new System.Drawing.Point(1691, 42);
             this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(6);
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.Size = new System.Drawing.Size(872, 337);
@@ -972,10 +972,10 @@
             this.grd_Structure.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grd_Structure.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Structure.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Structure.Location = new System.Drawing.Point(4, 40);
             this.grd_Structure.MainView = this.grdv_Structure;
-            this.grd_Structure.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Structure.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Structure.MenuManager = this.barManager1;
             this.grd_Structure.Name = "grd_Structure";
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -1032,30 +1032,30 @@
             this.col_postpellet_cant});
             this.grdv_Structure.DetailHeight = 673;
             this.grdv_Structure.FixedLineWidth = 4;
-            gridFormatRule1.ApplyToRow = true;
-            gridFormatRule1.Name = "SinBinAsignado";
-            formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Salmon;
-            formatConditionRuleValue1.Appearance.BackColor2 = System.Drawing.Color.White;
-            formatConditionRuleValue1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            formatConditionRuleValue1.Appearance.ForeColor = System.Drawing.Color.DarkRed;
-            formatConditionRuleValue1.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue1.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue1.Appearance.Options.UseFont = true;
-            formatConditionRuleValue1.Appearance.Options.UseForeColor = true;
-            formatConditionRuleValue1.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue1.Expression = "[bin_id] = 0 And [bin_longname] <> \'(Manual)\'";
-            gridFormatRule1.Rule = formatConditionRuleValue1;
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Name = "Manual";
-            formatConditionRuleValue2.Appearance.BackColor = System.Drawing.Color.LightCyan;
-            formatConditionRuleValue2.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
-            formatConditionRuleValue2.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            formatConditionRuleValue2.Appearance.Options.UseBackColor = true;
-            formatConditionRuleValue2.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
-            formatConditionRuleValue2.Expression = "[bin_longname] = \'(Manual)\'";
-            gridFormatRule2.Rule = formatConditionRuleValue2;
-            this.grdv_Structure.FormatRules.Add(gridFormatRule1);
-            this.grdv_Structure.FormatRules.Add(gridFormatRule2);
+            gridFormatRule5.ApplyToRow = true;
+            gridFormatRule5.Name = "SinBinAsignado";
+            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Salmon;
+            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.White;
+            formatConditionRuleValue5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.DarkRed;
+            formatConditionRuleValue5.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue5.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue5.Appearance.Options.UseFont = true;
+            formatConditionRuleValue5.Appearance.Options.UseForeColor = true;
+            formatConditionRuleValue5.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue5.Expression = "[bin_id] = 0 And [bin_longname] <> \'(Manual)\'";
+            gridFormatRule5.Rule = formatConditionRuleValue5;
+            gridFormatRule6.ApplyToRow = true;
+            gridFormatRule6.Name = "Manual";
+            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightCyan;
+            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
+            formatConditionRuleValue6.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            formatConditionRuleValue6.Appearance.Options.UseBackColor = true;
+            formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
+            formatConditionRuleValue6.Expression = "[bin_longname] = \'(Manual)\'";
+            gridFormatRule6.Rule = formatConditionRuleValue6;
+            this.grdv_Structure.FormatRules.Add(gridFormatRule5);
+            this.grdv_Structure.FormatRules.Add(gridFormatRule6);
             this.grdv_Structure.GridControl = this.grd_Structure;
             this.grdv_Structure.Name = "grdv_Structure";
             this.grdv_Structure.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
@@ -1279,7 +1279,7 @@
             this.tableLayoutPanel1.Controls.Add(this.grp_Comments, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 92);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1294,7 +1294,7 @@
             this.grp_events.Controls.Add(this.grd_Events);
             this.grp_events.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_events.Location = new System.Drawing.Point(2584, 400);
-            this.grp_events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grp_events.Margin = new System.Windows.Forms.Padding(6);
             this.grp_events.Name = "grp_events";
             this.grp_events.Size = new System.Drawing.Size(4, 382);
             this.grp_events.TabIndex = 8;
@@ -1304,10 +1304,10 @@
             // grd_Events
             // 
             this.grd_Events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Events.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Events.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Events.Location = new System.Drawing.Point(3, 42);
             this.grd_Events.MainView = this.grdv_Events;
-            this.grd_Events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Events.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Events.MenuManager = this.barManager1;
             this.grd_Events.Name = "grd_Events";
             this.grd_Events.Size = new System.Drawing.Size(0, 337);
@@ -1375,7 +1375,7 @@
             this.grp_Comments.Controls.Add(this.grd_Comments);
             this.grp_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Comments.Location = new System.Drawing.Point(2584, 6);
-            this.grp_Comments.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grp_Comments.Margin = new System.Windows.Forms.Padding(6);
             this.grp_Comments.Name = "grp_Comments";
             this.grp_Comments.Size = new System.Drawing.Size(4, 382);
             this.grp_Comments.TabIndex = 7;
@@ -1385,10 +1385,10 @@
             // grd_Comments
             // 
             this.grd_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Comments.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Comments.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Comments.Location = new System.Drawing.Point(3, 42);
             this.grd_Comments.MainView = this.grdv_Comments;
-            this.grd_Comments.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Comments.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Comments.MenuManager = this.barManager1;
             this.grd_Comments.Name = "grd_Comments";
             this.grd_Comments.Size = new System.Drawing.Size(0, 337);
@@ -1465,7 +1465,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "OP_Production_Orders_Planner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Planificador de Ordenes de Producción";
