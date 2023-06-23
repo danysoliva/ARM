@@ -188,10 +188,12 @@
             // grd_Orders
             // 
             this.grd_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Orders.Location = new System.Drawing.Point(2, 70);
+            this.grd_Orders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Orders.Location = new System.Drawing.Point(3, 136);
             this.grd_Orders.MainView = this.grdv_Orders;
+            this.grd_Orders.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grd_Orders.Name = "grd_Orders";
-            this.grd_Orders.Size = new System.Drawing.Size(1279, 123);
+            this.grd_Orders.Size = new System.Drawing.Size(2560, 243);
             this.grd_Orders.TabIndex = 0;
             this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Orders});
@@ -244,6 +246,8 @@
             this.col_acs_id,
             this.col_formula,
             this.col_batch_mp});
+            this.grdv_Orders.DetailHeight = 673;
+            this.grdv_Orders.FixedLineWidth = 4;
             gridFormatRule7.ApplyToRow = true;
             gridFormatRule7.Name = "Activas";
             formatConditionRuleValue7.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -711,10 +715,11 @@
             // 
             this.standaloneBarDockControl1.CausesValidation = false;
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 21);
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(3, 42);
             this.standaloneBarDockControl1.Manager = this.barManager1;
+            this.standaloneBarDockControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(1279, 49);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(2560, 94);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barDockControlTop
@@ -723,31 +728,35 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1297, 47);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlTop.Size = new System.Drawing.Size(2594, 92);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 449);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 880);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1297, 23);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2594, 28);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 92);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 402);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 788);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1297, 47);
+            this.barDockControlRight.Location = new System.Drawing.Point(2594, 92);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 402);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 788);
             // 
             // btn_Refresh
             // 
@@ -867,9 +876,10 @@
             this.grp_Orders.Controls.Add(this.grd_Orders);
             this.grp_Orders.Controls.Add(this.standaloneBarDockControl1);
             this.grp_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Orders.Location = new System.Drawing.Point(3, 3);
+            this.grp_Orders.Location = new System.Drawing.Point(6, 6);
+            this.grp_Orders.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grp_Orders.Name = "grp_Orders";
-            this.grp_Orders.Size = new System.Drawing.Size(1283, 195);
+            this.grp_Orders.Size = new System.Drawing.Size(2566, 382);
             this.grp_Orders.TabIndex = 5;
             this.grp_Orders.Text = "Ordenes de Producción";
             // 
@@ -881,9 +891,10 @@
             this.grp_Structure.Controls.Add(this.grd_Structure);
             this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Structure.Location = new System.Drawing.Point(3, 204);
+            this.grp_Structure.Location = new System.Drawing.Point(6, 400);
+            this.grp_Structure.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grp_Structure.Name = "grp_Structure";
-            this.grp_Structure.Size = new System.Drawing.Size(1283, 195);
+            this.grp_Structure.Size = new System.Drawing.Size(2566, 382);
             this.grp_Structure.TabIndex = 6;
             this.grp_Structure.Text = "Estructura de Orden";
             // 
@@ -892,11 +903,13 @@
             this.gridControl1.DataMember = "detalle_micros";
             this.gridControl1.DataSource = this.dsARM1;
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gridControl1.Location = new System.Drawing.Point(845, 21);
+            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gridControl1.Location = new System.Drawing.Point(1691, 42);
             this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(436, 172);
+            this.gridControl1.Size = new System.Drawing.Size(872, 337);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -916,6 +929,8 @@
             this.colPesoporBatch,
             this.colTotal,
             this.colBatchPlan});
+            this.gridView1.DetailHeight = 673;
+            this.gridView1.FixedLineWidth = 4;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
@@ -957,14 +972,16 @@
             this.grd_Structure.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grd_Structure.Location = new System.Drawing.Point(2, 21);
+            this.grd_Structure.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Structure.Location = new System.Drawing.Point(4, 40);
             this.grd_Structure.MainView = this.grdv_Structure;
+            this.grd_Structure.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grd_Structure.MenuManager = this.barManager1;
             this.grd_Structure.Name = "grd_Structure";
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1});
-            this.grd_Structure.Size = new System.Drawing.Size(837, 172);
+            this.grd_Structure.Size = new System.Drawing.Size(1674, 338);
             this.grd_Structure.TabIndex = 0;
             this.grd_Structure.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Structure});
@@ -1013,6 +1030,8 @@
             this.col_is_postpellet,
             this.col_pospelt,
             this.col_postpellet_cant});
+            this.grdv_Structure.DetailHeight = 673;
+            this.grdv_Structure.FixedLineWidth = 4;
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Name = "SinBinAsignado";
             formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.Salmon;
@@ -1192,12 +1211,13 @@
             this.col_postpellet_cant.Caption = "Cant. Post Pellet";
             this.col_postpellet_cant.ColumnEdit = this.repositoryItemButtonEdit1;
             this.col_postpellet_cant.FieldName = "post_pellet_cant";
+            this.col_postpellet_cant.MinWidth = 40;
             this.col_postpellet_cant.Name = "col_postpellet_cant";
             this.col_postpellet_cant.OptionsColumn.AllowMove = false;
             this.col_postpellet_cant.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.col_postpellet_cant.Visible = true;
             this.col_postpellet_cant.VisibleIndex = 8;
-            this.col_postpellet_cant.Width = 90;
+            this.col_postpellet_cant.Width = 180;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -1217,9 +1237,10 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(1054, 4);
+            this.label1.Location = new System.Drawing.Point(2108, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 14);
+            this.label1.Size = new System.Drawing.Size(449, 29);
             this.label1.TabIndex = 2;
             this.label1.Text = "Detalle Micro Ingredientes Manuales";
             // 
@@ -1257,12 +1278,13 @@
             this.tableLayoutPanel1.Controls.Add(this.grp_Structure, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.grp_Comments, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 47);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 92);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1297, 402);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(2594, 788);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // grp_events
@@ -1271,9 +1293,10 @@
             this.grp_events.AppearanceCaption.Options.UseFont = true;
             this.grp_events.Controls.Add(this.grd_Events);
             this.grp_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_events.Location = new System.Drawing.Point(1292, 204);
+            this.grp_events.Location = new System.Drawing.Point(2584, 400);
+            this.grp_events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grp_events.Name = "grp_events";
-            this.grp_events.Size = new System.Drawing.Size(2, 195);
+            this.grp_events.Size = new System.Drawing.Size(4, 382);
             this.grp_events.TabIndex = 8;
             this.grp_events.Text = "Eventos";
             this.grp_events.Visible = false;
@@ -1281,11 +1304,13 @@
             // grd_Events
             // 
             this.grd_Events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Events.Location = new System.Drawing.Point(2, 21);
+            this.grd_Events.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Events.Location = new System.Drawing.Point(3, 42);
             this.grd_Events.MainView = this.grdv_Events;
+            this.grd_Events.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grd_Events.MenuManager = this.barManager1;
             this.grd_Events.Name = "grd_Events";
-            this.grd_Events.Size = new System.Drawing.Size(0, 172);
+            this.grd_Events.Size = new System.Drawing.Size(0, 337);
             this.grd_Events.TabIndex = 1;
             this.grd_Events.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Events});
@@ -1297,6 +1322,8 @@
             this.col_event_fecha,
             this.col_event_hora,
             this.col_event_event});
+            this.grdv_Events.DetailHeight = 673;
+            this.grdv_Events.FixedLineWidth = 4;
             this.grdv_Events.GridControl = this.grd_Events;
             this.grdv_Events.Name = "grdv_Events";
             this.grdv_Events.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -1347,9 +1374,10 @@
             this.grp_Comments.AppearanceCaption.Options.UseFont = true;
             this.grp_Comments.Controls.Add(this.grd_Comments);
             this.grp_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Comments.Location = new System.Drawing.Point(1292, 3);
+            this.grp_Comments.Location = new System.Drawing.Point(2584, 6);
+            this.grp_Comments.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grp_Comments.Name = "grp_Comments";
-            this.grp_Comments.Size = new System.Drawing.Size(2, 195);
+            this.grp_Comments.Size = new System.Drawing.Size(4, 382);
             this.grp_Comments.TabIndex = 7;
             this.grp_Comments.Text = "Comentarios";
             this.grp_Comments.Visible = false;
@@ -1357,11 +1385,13 @@
             // grd_Comments
             // 
             this.grd_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Comments.Location = new System.Drawing.Point(2, 21);
+            this.grd_Comments.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.grd_Comments.Location = new System.Drawing.Point(3, 42);
             this.grd_Comments.MainView = this.grdv_Comments;
+            this.grd_Comments.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.grd_Comments.MenuManager = this.barManager1;
             this.grd_Comments.Name = "grd_Comments";
-            this.grd_Comments.Size = new System.Drawing.Size(0, 172);
+            this.grd_Comments.Size = new System.Drawing.Size(0, 337);
             this.grd_Comments.TabIndex = 0;
             this.grd_Comments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Comments});
@@ -1372,6 +1402,8 @@
             this.col_coment_fecha,
             this.col_coment_hora,
             this.col_coment_nota});
+            this.grdv_Comments.DetailHeight = 673;
+            this.grdv_Comments.FixedLineWidth = 4;
             this.grdv_Comments.GridControl = this.grd_Comments;
             this.grdv_Comments.Name = "grdv_Comments";
             this.grdv_Comments.OptionsBehavior.AutoSelectAllInEditor = false;
@@ -1423,9 +1455,9 @@
             // 
             // OP_Production_Orders_Planner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 472);
+            this.ClientSize = new System.Drawing.Size(2594, 908);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -1433,6 +1465,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "OP_Production_Orders_Planner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Planificador de Ordenes de Producción";

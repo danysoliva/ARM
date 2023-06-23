@@ -39,8 +39,8 @@ namespace ARM.Production
         int IdMPSinStock;
 
         Plc plc319;
-        static CpuType plc319_CPUType = CpuType.S7300;
-        static string plc319_IPAddress = "192.168.12.2";
+        static CpuType plc319_CPUType = CpuType.S71500;
+        static string plc319_IPAddress = "192.168.10.2";
         static Int16 plc319_Rack = 0;
         static Int16 plc319_Slot = 1;
 
@@ -222,48 +222,47 @@ namespace ARM.Production
                                 FROM [APMS].[dbo].[OP_Production_Orders_Main_Mix]
                                 where [id] =  " + vMixID;
                 int status = dp.APMS_Do_SmallOperationInt(sql2);
-                Permite = true;
-                //if (mix_num == 1)
-                //{
-                //    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+                //Permite = false;
 
-                //    if (plc319.IsAvailable)
-                //    {
-                //        if (!plc319.IsConnected)
-                //            plc319.Open();
+                if (mix_num == 1)
+                {
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
 
-                //        bool idle1 = (bool)plc319.Read("db414.dbx1.0");
-                //        //bool ActiveMix1 = (bool)plc319.Read("db557.dbx0.0");
-                //        sIdle = Convert.ToInt32(idle1).ToString();
-                //        sStatus = status;
+                    //if (plc319.IsConnected)
+                    //{
+                        if (!plc319.IsConnected)
+                            plc319.Open();
 
-                //        //if (idle1 == false && ActiveMix1)
-                //        if(idle1 == false && status == 70)
-                //            Permite = true;
-                //    }
-                //}
-                //if (mix_num == 2)
-                //{
-                //    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+                    bool idle1;// = (bool)plc319.Read("db414.dbx1.0");
+                    idle1 = Convert.ToBoolean(plc319.Read("db414.dbx1.0"));
+                    sIdle = Convert.ToInt32(idle1).ToString();
+                    sStatus = status;
 
-                //    if (plc319.IsAvailable)
-                //    {
-                //        if (!plc319.IsConnected)
-                //            plc319.Open();
+                    if (idle1 == false && status == 70)
+                        Permite = true;
+                    //}
+                }
+                if (mix_num == 2)
+                {
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
 
-                //        bool idle2 = (bool)plc319.Read("DB414.dbx3.0");
-                //        //bool ActiveMix2 = (bool)plc319.Read("db557.dbx0.1");
-                //        sIdle = Convert.ToInt32(idle2).ToString();
-                //        sStatus = status;
+                    //if (plc319.IsAvailable)
+                    //{
+                        if (!plc319.IsConnected)
+                            plc319.Open();
 
-                //        //if (idle2 == false && ActiveMix2)
-                //        if (idle2 == false && status == 70)
-                //            Permite = true;
-                //    }
-                //}
+                    bool idle2;// = (bool)plc319.Read("DB414.dbx3.0");
+                    
+                    idle2 = Convert.ToBoolean(plc319.Read("DB414.dbx3.0"));
+                    sIdle = Convert.ToInt32(idle2).ToString();
+                    sStatus = status;
+
+                    if (idle2 == false && status == 70)
+                        Permite = true;
+                    //}
+                }
             }
             catch (Exception ec) { throw new Exception(ec.Message);}
-
 
             //if (!Permite)
             //{
@@ -271,10 +270,7 @@ namespace ARM.Production
             //                                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
             //    if (r != DialogResult.Yes)
             //        Permite = false;
-
-
             //}
-
             return Permite;
         }
 
@@ -664,8 +660,6 @@ namespace ARM.Production
             // Solo se activaran los que active_mix=0 y que status=50 o
             // status=60
 
-           
-
             //setStatus_OP_mix(idMix, 70);
             if (PermitirMontar(idMix) == 0)
             {
@@ -735,7 +729,6 @@ namespace ARM.Production
                 SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
                 con.Open();
 
-                //SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_v2", con);
                 SqlCommand cmd = new SqlCommand("sp_get_activate_suspension_order_out_stock_scada", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@id_main_mix", pIdMainMix);
@@ -756,7 +749,7 @@ namespace ARM.Production
             string mensaje = "";
             if (getStatus_OP_mix(idMix)== 60) mensaje = "La orden ya está en estado suspendido.";
             //if (getStatus_activeMix_Sts_mix(idMix) == 0) mensaje = "El mezclado no está activo, no se puede suspender.";
-            if (!PermiteSuspender(idMix))                mensaje = "El mezclado no permite suspender \n"+
+            if (!PermiteSuspender(idMix))                mensaje = "El mezclado no permite suspender. El mezclado aun esta activo!!\n"+
                                                                     "El valor de idle es: " + sIdle + "\n" +
                                                                     "El valor de status es: " + sStatus;
             if (getStatus_OP_mix(idMix) != 70)           mensaje = "El estado del mezclado no permite suspender.";
