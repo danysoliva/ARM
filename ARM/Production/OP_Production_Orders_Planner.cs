@@ -38,6 +38,7 @@ namespace ARM.Production
         FMOP fmop = new FMOP();
         int IdMPSinStock;
 
+        //Comentario
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S71500;
         static string plc319_IPAddress = "192.168.10.2";
