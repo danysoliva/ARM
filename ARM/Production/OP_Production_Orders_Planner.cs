@@ -662,9 +662,7 @@ namespace ARM.Production
         {
             // Solo se activaran los que active_mix=0 y que status=50 o
             // status=60
-
-            
-
+       
             //setStatus_OP_mix(idMix, 70);
             if (PermitirMontar(idMix) == 0)
             {
