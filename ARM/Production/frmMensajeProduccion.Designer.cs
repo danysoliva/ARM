@@ -70,9 +70,9 @@ namespace ARM.Production
             this.labelControl1.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             this.labelControl1.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(2, -9);
+            this.labelControl1.Location = new System.Drawing.Point(2, 12);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(710, 136);
+            this.labelControl1.Size = new System.Drawing.Size(710, 115);
             this.labelControl1.TabIndex = 12;
             // 
             // timer1
@@ -85,10 +85,14 @@ namespace ARM.Production
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 292);
+            this.ControlBox = false;
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.cmdAceptar);
             this.Controls.Add(this.msjBoxIcon);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMensajeProduccion";
+            this.ShowIcon = false;
             ((System.ComponentModel.ISupportInitialize)(this.msjBoxIcon)).EndInit();
             this.ResumeLayout(false);
 

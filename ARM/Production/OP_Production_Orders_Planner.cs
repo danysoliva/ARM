@@ -38,7 +38,8 @@ namespace ARM.Production
         FMOP fmop = new FMOP();
         int IdMPSinStock;
         bool PermitirMontar_Orden;
-
+        int Requisas_Abiertas;
+        int Maximo_Permitidas;
         //Comentario
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S71500;
@@ -662,6 +663,8 @@ namespace ARM.Production
             // Solo se activaran los que active_mix=0 y que status=50 o
             // status=60
 
+            
+
             //setStatus_OP_mix(idMix, 70);
             if (PermitirMontar(idMix) == 0)
             {
@@ -691,7 +694,7 @@ namespace ARM.Production
 
 
                 //Validacion 6 Requisas
-                
+
 
                 try
                 {
@@ -699,7 +702,15 @@ namespace ARM.Production
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("sp_get_validacion_requisas_abiertas_montar_orden_PRD", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    PermitirMontar_Orden = Convert.ToBoolean(cmd.ExecuteScalar());
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        PermitirMontar_Orden = dr.GetBoolean(0);
+                        Requisas_Abiertas = dr.GetInt32(1);
+                        Maximo_Permitidas = dr.GetInt32(2);
+
+                    }
+                    dr.Close();
                     connection.Close();
                 }
                 catch (Exception ex)
@@ -711,7 +722,7 @@ namespace ARM.Production
                 {
                     if (PermitirMontar_Orden == false)
                     {
-                        frmMensajeProduccion frm = new frmMensajeProduccion();
+                        frmMensajeProduccion frm = new frmMensajeProduccion(Requisas_Abiertas, Maximo_Permitidas);
                         frm.ShowDialog();
                         return;
 

@@ -13,11 +13,16 @@ namespace ARM.Production
 {
     public partial class frmMensajeProduccion : DevExpress.XtraEditors.XtraForm
     {
-        public frmMensajeProduccion()
+        int Requisas_Abiertas = 0;
+        int Maximo_Permitidas = 0;
+        public frmMensajeProduccion(int pRequ_Abiertas, int pMaximo_permitidas)
         {
             InitializeComponent();
-            labelControl1.Text = "Existen mas de 6 Requisas en Estado: En Proceso \n Debe Completar y Cerrar Requisas para Proceder";
+            Requisas_Abiertas = pRequ_Abiertas;
+            Maximo_Permitidas = pMaximo_permitidas;
 
+            labelControl1.Text = "Deben Cerrar Requisas para Proceder \nMaximo de Requisas En Proceso Permitidas: " + Maximo_Permitidas.ToString() +"\nRequisas Abiertas: "+ Requisas_Abiertas;
+            
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
