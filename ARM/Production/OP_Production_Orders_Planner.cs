@@ -37,11 +37,12 @@ namespace ARM.Production
         DataTable dtEstructura;
         FMOP fmop = new FMOP();
         int IdMPSinStock;
+        bool PermitirMontar_Orden;
 
         //Comentario
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S71500;
-        static string plc319_IPAddress = "192.168.10.2";
+        static string plc319_IPAddress = "192.168.12.2";
         static Int16 plc319_Rack = 0;
         static Int16 plc319_Slot = 1;
 
@@ -686,6 +687,32 @@ namespace ARM.Production
                     registrarEvento("[Activando] " + mensaje);
                     btn_Actualizar.PerformClick();
                     return;
+                }
+
+
+                //Validacion 6 Requisas
+                
+
+                try
+                {
+                    SqlConnection connection = new SqlConnection(dp.ConnectionStrinLOSA);
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("sp_get_validacion_requisas_abiertas_montar_orden_PRD", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    PermitirMontar_Orden = Convert.ToBoolean(cmd.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    CajaDialogo.Error(ex.Message);
+                }
+
+                if (PermitirMontar_Orden == false)
+                {
+                    frmMensajeProduccion frm = new frmMensajeProduccion();
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        return;
+                    }
                 }
 
                 DialogResult resultado = MessageBox.Show("¿Esta realmente seguro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
