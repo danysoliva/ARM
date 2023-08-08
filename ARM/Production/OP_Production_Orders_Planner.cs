@@ -695,11 +695,12 @@ namespace ARM.Production
 
                 try
                 {
-                    SqlConnection connection = new SqlConnection(dp.ConnectionStrinLOSA);
+                    SqlConnection connection = new SqlConnection(dp.ConnectionStringLOSA);
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("sp_get_validacion_requisas_abiertas_montar_orden_PRD", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     PermitirMontar_Orden = Convert.ToBoolean(cmd.ExecuteScalar());
+                    connection.Close();
                 }
                 catch (Exception ex)
                 {
@@ -708,10 +709,12 @@ namespace ARM.Production
 
                 if (PermitirMontar_Orden == false)
                 {
-                    frmMensajeProduccion frm = new frmMensajeProduccion();
-                    if (frm.ShowDialog() == DialogResult.OK)
+                    if (PermitirMontar_Orden == false)
                     {
+                        frmMensajeProduccion frm = new frmMensajeProduccion();
+                        frm.ShowDialog();
                         return;
+
                     }
                 }
 

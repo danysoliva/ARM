@@ -63,7 +63,7 @@ namespace ARM.Classes
                                                        User Id=" + Globals.APMS_DB_User + @";
                                                        Password=" + Globals.APMS_DB_Pass + ";";
 
-        internal string ConnectionStrinLOSA = @"Server=" + Globals.LOSA_Server + @";
+        internal string ConnectionStringLOSA = @"Server=" + Globals.LOSA_Server + @";
                                                        Database=" + Globals.LOSA_ActiveDB + @";
                                                        User Id=" + Globals.LOSA_DB_User + @";
                                                        Password=" + Globals.LOSA_DB_Pass + ";";

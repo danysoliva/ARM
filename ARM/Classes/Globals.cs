@@ -36,7 +36,7 @@ namespace ARM.Classes
         public static string APMS_ActiveDB = "APMS";
 
         //LOSA 
-        public static string LOSA_Server = @"AQFSVR010\\AQFSVR010";
+        public static string LOSA_Server = @"AQFSVR010\AQFSVR010";
         public static string LOSA_DB_User = "losa_user_db";
         public static string LOSA_DB_Pass = "AquaF33dHN2014";
         public static string LOSA_ActiveDB = "LOSA";
