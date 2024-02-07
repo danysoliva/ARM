@@ -192,7 +192,7 @@
             this.grd_Orders.Location = new System.Drawing.Point(2, 70);
             this.grd_Orders.MainView = this.grdv_Orders;
             this.grd_Orders.Name = "grd_Orders";
-            this.grd_Orders.Size = new System.Drawing.Size(954, 123);
+            this.grd_Orders.Size = new System.Drawing.Size(954, 151);
             this.grd_Orders.TabIndex = 0;
             this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Orders});
@@ -756,7 +756,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 449);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 505);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(970, 23);
             // 
@@ -766,7 +766,7 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 402);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 458);
             // 
             // barDockControlRight
             // 
@@ -774,7 +774,7 @@
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(970, 47);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 402);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 458);
             // 
             // btn_Refresh
             // 
@@ -896,7 +896,7 @@
             this.grp_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Orders.Location = new System.Drawing.Point(3, 3);
             this.grp_Orders.Name = "grp_Orders";
-            this.grp_Orders.Size = new System.Drawing.Size(958, 195);
+            this.grp_Orders.Size = new System.Drawing.Size(958, 223);
             this.grp_Orders.TabIndex = 5;
             this.grp_Orders.Text = "Ordenes de Producción";
             // 
@@ -908,9 +908,9 @@
             this.grp_Structure.Controls.Add(this.grd_Structure);
             this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Structure.Location = new System.Drawing.Point(3, 204);
+            this.grp_Structure.Location = new System.Drawing.Point(3, 232);
             this.grp_Structure.Name = "grp_Structure";
-            this.grp_Structure.Size = new System.Drawing.Size(958, 195);
+            this.grp_Structure.Size = new System.Drawing.Size(958, 223);
             this.grp_Structure.TabIndex = 6;
             this.grp_Structure.Text = "Estructura de Orden";
             // 
@@ -923,7 +923,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.MenuManager = this.barManager1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(436, 172);
+            this.gridControl1.Size = new System.Drawing.Size(436, 200);
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -997,7 +997,7 @@
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1});
-            this.grd_Structure.Size = new System.Drawing.Size(512, 172);
+            this.grd_Structure.Size = new System.Drawing.Size(512, 200);
             this.grd_Structure.TabIndex = 0;
             this.grd_Structure.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Structure});
@@ -1318,7 +1318,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 402);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 458);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // grp_events
@@ -1327,9 +1327,9 @@
             this.grp_events.AppearanceCaption.Options.UseFont = true;
             this.grp_events.Controls.Add(this.grd_Events);
             this.grp_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_events.Location = new System.Drawing.Point(967, 204);
+            this.grp_events.Location = new System.Drawing.Point(967, 232);
             this.grp_events.Name = "grp_events";
-            this.grp_events.Size = new System.Drawing.Size(1, 195);
+            this.grp_events.Size = new System.Drawing.Size(1, 223);
             this.grp_events.TabIndex = 8;
             this.grp_events.Text = "Eventos";
             this.grp_events.Visible = false;
@@ -1341,7 +1341,7 @@
             this.grd_Events.MainView = this.grdv_Events;
             this.grd_Events.MenuManager = this.barManager1;
             this.grd_Events.Name = "grd_Events";
-            this.grd_Events.Size = new System.Drawing.Size(0, 172);
+            this.grd_Events.Size = new System.Drawing.Size(0, 200);
             this.grd_Events.TabIndex = 1;
             this.grd_Events.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Events});
@@ -1410,7 +1410,7 @@
             this.grp_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Comments.Location = new System.Drawing.Point(967, 3);
             this.grp_Comments.Name = "grp_Comments";
-            this.grp_Comments.Size = new System.Drawing.Size(1, 195);
+            this.grp_Comments.Size = new System.Drawing.Size(1, 223);
             this.grp_Comments.TabIndex = 7;
             this.grp_Comments.Text = "Comentarios";
             this.grp_Comments.Visible = false;
@@ -1422,7 +1422,7 @@
             this.grd_Comments.MainView = this.grdv_Comments;
             this.grd_Comments.MenuManager = this.barManager1;
             this.grd_Comments.Name = "grd_Comments";
-            this.grd_Comments.Size = new System.Drawing.Size(0, 172);
+            this.grd_Comments.Size = new System.Drawing.Size(0, 200);
             this.grd_Comments.TabIndex = 0;
             this.grd_Comments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Comments});
@@ -1491,7 +1491,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 472);
+            this.ClientSize = new System.Drawing.Size(970, 528);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

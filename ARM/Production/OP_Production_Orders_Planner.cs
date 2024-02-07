@@ -706,7 +706,6 @@ namespace ARM.Production
                         PermitirMontar_Orden = dr.GetBoolean(0);
                         Requisas_Abiertas = dr.GetInt32(1);
                         Maximo_Permitidas = dr.GetInt32(2);
-
                     }
                     dr.Close();
                     connection.Close();
@@ -755,6 +754,7 @@ namespace ARM.Production
                     MessageBox.Show("No hay Inventario en la Bodega BG018 (Producción), de la Materia Prima: " + mp1.ItemCode + " - " + mp1.Nombre + ". " +
                                     "No se permite operar una orden sin inventario en Kardex en BG018!"
                                    ,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
                 
             }
