@@ -63,6 +63,7 @@
             this.col_acs_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_formula = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_batch_mp = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_batch_programados = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -244,7 +245,8 @@
             this.col_mezclado,
             this.col_acs_id,
             this.col_formula,
-            this.col_batch_mp});
+            this.col_batch_mp,
+            this.col_batch_programados});
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Name = "Activas";
             formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -396,7 +398,7 @@
             // 
             // col_mix_status
             // 
-            this.col_mix_status.Caption = "Sts";
+            this.col_mix_status.Caption = "Estado Codigo";
             this.col_mix_status.FieldName = "mix_status";
             this.col_mix_status.MinWidth = 10;
             this.col_mix_status.Name = "col_mix_status";
@@ -487,13 +489,20 @@
             // 
             // col_batch_mp
             // 
-            this.col_batch_mp.Caption = "Batch MP";
+            this.col_batch_mp.Caption = "Batch Completados";
             this.col_batch_mp.FieldName = "batch_mp";
             this.col_batch_mp.MinWidth = 10;
             this.col_batch_mp.Name = "col_batch_mp";
             this.col_batch_mp.Visible = true;
             this.col_batch_mp.VisibleIndex = 7;
             this.col_batch_mp.Width = 27;
+            // 
+            // col_batch_programados
+            // 
+            this.col_batch_programados.Caption = "Batch Programados";
+            this.col_batch_programados.Name = "col_batch_programados";
+            this.col_batch_programados.Visible = true;
+            this.col_batch_programados.VisibleIndex = 11;
             // 
             // barManager1
             // 
@@ -1643,5 +1652,6 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private System.Windows.Forms.Timer timerValidacionStock;
+        private DevExpress.XtraGrid.Columns.GridColumn col_batch_programados;
     }
 }
