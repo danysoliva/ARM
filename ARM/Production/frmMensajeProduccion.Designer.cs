@@ -102,7 +102,7 @@ namespace ARM.Production
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 298);
+            this.ClientSize = new System.Drawing.Size(728, 304);
             this.ControlBox = false;
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
