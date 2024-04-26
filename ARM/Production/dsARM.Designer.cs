@@ -28,6 +28,8 @@ namespace ARM.Production {
         
         private ordenhDataTable tableordenh;
         
+        private OrdenesRecetasDataTable tableOrdenesRecetas;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +63,9 @@ namespace ARM.Production {
                 }
                 if ((ds.Tables["ordenh"] != null)) {
                     base.Tables.Add(new ordenhDataTable(ds.Tables["ordenh"]));
+                }
+                if ((ds.Tables["OrdenesRecetas"] != null)) {
+                    base.Tables.Add(new OrdenesRecetasDataTable(ds.Tables["OrdenesRecetas"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +102,16 @@ namespace ARM.Production {
         public ordenhDataTable ordenh {
             get {
                 return this.tableordenh;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public OrdenesRecetasDataTable OrdenesRecetas {
+            get {
+                return this.tableOrdenesRecetas;
             }
         }
         
@@ -173,6 +188,9 @@ namespace ARM.Production {
                 if ((ds.Tables["ordenh"] != null)) {
                     base.Tables.Add(new ordenhDataTable(ds.Tables["ordenh"]));
                 }
+                if ((ds.Tables["OrdenesRecetas"] != null)) {
+                    base.Tables.Add(new OrdenesRecetasDataTable(ds.Tables["OrdenesRecetas"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +236,12 @@ namespace ARM.Production {
                     this.tableordenh.InitVars();
                 }
             }
+            this.tableOrdenesRecetas = ((OrdenesRecetasDataTable)(base.Tables["OrdenesRecetas"]));
+            if ((initTable == true)) {
+                if ((this.tableOrdenesRecetas != null)) {
+                    this.tableOrdenesRecetas.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +256,8 @@ namespace ARM.Production {
             base.Tables.Add(this.tabledetalle_micros);
             this.tableordenh = new ordenhDataTable();
             base.Tables.Add(this.tableordenh);
+            this.tableOrdenesRecetas = new OrdenesRecetasDataTable();
+            base.Tables.Add(this.tableOrdenesRecetas);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +269,12 @@ namespace ARM.Production {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private bool ShouldSerializeordenh() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializeOrdenesRecetas() {
             return false;
         }
         
@@ -306,6 +338,9 @@ namespace ARM.Production {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void ordenhRowChangeEventHandler(object sender, ordenhRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void OrdenesRecetasRowChangeEventHandler(object sender, OrdenesRecetasRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -948,6 +983,539 @@ namespace ARM.Production {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class OrdenesRecetasDataTable : global::System.Data.TypedTableBase<OrdenesRecetasRow> {
+            
+            private global::System.Data.DataColumn columnmix_id;
+            
+            private global::System.Data.DataColumn columnorder_id;
+            
+            private global::System.Data.DataColumn columnorder_number;
+            
+            private global::System.Data.DataColumn columnmix_num;
+            
+            private global::System.Data.DataColumn columnmix_code;
+            
+            private global::System.Data.DataColumn columnmix_fullCode;
+            
+            private global::System.Data.DataColumn columnfinish_product;
+            
+            private global::System.Data.DataColumn columnfp_lot_number;
+            
+            private global::System.Data.DataColumn columnorder_status;
+            
+            private global::System.Data.DataColumn columnmix_status;
+            
+            private global::System.Data.DataColumn columngrupo;
+            
+            private global::System.Data.DataColumn columnplan_batch;
+            
+            private global::System.Data.DataColumn columnreal_batch;
+            
+            private global::System.Data.DataColumn columnreal_batch2;
+            
+            private global::System.Data.DataColumn columnbatch_mp;
+            
+            private global::System.Data.DataColumn columnmezclado;
+            
+            private global::System.Data.DataColumn columnacs_id;
+            
+            private global::System.Data.DataColumn columnformula;
+            
+            private global::System.Data.DataColumn columncant_batch_run;
+            
+            private global::System.Data.DataColumn columnbatch_restantes;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasDataTable() {
+                this.TableName = "OrdenesRecetas";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal OrdenesRecetasDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected OrdenesRecetasDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mix_idColumn {
+                get {
+                    return this.columnmix_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn order_idColumn {
+                get {
+                    return this.columnorder_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn order_numberColumn {
+                get {
+                    return this.columnorder_number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mix_numColumn {
+                get {
+                    return this.columnmix_num;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mix_codeColumn {
+                get {
+                    return this.columnmix_code;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mix_fullCodeColumn {
+                get {
+                    return this.columnmix_fullCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn finish_productColumn {
+                get {
+                    return this.columnfinish_product;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn fp_lot_numberColumn {
+                get {
+                    return this.columnfp_lot_number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn order_statusColumn {
+                get {
+                    return this.columnorder_status;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mix_statusColumn {
+                get {
+                    return this.columnmix_status;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn grupoColumn {
+                get {
+                    return this.columngrupo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn plan_batchColumn {
+                get {
+                    return this.columnplan_batch;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn real_batchColumn {
+                get {
+                    return this.columnreal_batch;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn real_batch2Column {
+                get {
+                    return this.columnreal_batch2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn batch_mpColumn {
+                get {
+                    return this.columnbatch_mp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn mezcladoColumn {
+                get {
+                    return this.columnmezclado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn acs_idColumn {
+                get {
+                    return this.columnacs_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn formulaColumn {
+                get {
+                    return this.columnformula;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn cant_batch_runColumn {
+                get {
+                    return this.columncant_batch_run;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn batch_restantesColumn {
+                get {
+                    return this.columnbatch_restantes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasRow this[int index] {
+                get {
+                    return ((OrdenesRecetasRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event OrdenesRecetasRowChangeEventHandler OrdenesRecetasRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event OrdenesRecetasRowChangeEventHandler OrdenesRecetasRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event OrdenesRecetasRowChangeEventHandler OrdenesRecetasRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event OrdenesRecetasRowChangeEventHandler OrdenesRecetasRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AddOrdenesRecetasRow(OrdenesRecetasRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasRow AddOrdenesRecetasRow(
+                        int mix_id, 
+                        int order_id, 
+                        int order_number, 
+                        int mix_num, 
+                        string mix_code, 
+                        string mix_fullCode, 
+                        string finish_product, 
+                        int fp_lot_number, 
+                        int order_status, 
+                        int mix_status, 
+                        string grupo, 
+                        int plan_batch, 
+                        int real_batch, 
+                        int real_batch2, 
+                        int batch_mp, 
+                        string mezclado, 
+                        int acs_id, 
+                        string formula, 
+                        string cant_batch_run, 
+                        int batch_restantes) {
+                OrdenesRecetasRow rowOrdenesRecetasRow = ((OrdenesRecetasRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        mix_id,
+                        order_id,
+                        order_number,
+                        mix_num,
+                        mix_code,
+                        mix_fullCode,
+                        finish_product,
+                        fp_lot_number,
+                        order_status,
+                        mix_status,
+                        grupo,
+                        plan_batch,
+                        real_batch,
+                        real_batch2,
+                        batch_mp,
+                        mezclado,
+                        acs_id,
+                        formula,
+                        cant_batch_run,
+                        batch_restantes};
+                rowOrdenesRecetasRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowOrdenesRecetasRow);
+                return rowOrdenesRecetasRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                OrdenesRecetasDataTable cln = ((OrdenesRecetasDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new OrdenesRecetasDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnmix_id = base.Columns["mix_id"];
+                this.columnorder_id = base.Columns["order_id"];
+                this.columnorder_number = base.Columns["order_number"];
+                this.columnmix_num = base.Columns["mix_num"];
+                this.columnmix_code = base.Columns["mix_code"];
+                this.columnmix_fullCode = base.Columns["mix_fullCode"];
+                this.columnfinish_product = base.Columns["finish_product"];
+                this.columnfp_lot_number = base.Columns["fp_lot_number"];
+                this.columnorder_status = base.Columns["order_status"];
+                this.columnmix_status = base.Columns["mix_status"];
+                this.columngrupo = base.Columns["grupo"];
+                this.columnplan_batch = base.Columns["plan_batch"];
+                this.columnreal_batch = base.Columns["real_batch"];
+                this.columnreal_batch2 = base.Columns["real_batch2"];
+                this.columnbatch_mp = base.Columns["batch_mp"];
+                this.columnmezclado = base.Columns["mezclado"];
+                this.columnacs_id = base.Columns["acs_id"];
+                this.columnformula = base.Columns["formula"];
+                this.columncant_batch_run = base.Columns["cant_batch_run"];
+                this.columnbatch_restantes = base.Columns["batch_restantes"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnmix_id = new global::System.Data.DataColumn("mix_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmix_id);
+                this.columnorder_id = new global::System.Data.DataColumn("order_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnorder_id);
+                this.columnorder_number = new global::System.Data.DataColumn("order_number", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnorder_number);
+                this.columnmix_num = new global::System.Data.DataColumn("mix_num", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmix_num);
+                this.columnmix_code = new global::System.Data.DataColumn("mix_code", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmix_code);
+                this.columnmix_fullCode = new global::System.Data.DataColumn("mix_fullCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmix_fullCode);
+                this.columnfinish_product = new global::System.Data.DataColumn("finish_product", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfinish_product);
+                this.columnfp_lot_number = new global::System.Data.DataColumn("fp_lot_number", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfp_lot_number);
+                this.columnorder_status = new global::System.Data.DataColumn("order_status", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnorder_status);
+                this.columnmix_status = new global::System.Data.DataColumn("mix_status", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmix_status);
+                this.columngrupo = new global::System.Data.DataColumn("grupo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngrupo);
+                this.columnplan_batch = new global::System.Data.DataColumn("plan_batch", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnplan_batch);
+                this.columnreal_batch = new global::System.Data.DataColumn("real_batch", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreal_batch);
+                this.columnreal_batch2 = new global::System.Data.DataColumn("real_batch2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreal_batch2);
+                this.columnbatch_mp = new global::System.Data.DataColumn("batch_mp", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbatch_mp);
+                this.columnmezclado = new global::System.Data.DataColumn("mezclado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmezclado);
+                this.columnacs_id = new global::System.Data.DataColumn("acs_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnacs_id);
+                this.columnformula = new global::System.Data.DataColumn("formula", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnformula);
+                this.columncant_batch_run = new global::System.Data.DataColumn("cant_batch_run", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncant_batch_run);
+                this.columnbatch_restantes = new global::System.Data.DataColumn("batch_restantes", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnbatch_restantes);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasRow NewOrdenesRecetasRow() {
+                return ((OrdenesRecetasRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new OrdenesRecetasRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(OrdenesRecetasRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.OrdenesRecetasRowChanged != null)) {
+                    this.OrdenesRecetasRowChanged(this, new OrdenesRecetasRowChangeEvent(((OrdenesRecetasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.OrdenesRecetasRowChanging != null)) {
+                    this.OrdenesRecetasRowChanging(this, new OrdenesRecetasRowChangeEvent(((OrdenesRecetasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.OrdenesRecetasRowDeleted != null)) {
+                    this.OrdenesRecetasRowDeleted(this, new OrdenesRecetasRowChangeEvent(((OrdenesRecetasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.OrdenesRecetasRowDeleting != null)) {
+                    this.OrdenesRecetasRowDeleting(this, new OrdenesRecetasRowChangeEvent(((OrdenesRecetasRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemoveOrdenesRecetasRow(OrdenesRecetasRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsARM ds = new dsARM();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "OrdenesRecetasDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class detalle_microsRow : global::System.Data.DataRow {
@@ -1314,6 +1882,581 @@ namespace ARM.Production {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class OrdenesRecetasRow : global::System.Data.DataRow {
+            
+            private OrdenesRecetasDataTable tableOrdenesRecetas;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal OrdenesRecetasRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableOrdenesRecetas = ((OrdenesRecetasDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int mix_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.mix_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mix_id\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mix_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int order_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.order_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'order_id\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.order_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int order_number {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.order_numberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'order_number\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.order_numberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int mix_num {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.mix_numColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mix_num\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mix_numColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string mix_code {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.mix_codeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mix_code\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mix_codeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string mix_fullCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.mix_fullCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mix_fullCode\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mix_fullCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string finish_product {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.finish_productColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'finish_product\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.finish_productColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int fp_lot_number {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.fp_lot_numberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fp_lot_number\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.fp_lot_numberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int order_status {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.order_statusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'order_status\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.order_statusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int mix_status {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.mix_statusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mix_status\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mix_statusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string grupo {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.grupoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'grupo\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.grupoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int plan_batch {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.plan_batchColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'plan_batch\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.plan_batchColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int real_batch {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.real_batchColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'real_batch\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.real_batchColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int real_batch2 {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.real_batch2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'real_batch2\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.real_batch2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int batch_mp {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.batch_mpColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'batch_mp\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.batch_mpColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string mezclado {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.mezcladoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mezclado\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.mezcladoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int acs_id {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.acs_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'acs_id\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.acs_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string formula {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.formulaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'formula\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.formulaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string cant_batch_run {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrdenesRecetas.cant_batch_runColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'cant_batch_run\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.cant_batch_runColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int batch_restantes {
+                get {
+                    try {
+                        return ((int)(this[this.tableOrdenesRecetas.batch_restantesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'batch_restantes\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.batch_restantesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Ismix_idNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mix_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setmix_idNull() {
+                this[this.tableOrdenesRecetas.mix_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isorder_idNull() {
+                return this.IsNull(this.tableOrdenesRecetas.order_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setorder_idNull() {
+                this[this.tableOrdenesRecetas.order_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isorder_numberNull() {
+                return this.IsNull(this.tableOrdenesRecetas.order_numberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setorder_numberNull() {
+                this[this.tableOrdenesRecetas.order_numberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Ismix_numNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mix_numColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setmix_numNull() {
+                this[this.tableOrdenesRecetas.mix_numColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Ismix_codeNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mix_codeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setmix_codeNull() {
+                this[this.tableOrdenesRecetas.mix_codeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Ismix_fullCodeNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mix_fullCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setmix_fullCodeNull() {
+                this[this.tableOrdenesRecetas.mix_fullCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isfinish_productNull() {
+                return this.IsNull(this.tableOrdenesRecetas.finish_productColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setfinish_productNull() {
+                this[this.tableOrdenesRecetas.finish_productColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isfp_lot_numberNull() {
+                return this.IsNull(this.tableOrdenesRecetas.fp_lot_numberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setfp_lot_numberNull() {
+                this[this.tableOrdenesRecetas.fp_lot_numberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isorder_statusNull() {
+                return this.IsNull(this.tableOrdenesRecetas.order_statusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setorder_statusNull() {
+                this[this.tableOrdenesRecetas.order_statusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Ismix_statusNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mix_statusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setmix_statusNull() {
+                this[this.tableOrdenesRecetas.mix_statusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsgrupoNull() {
+                return this.IsNull(this.tableOrdenesRecetas.grupoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetgrupoNull() {
+                this[this.tableOrdenesRecetas.grupoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isplan_batchNull() {
+                return this.IsNull(this.tableOrdenesRecetas.plan_batchColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setplan_batchNull() {
+                this[this.tableOrdenesRecetas.plan_batchColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isreal_batchNull() {
+                return this.IsNull(this.tableOrdenesRecetas.real_batchColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setreal_batchNull() {
+                this[this.tableOrdenesRecetas.real_batchColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isreal_batch2Null() {
+                return this.IsNull(this.tableOrdenesRecetas.real_batch2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setreal_batch2Null() {
+                this[this.tableOrdenesRecetas.real_batch2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isbatch_mpNull() {
+                return this.IsNull(this.tableOrdenesRecetas.batch_mpColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setbatch_mpNull() {
+                this[this.tableOrdenesRecetas.batch_mpColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsmezcladoNull() {
+                return this.IsNull(this.tableOrdenesRecetas.mezcladoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetmezcladoNull() {
+                this[this.tableOrdenesRecetas.mezcladoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isacs_idNull() {
+                return this.IsNull(this.tableOrdenesRecetas.acs_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setacs_idNull() {
+                this[this.tableOrdenesRecetas.acs_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsformulaNull() {
+                return this.IsNull(this.tableOrdenesRecetas.formulaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetformulaNull() {
+                this[this.tableOrdenesRecetas.formulaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Iscant_batch_runNull() {
+                return this.IsNull(this.tableOrdenesRecetas.cant_batch_runColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setcant_batch_runNull() {
+                this[this.tableOrdenesRecetas.cant_batch_runColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isbatch_restantesNull() {
+                return this.IsNull(this.tableOrdenesRecetas.batch_restantesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setbatch_restantesNull() {
+                this[this.tableOrdenesRecetas.batch_restantesColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1367,6 +2510,40 @@ namespace ARM.Production {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ordenhRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class OrdenesRecetasRowChangeEvent : global::System.EventArgs {
+            
+            private OrdenesRecetasRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasRowChangeEvent(OrdenesRecetasRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdenesRecetasRow Row {
                 get {
                     return this.eventRow;
                 }

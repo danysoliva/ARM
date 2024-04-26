@@ -44,6 +44,7 @@
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.col_batch_restantes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Orders = new DevExpress.XtraGrid.GridControl();
+            this.dsARM1 = new ARM.Production.dsARM();
             this.grdv_Orders = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_mix_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_order_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -105,7 +106,6 @@
             this.grp_Orders = new DevExpress.XtraEditors.GroupControl();
             this.grp_Structure = new DevExpress.XtraEditors.GroupControl();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.dsARM1 = new ARM.Production.dsARM();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPesoporBatch = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -150,6 +150,7 @@
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Orders)).BeginInit();
@@ -157,7 +158,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).BeginInit();
             this.grp_Structure.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).BeginInit();
@@ -189,6 +189,8 @@
             // 
             // grd_Orders
             // 
+            this.grd_Orders.DataMember = "OrdenesRecetas";
+            this.grd_Orders.DataSource = this.dsARM1;
             this.grd_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grd_Orders.Location = new System.Drawing.Point(2, 70);
             this.grd_Orders.MainView = this.grdv_Orders;
@@ -197,6 +199,11 @@
             this.grd_Orders.TabIndex = 0;
             this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Orders});
+            // 
+            // dsARM1
+            // 
+            this.dsARM1.DataSetName = "dsARM";
+            this.dsARM1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // grdv_Orders
             // 
@@ -500,6 +507,7 @@
             // col_batch_programados
             // 
             this.col_batch_programados.Caption = "Batch Programados";
+            this.col_batch_programados.FieldName = "cant_batch_run";
             this.col_batch_programados.Name = "col_batch_programados";
             this.col_batch_programados.Visible = true;
             this.col_batch_programados.VisibleIndex = 11;
@@ -936,11 +944,6 @@
             this.gridControl1.TabIndex = 1;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-            // 
-            // dsARM1
-            // 
-            this.dsARM1.DataSetName = "dsARM";
-            this.dsARM1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // gridView1
             // 
@@ -1514,6 +1517,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OP_Production_Orders_Planner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Orders)).EndInit();
@@ -1522,7 +1526,6 @@
             this.grp_Structure.ResumeLayout(false);
             this.grp_Structure.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).EndInit();
