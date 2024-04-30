@@ -1278,7 +1278,7 @@ namespace ARM.Production {
                         string mezclado, 
                         int acs_id, 
                         string formula, 
-                        string cant_batch_run, 
+                        int cant_batch_run, 
                         int batch_restantes) {
                 OrdenesRecetasRow rowOrdenesRecetasRow = ((OrdenesRecetasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -1385,7 +1385,7 @@ namespace ARM.Production {
                 base.Columns.Add(this.columnacs_id);
                 this.columnformula = new global::System.Data.DataColumn("formula", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnformula);
-                this.columncant_batch_run = new global::System.Data.DataColumn("cant_batch_run", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columncant_batch_run = new global::System.Data.DataColumn("cant_batch_run", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncant_batch_run);
                 this.columnbatch_restantes = new global::System.Data.DataColumn("batch_restantes", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbatch_restantes);
@@ -2185,10 +2185,10 @@ namespace ARM.Production {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string cant_batch_run {
+            public int cant_batch_run {
                 get {
                     try {
-                        return ((string)(this[this.tableOrdenesRecetas.cant_batch_runColumn]));
+                        return ((int)(this[this.tableOrdenesRecetas.cant_batch_runColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'cant_batch_run\' in table \'OrdenesRecetas\' is DBNull.", e);

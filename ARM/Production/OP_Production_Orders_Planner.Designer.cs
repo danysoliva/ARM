@@ -323,6 +323,8 @@
             this.grdv_Orders.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grdv_Orders_RowCellClick);
             this.grdv_Orders.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.grdv_Orders.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            this.grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_Orders_CellValueChanged);
+            this.grdv_Orders.CellValueChanging += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_Orders_CellValueChanging);
             // 
             // col_mix_id
             // 

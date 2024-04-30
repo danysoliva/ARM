@@ -121,8 +121,17 @@ namespace ARM.Production
                 cmd.Parameters["@status_fin"].Value = 80;
                 #endregion
 
-                grd_Orders.DataSource = null; 
-                grd_Orders.DataSource = dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_Mix_by_Status", cmd);
+                //grd_Orders.DataSource = null; 
+                //grd_Orders.DataSource = dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_Mix_by_Status", cmd);
+                SqlConnection conn = new SqlConnection(dp.ConnectionStringAPMS);
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = "OP_Get_Orders_Mix_by_Status";
+                SqlDataAdapter adat = new SqlDataAdapter(cmd);
+
+                dsARM1.OrdenesRecetas.Clear();
+                adat.Fill(dsARM1.OrdenesRecetas);
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -456,34 +465,6 @@ namespace ARM.Production
             catch (Exception) { throw; }
         }
 
-        //void set_sts_xOrden_Odoo(string orden, int status)
-        //{
-        //    try
-        //    {
-        //        NpgsqlCommand cmd = new NpgsqlCommand();
-        //        cmd.Parameters.Add(new NpgsqlParameter(":orden", DbType.AnsiString));
-        //        cmd.Parameters.Add(new NpgsqlParameter(":status", DbType.Int32));
-
-        //        cmd.Parameters[":orden"].Value  = orden ;
-        //        cmd.Parameters[":status"].Value = status ;
-
-        //        dp.ODOO_Exec_SP("x_sp_set_sts_OrdenProd", cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        #region Try-Catch_Mensaje-Error
-        //        var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
-        //        var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
-        //        var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
-        //        dialog.Text = "Error";
-        //        dialogType.GetProperty("Message").SetValue(dialog, "Error: " + ex.Message, null);
-        //        dialogType.GetProperty("Details").SetValue(dialog, ex.StackTrace, null);
-        //        var result = dialog.ShowDialog();
-        //        #endregion
-        //    }
-
-        //}
-
 
         /// <summary>
         /// Revisa si ya existe un MIX de la OP con status indicado
@@ -527,7 +508,6 @@ namespace ARM.Production
                 MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
-
         }
 
         int getStatus_activeMix_Sts_mix(int vMixID)    // Existe Mesclado con STS ..
@@ -600,7 +580,6 @@ namespace ARM.Production
                 SqlDataAdapter adat = new SqlDataAdapter(cmd);
                 dsARM1.detalle_micros.Clear();
                 adat.Fill(dsARM1.detalle_micros);
-
             }
             catch (Exception ec)
             {
@@ -1315,6 +1294,90 @@ namespace ARM.Production
                 MessageBox.Show(ec.Message);
             }
             return r;
+        }
+
+        private void grdv_Orders_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            
+        }
+
+        private void grdv_Orders_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            //var gridView = (GridView)grd_Orders.FocusedView;
+            dsARM.OrdenesRecetasRow row = (dsARM.OrdenesRecetasRow)grdv_Orders.GetDataRow(e.RowHandle);
+
+            int batch_old = row.cant_batch_run;
+            switch (e.Column.FieldName)
+            {
+                case "cant_batch_run":
+                    int batch_new = Convert.ToInt32(e.Value);
+                    int id_mp = 0;
+
+                    //Validar stock MP
+                    try
+                    {
+                        DataOperations dp = new DataOperations();
+                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand("[dbo].[sp_get_activate_suspension_order_out_stock_scada_v3]", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id_main_mix", row.mix_id);
+                        cmd.Parameters.AddWithValue("@cant_batch", batch_new);
+                        id_mp = Convert.ToInt32(cmd.ExecuteScalar());
+                        con.Close();
+                    }
+                    catch (Exception ec)
+                    {
+                        MessageBox.Show(ec.Message);
+                    }
+
+                    if (id_mp > 0)
+                    {
+                        //Hay materia prima corta de inventario para la cantidad de batch prevista.
+                        MateriaPrima mp = new MateriaPrima();
+                        if (mp.RecuperarRegistro(id_mp))
+                        {
+                            CajaDialogo.Error("La cantidad de batch excede el inventario de la Materia Prima: " + mp.Nombre 
+                                              +" en BG018, por favor revise el inventario en bodega de Produccion (BG018)");
+                            //grd_Orders.cell
+                            grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                            row.cant_batch_run = 0;
+                            dsARM1.AcceptChanges();
+                            grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                        }
+                    }
+                    else
+                    {
+                        //Update RUN BATCH
+                        try
+                        {
+                            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                            if (!plc319.IsConnected)
+                                plc319.Open();
+
+                            //Borrar el valor de la variable
+                            plc319.Write("db459.dbd12", batch_new);
+                            
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@mix_id", row.mix_id);
+                            cmd.Parameters.AddWithValue("@cant_batch", batch_new);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            MessageBox.Show(ec.Message);
+                        }
+                    }
+
+                    break;
+            }
         }
     }
 }
