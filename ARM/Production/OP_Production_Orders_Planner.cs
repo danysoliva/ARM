@@ -1303,15 +1303,68 @@ namespace ARM.Production
 
         private void grdv_Orders_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            //var gridView = (GridView)grd_Orders.FocusedView;
+            var gridView = (GridView)grd_Orders.FocusedView;
             dsARM.OrdenesRecetasRow row = (dsARM.OrdenesRecetasRow)grdv_Orders.GetDataRow(e.RowHandle);
+            //dsARM.OrdenesRecetasRow row = (dsARM.OrdenesRecetasRow)gridView.GetFocusedDataRow();
+            
 
             int batch_old = row.cant_batch_run;
             switch (e.Column.FieldName)
             {
                 case "cant_batch_run":
-                    int batch_new = Convert.ToInt32(e.Value);
+                    //int batch_new = Convert.ToInt32(e.Value); 
+                    int batch_new = row.cant_batch_run;
                     int id_mp = 0;
+
+                    string MpName;
+                    decimal vcant_inv=0, vcant_req=0, kg_by_batch = 0;
+                    int CantBatchAllow = 0;
+
+                    if(row.mix_status != 70)
+                    {
+                        return;
+                    }
+
+                    int mix_id = row.mix_id;
+
+                    if (batch_new == 0)
+                    {
+                       
+
+                        //Update RUN BATCH
+                        try
+                        {
+                            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                            if (!plc319.IsConnected)
+                                plc319.Open();
+
+                            //Borrar el valor de la variable
+                            plc319.Write("db459.dbd12", 0);
+
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                            cmd.Parameters.AddWithValue("@cant_batch", 0);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            MessageBox.Show(ec.Message);
+                        }
+
+                        grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                        row.cant_batch_run = 0;
+                        dsARM1.AcceptChanges();
+                        grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+
+                        return;
+                    }
 
                     //Validar stock MP
                     try
@@ -1322,9 +1375,32 @@ namespace ARM.Production
 
                         SqlCommand cmd = new SqlCommand("[dbo].[sp_get_activate_suspension_order_out_stock_scada_v3]", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@id_main_mix", row.mix_id);
+                        cmd.Parameters.AddWithValue("@id_main_mix", mix_id);// row.mix_id);
                         cmd.Parameters.AddWithValue("@cant_batch", batch_new);
-                        id_mp = Convert.ToInt32(cmd.ExecuteScalar());
+                        //id_mp = Convert.ToInt32(cmd.ExecuteScalar());
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            id_mp = dr.GetInt32(0);
+                            //if (!dr.IsDBNull(dr.GetOrdinal("mp_name")))
+                            //    MpName = dr.GetString(1);
+                            //else
+                            //    MpName = "N/D";
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("inventario")))
+                                vcant_inv = dr.GetDecimal(2);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("requerido")))
+                                vcant_req = dr.GetDecimal(3);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("cant_por_batch")))
+                                kg_by_batch = dr.GetDecimal(4);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("batch_disponibles")))
+                                CantBatchAllow = dr.GetInt32(5);
+
+                        }
+                        dr.Close();
                         con.Close();
                     }
                     catch (Exception ec)
@@ -1338,13 +1414,95 @@ namespace ARM.Production
                         MateriaPrima mp = new MateriaPrima();
                         if (mp.RecuperarRegistro(id_mp))
                         {
-                            CajaDialogo.Error("La cantidad de batch excede el inventario de la Materia Prima: " + mp.Nombre 
-                                              +" en BG018, por favor revise el inventario en bodega de Produccion (BG018)");
+                            //CajaDialogo.Error("La cantidad de batch excede el inventario de la Materia Prima: " + mp.Nombre 
+                            //                  +" en BG018, por favor revise el inventario en bodega de Produccion (BG018)");
                             //grd_Orders.cell
-                            grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
-                            row.cant_batch_run = 0;
-                            dsARM1.AcceptChanges();
-                            grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                            //grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                            //row.cant_batch_run = 0;
+                            //dsARM1.AcceptChanges();
+                            //grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                            string mp_parametro = mp.ItemCode + " - " + mp.Nombre;
+                            frmMsjErrorBatchSinINV frm = new frmMsjErrorBatchSinINV(mp_parametro, vcant_inv, vcant_req, kg_by_batch, CantBatchAllow);
+                            if(frm.ShowDialog() == DialogResult.OK)
+                            {
+                                if (frm.Aplicar)
+                                {
+                                    //grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                                    //row.cant_batch_run = CantBatchAllow;
+                                    //dsARM1.AcceptChanges();
+                                    //grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                                    //Update RUN BATCH
+                                    try
+                                    {
+                                        
+
+                                        DataOperations dp = new DataOperations();
+                                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                                        cmd.Parameters.AddWithValue("@cant_batch", CantBatchAllow);
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        //plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                                        //if (!plc319.IsConnected)
+                                        //    plc319.Open();
+
+                                        ////Borrar el valor de la variable
+                                        //plc319.Write("db459.dbd12", batch_new);
+                                    }
+                                    catch (Exception ec)
+                                    {
+                                        MessageBox.Show(ec.Message);
+                                    }
+
+                                    row.cant_batch_run = CantBatchAllow;
+
+                                    dsARM1.AcceptChanges();
+                                    //e.OldValue = CantBatchAllow;
+                                    grdv_Orders_CellValueChanged(sender, e);
+                                }
+                                else
+                                {
+                                    grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                                    row.cant_batch_run = 0;
+                                    dsARM1.AcceptChanges();
+                                    grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                                    //Update RUN BATCH
+                                    try
+                                    {
+                                        
+
+                                        DataOperations dp = new DataOperations();
+                                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                                        cmd.Parameters.AddWithValue("@cant_batch", 0);
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                                        if (!plc319.IsConnected)
+                                            plc319.Open();
+
+                                        //Borrar el valor de la variable
+                                        plc319.Write("db459.dbd12", 0);
+                                    }
+                                    catch (Exception ec)
+                                    {
+                                        MessageBox.Show(ec.Message);
+                                    }
+                                }
+                            }
                         }
                     }
                     else
@@ -1365,7 +1523,7 @@ namespace ARM.Production
                             con.Open();
                             SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.AddWithValue("@mix_id", row.mix_id);
+                            cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
                             cmd.Parameters.AddWithValue("@cant_batch", batch_new);
                             cmd.ExecuteNonQuery();
                             con.Close();
@@ -1375,6 +1533,10 @@ namespace ARM.Production
                             MessageBox.Show(ec.Message);
                         }
                     }
+
+
+                    
+
 
                     break;
             }
