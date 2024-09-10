@@ -1314,6 +1314,24 @@ namespace ARM.Production
                 case "cant_batch_run":
                     //int batch_new = Convert.ToInt32(e.Value); 
                     int batch_new = row.cant_batch_run;
+
+                    //Leer el idle del mezclado
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                    if (!plc319.IsConnected)
+                        plc319.Open();
+
+                    bool idle_1;
+                    idle_1 = Convert.ToBoolean(plc319.Read("db414.dbx1.0"));
+
+                    //Si el idle_1 es verdadero siginifica que el mezclado esta en play
+                    //Si el mezclado esta activo no permitiremos cambiar la cantidad de batch
+                    if (idle_1 == true)// && row.cant_batch_run > 0)
+                    {
+                        CajaDialogo.Error("El mezclado esta activo, no se permite cambiar la cantidad de batch previamente establecida");
+                        return;
+                    }
+
                     int id_mp = 0;
 
                     string MpName;
