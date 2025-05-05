@@ -43,7 +43,8 @@ namespace ARM.Production
         //Comentario
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S71500;
-        static string plc319_IPAddress = "192.168.12.2";
+        static string plc319_IPAddress = "192.168.12.2";//para publicar
+        //static string plc319_IPAddress = "192.168.10.2";//para pruebas
         static Int16 plc319_Rack = 0;
         static Int16 plc319_Slot = 1;
 
@@ -72,6 +73,10 @@ namespace ARM.Production
         public OP_Production_Orders_Planner(string ActiveUserCode)
         {
             InitializeComponent();
+            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+            if (!plc319.IsConnected)
+                plc319.Open();
 
             #region Screen Selection
             //if (Screen.AllScreens.Count() > 1) 
@@ -1265,10 +1270,10 @@ namespace ARM.Production
 
         private void timerValidacionStock_Tick(object sender, EventArgs e)
         {
-            //sp_get_activate_suspension_out_stock
+            ////sp_get_activate_suspension_out_stock
             //if (ValidacionInventariosPRD())
             //{
-
+            //    cargar_grd_ordenes();
             //}
 
             cargar_grd_ordenes();
@@ -1311,6 +1316,64 @@ namespace ARM.Production
             int batch_old = row.cant_batch_run;
             switch (e.Column.FieldName)
             {
+                case "alarma_micros":
+                    if (row.mix_status == 70 && row.mix_num == 1)
+                    {
+                        bool BitAlarma = Convert.ToBoolean(e.Value);
+                        //SetUpdateAlarmaMicroIngredientes3ernivel
+                        //@bit_alarma_micros bit,
+                        //@mix_id bigint
+                        //DB798.DBX6.0
+                        //Bit_Sin_Bascula
+
+                        plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                        if (!plc319.IsConnected)
+                            plc319.Open();
+
+                        if (plc319.IsConnected)
+                        {
+                            //Si lleva micros valor en 0. Sino lleve micros en 1
+                            if (BitAlarma)
+                                plc319.Write("DB798.DBX6.1", 0);
+                            else
+                                plc319.Write("DB798.DBX6.1", 1);
+                        }
+
+                        //plc319.Write("db459.dbd12", 0);
+                        //bool binPruebas = false;
+                        //try
+                        //{
+                        //    binPruebas = Convert.ToBoolean(plc319.Read("DB798.DBX6.1"));
+                        //    MessageBox.Show(binPruebas.ToString());
+                        //}
+                        //catch { }
+
+
+
+                        try
+                        {
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+
+                            SqlCommand cmd = new SqlCommand("dbo.SetUpdateAlarmaMicroIngredientes3ernivel", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@bit_alarma_micros", BitAlarma);
+                            cmd.Parameters.AddWithValue("@mix_id", row.mix_id);
+                            cmd.ExecuteScalar();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            CajaDialogo.Error(ec.Message);
+                        }
+                    }
+                    else
+                    {
+                        row.alarma_micros = Convert.ToBoolean(e.OldValue);
+                    }
+                    break;
                 case "cant_batch_run":
                     //int batch_new = Convert.ToInt32(e.Value); 
                     int batch_new = row.cant_batch_run;
@@ -1533,7 +1596,7 @@ namespace ARM.Production
                             if (!plc319.IsConnected)
                                 plc319.Open();
 
-                            //Borrar el valor de la variable
+                            //Escribir el valor de la variable
                             plc319.Write("db459.dbd12", batch_new);
                             
                             DataOperations dp = new DataOperations();

@@ -1029,6 +1029,8 @@ namespace ARM.Production {
             
             private global::System.Data.DataColumn columnbatch_restantes;
             
+            private global::System.Data.DataColumn columnalarma_micros;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public OrdenesRecetasDataTable() {
@@ -1224,6 +1226,14 @@ namespace ARM.Production {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn alarma_microsColumn {
+                get {
+                    return this.columnalarma_micros;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1279,7 +1289,8 @@ namespace ARM.Production {
                         int acs_id, 
                         string formula, 
                         int cant_batch_run, 
-                        int batch_restantes) {
+                        int batch_restantes, 
+                        bool alarma_micros) {
                 OrdenesRecetasRow rowOrdenesRecetasRow = ((OrdenesRecetasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         mix_id,
@@ -1301,7 +1312,8 @@ namespace ARM.Production {
                         acs_id,
                         formula,
                         cant_batch_run,
-                        batch_restantes};
+                        batch_restantes,
+                        alarma_micros};
                 rowOrdenesRecetasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrdenesRecetasRow);
                 return rowOrdenesRecetasRow;
@@ -1344,6 +1356,7 @@ namespace ARM.Production {
                 this.columnformula = base.Columns["formula"];
                 this.columncant_batch_run = base.Columns["cant_batch_run"];
                 this.columnbatch_restantes = base.Columns["batch_restantes"];
+                this.columnalarma_micros = base.Columns["alarma_micros"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1389,6 +1402,9 @@ namespace ARM.Production {
                 base.Columns.Add(this.columncant_batch_run);
                 this.columnbatch_restantes = new global::System.Data.DataColumn("batch_restantes", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnbatch_restantes);
+                this.columnalarma_micros = new global::System.Data.DataColumn("alarma_micros", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnalarma_micros);
+                this.columnalarma_micros.Caption = "Alarma Micros";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2217,6 +2233,22 @@ namespace ARM.Production {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool alarma_micros {
+                get {
+                    try {
+                        return ((bool)(this[this.tableOrdenesRecetas.alarma_microsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'alarma_micros\' in table \'OrdenesRecetas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrdenesRecetas.alarma_microsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Ismix_idNull() {
                 return this.IsNull(this.tableOrdenesRecetas.mix_idColumn);
             }
@@ -2453,6 +2485,18 @@ namespace ARM.Production {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setbatch_restantesNull() {
                 this[this.tableOrdenesRecetas.batch_restantesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isalarma_microsNull() {
+                return this.IsNull(this.tableOrdenesRecetas.alarma_microsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setalarma_microsNull() {
+                this[this.tableOrdenesRecetas.alarma_microsColumn] = global::System.Convert.DBNull;
             }
         }
         
