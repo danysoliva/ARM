@@ -106,12 +106,6 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.grp_Orders = new DevExpress.XtraEditors.GroupControl();
             this.grp_Structure = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPesoporBatch = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBatchPlan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Structure = new DevExpress.XtraGrid.GridControl();
             this.grdv_Structure = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_record_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -133,7 +127,6 @@
             this.col_postpellet_cant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.label1 = new System.Windows.Forms.Label();
             this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -150,6 +143,7 @@
             this.col_coment_hora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
+            this.col_kg_entregados_req = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
@@ -158,8 +152,6 @@
             this.grp_Orders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).BeginInit();
             this.grp_Structure.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -322,7 +314,6 @@
             this.grdv_Orders.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.col_grupo, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grdv_Orders.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Orders_RowClick);
-            this.grdv_Orders.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grdv_Orders_RowCellClick);
             this.grdv_Orders.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.grdv_Orders.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
             this.grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_Orders_CellValueChanged);
@@ -932,81 +923,13 @@
             // 
             this.grp_Structure.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grp_Structure.AppearanceCaption.Options.UseFont = true;
-            this.grp_Structure.Controls.Add(this.gridControl1);
             this.grp_Structure.Controls.Add(this.grd_Structure);
-            this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grp_Structure.Location = new System.Drawing.Point(3, 237);
             this.grp_Structure.Name = "grp_Structure";
             this.grp_Structure.Size = new System.Drawing.Size(958, 228);
             this.grp_Structure.TabIndex = 6;
             this.grp_Structure.Text = "Estructura de Orden";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.DataMember = "detalle_micros";
-            this.gridControl1.DataSource = this.dsARM1;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gridControl1.Location = new System.Drawing.Point(520, 23);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.MenuManager = this.barManager1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(436, 203);
-            this.gridControl1.TabIndex = 1;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
-            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMaterial,
-            this.colPesoporBatch,
-            this.colTotal,
-            this.colBatchPlan});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.LevelIndent = 0;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.PreviewIndent = 0;
-            // 
-            // colMaterial
-            // 
-            this.colMaterial.FieldName = "Material";
-            this.colMaterial.MinWidth = 10;
-            this.colMaterial.Name = "colMaterial";
-            this.colMaterial.Visible = true;
-            this.colMaterial.VisibleIndex = 0;
-            this.colMaterial.Width = 69;
-            // 
-            // colPesoporBatch
-            // 
-            this.colPesoporBatch.FieldName = "Peso por Batch";
-            this.colPesoporBatch.MinWidth = 10;
-            this.colPesoporBatch.Name = "colPesoporBatch";
-            this.colPesoporBatch.Visible = true;
-            this.colPesoporBatch.VisibleIndex = 1;
-            this.colPesoporBatch.Width = 45;
-            // 
-            // colTotal
-            // 
-            this.colTotal.FieldName = "Total";
-            this.colTotal.MinWidth = 10;
-            this.colTotal.Name = "colTotal";
-            this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 3;
-            this.colTotal.Width = 63;
-            // 
-            // colBatchPlan
-            // 
-            this.colBatchPlan.FieldName = "Batch Plan";
-            this.colBatchPlan.MinWidth = 10;
-            this.colBatchPlan.Name = "colBatchPlan";
-            this.colBatchPlan.Visible = true;
-            this.colBatchPlan.VisibleIndex = 2;
-            this.colBatchPlan.Width = 50;
             // 
             // grd_Structure
             // 
@@ -1020,7 +943,7 @@
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1});
-            this.grd_Structure.Size = new System.Drawing.Size(512, 205);
+            this.grd_Structure.Size = new System.Drawing.Size(956, 205);
             this.grd_Structure.TabIndex = 0;
             this.grd_Structure.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Structure});
@@ -1068,7 +991,8 @@
             this.col_alarma,
             this.col_is_postpellet,
             this.col_pospelt,
-            this.col_postpellet_cant});
+            this.col_postpellet_cant,
+            this.col_kg_entregados_req});
             gridFormatRule5.ApplyToRow = true;
             gridFormatRule5.Name = "SinBinAsignado";
             formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Salmon;
@@ -1291,17 +1215,6 @@
             // 
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(729, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(229, 14);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Detalle Micro Ingredientes Manuales";
-            // 
             // ContextMenu_Ordenes
             // 
             this.ContextMenu_Ordenes.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -1507,8 +1420,18 @@
             // 
             // timerValidacionStock
             // 
-            this.timerValidacionStock.Interval = 25000;
+            this.timerValidacionStock.Interval = 70000;
             this.timerValidacionStock.Tick += new System.EventHandler(this.timerValidacionStock_Tick);
+            // 
+            // col_kg_entregados_req
+            // 
+            this.col_kg_entregados_req.Caption = "Kg Entregados Requisición";
+            this.col_kg_entregados_req.DisplayFormat.FormatString = "n2";
+            this.col_kg_entregados_req.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.col_kg_entregados_req.FieldName = "kg_entregados_req";
+            this.col_kg_entregados_req.Name = "col_kg_entregados_req";
+            this.col_kg_entregados_req.Visible = true;
+            this.col_kg_entregados_req.VisibleIndex = 9;
             // 
             // OP_Production_Orders_Planner
             // 
@@ -1535,9 +1458,6 @@
             this.grp_Orders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).EndInit();
             this.grp_Structure.ResumeLayout(false);
-            this.grp_Structure.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
@@ -1656,17 +1576,11 @@
         public DevExpress.XtraGrid.Views.Grid.GridView grdv_Structure;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private dsARM dsARM1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterial;
-        private DevExpress.XtraGrid.Columns.GridColumn colPesoporBatch;
-        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
-        private DevExpress.XtraGrid.Columns.GridColumn colBatchPlan;
-        private System.Windows.Forms.Label label1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private System.Windows.Forms.Timer timerValidacionStock;
         private DevExpress.XtraGrid.Columns.GridColumn col_batch_programados;
         private DevExpress.XtraGrid.Columns.GridColumn colapagar_alarma_micros;
+        private DevExpress.XtraGrid.Columns.GridColumn col_kg_entregados_req;
     }
 }

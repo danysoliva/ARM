@@ -701,13 +701,13 @@ namespace ARM.Production
 
                 if (PermitirMontar_Orden == false)
                 {
-                    if (PermitirMontar_Orden == false)
-                    {
-                        frmMensajeProduccion frm = new frmMensajeProduccion(Requisas_Abiertas, Maximo_Permitidas);
-                        frm.ShowDialog();
-                        return;
+                    //if (PermitirMontar_Orden == false)
+                    //{
+                    frmMensajeProduccion frm = new frmMensajeProduccion(Requisas_Abiertas, Maximo_Permitidas);
+                    frm.ShowDialog();
+                    return;
 
-                    }
+                    //}
                 }
 
                 DialogResult resultado = MessageBox.Show("¿Esta realmente seguro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1125,11 +1125,6 @@ namespace ARM.Production
             //Reports.IntakeBatchViewer form = new Reports.IntakeBatchViewer();
             IntakeBatchViewerFull form = new IntakeBatchViewerFull();
             form.Show();
-        }
-
-        private void grdv_Orders_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
-        {
-
         }
 
         private void grdv_Structure_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
