@@ -126,6 +126,7 @@
             this.col_pospelt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_postpellet_cant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.col_kg_entregados_req = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -143,7 +144,6 @@
             this.col_coment_hora = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
-            this.col_kg_entregados_req = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
@@ -1211,6 +1211,16 @@
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
             // 
+            // col_kg_entregados_req
+            // 
+            this.col_kg_entregados_req.Caption = "Kg Entregados Requisición";
+            this.col_kg_entregados_req.DisplayFormat.FormatString = "n2";
+            this.col_kg_entregados_req.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.col_kg_entregados_req.FieldName = "kg_entregados_req";
+            this.col_kg_entregados_req.Name = "col_kg_entregados_req";
+            this.col_kg_entregados_req.Visible = true;
+            this.col_kg_entregados_req.VisibleIndex = 9;
+            // 
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
@@ -1422,16 +1432,6 @@
             // 
             this.timerValidacionStock.Interval = 70000;
             this.timerValidacionStock.Tick += new System.EventHandler(this.timerValidacionStock_Tick);
-            // 
-            // col_kg_entregados_req
-            // 
-            this.col_kg_entregados_req.Caption = "Kg Entregados Requisición";
-            this.col_kg_entregados_req.DisplayFormat.FormatString = "n2";
-            this.col_kg_entregados_req.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.col_kg_entregados_req.FieldName = "kg_entregados_req";
-            this.col_kg_entregados_req.Name = "col_kg_entregados_req";
-            this.col_kg_entregados_req.Visible = true;
-            this.col_kg_entregados_req.VisibleIndex = 9;
             // 
             // OP_Production_Orders_Planner
             // 
