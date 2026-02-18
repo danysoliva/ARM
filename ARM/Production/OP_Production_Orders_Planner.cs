@@ -1271,7 +1271,23 @@ namespace ARM.Production
             //    cargar_grd_ordenes();
             //}
 
-            cargar_grd_ordenes();
+            //Comentado el 17 feb 2026
+            //cargar_grd_ordenes();
+
+            for (int i = 0; i < grdv_Orders.RowCount; i++)
+            {
+                var row = grdv_Orders.GetRow(i);
+
+                if (row != null)
+                {
+                    int estado_row = Convert.ToInt32(grdv_Orders.GetRowCellValue(i, "mix_status"));
+                    if (estado_row == 70)
+                    {
+                        idMix = Convert.ToInt32(grdv_Orders.GetRowCellValue(i, "mix_id"));
+                        PermitirMontar(idMix);
+                    }
+                }
+            }
         }
 
         private bool ValidacionInventariosPRD()
@@ -1449,7 +1465,7 @@ namespace ARM.Production
                         SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
                         con.Open();
 
-                        SqlCommand cmd = new SqlCommand("[dbo].[sp_get_activate_suspension_order_out_stock_scada_v3]", con);
+                        SqlCommand cmd = new SqlCommand("[dbo].[sp_get_activate_suspension_order_out_stock_scada_v4]", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id_main_mix", mix_id);// row.mix_id);
                         cmd.Parameters.AddWithValue("@cant_batch", batch_new);
