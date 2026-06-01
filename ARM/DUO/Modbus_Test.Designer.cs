@@ -124,20 +124,20 @@
             // 
             this.grp_custom_write.Controls.Add(this.grd_writepane);
             this.grp_custom_write.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_custom_write.Location = new System.Drawing.Point(2, 303);
+            this.grp_custom_write.Location = new System.Drawing.Point(2, 306);
             this.grp_custom_write.Name = "grp_custom_write";
-            this.grp_custom_write.Size = new System.Drawing.Size(504, 143);
+            this.grp_custom_write.Size = new System.Drawing.Size(504, 140);
             this.grp_custom_write.TabIndex = 4;
             this.grp_custom_write.Text = "Custom Value Options";
             // 
             // grd_writepane
             // 
             this.grd_writepane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_writepane.Location = new System.Drawing.Point(2, 20);
+            this.grd_writepane.Location = new System.Drawing.Point(2, 23);
             this.grd_writepane.MainView = this.grdv_writepane;
             this.grd_writepane.MenuManager = this.barManager1;
             this.grd_writepane.Name = "grd_writepane";
-            this.grd_writepane.Size = new System.Drawing.Size(500, 121);
+            this.grd_writepane.Size = new System.Drawing.Size(500, 115);
             this.grd_writepane.TabIndex = 3;
             this.grd_writepane.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_writepane});
@@ -221,7 +221,8 @@
             // 
             this.standaloneBarDockControl1.CausesValidation = false;
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 145);
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 148);
+            this.standaloneBarDockControl1.Manager = this.barManager1;
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
             this.standaloneBarDockControl1.Size = new System.Drawing.Size(360, 56);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
@@ -257,7 +258,8 @@
             // 
             this.standaloneBarDockControl2.CausesValidation = false;
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 145);
+            this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 148);
+            this.standaloneBarDockControl2.Manager = this.barManager1;
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
             this.standaloneBarDockControl2.Size = new System.Drawing.Size(504, 56);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
@@ -267,6 +269,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Size = new System.Drawing.Size(872, 0);
             // 
             // barDockControlBottom
@@ -274,6 +277,7 @@
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 448);
+            this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Size = new System.Drawing.Size(872, 0);
             // 
             // barDockControlLeft
@@ -281,6 +285,7 @@
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 448);
             // 
             // barDockControlRight
@@ -288,6 +293,7 @@
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(872, 0);
+            this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 448);
             // 
             // groupControl5
@@ -296,7 +302,7 @@
             this.groupControl5.Controls.Add(this.txt_single_value_address);
             this.groupControl5.Controls.Add(this.labelControl5);
             this.groupControl5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl5.Location = new System.Drawing.Point(2, 201);
+            this.groupControl5.Location = new System.Drawing.Point(2, 204);
             this.groupControl5.Name = "groupControl5";
             this.groupControl5.Size = new System.Drawing.Size(504, 102);
             this.groupControl5.TabIndex = 3;
@@ -330,7 +336,7 @@
             0,
             0,
             0});
-            this.txt_input_value.Location = new System.Drawing.Point(2, 20);
+            this.txt_input_value.Location = new System.Drawing.Point(2, 23);
             this.txt_input_value.MenuManager = this.barManager1;
             this.txt_input_value.Name = "txt_input_value";
             this.txt_input_value.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -364,7 +370,7 @@
             // 
             this.cmb_boolean.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmb_boolean.EditValue = "True";
-            this.cmb_boolean.Location = new System.Drawing.Point(2, 20);
+            this.cmb_boolean.Location = new System.Drawing.Point(2, 23);
             this.cmb_boolean.MenuManager = this.barManager1;
             this.cmb_boolean.Name = "cmb_boolean";
             this.cmb_boolean.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -419,7 +425,7 @@
             this.groupControl4.Controls.Add(this.labelControl4);
             this.groupControl4.Controls.Add(this.rd_write);
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl4.Location = new System.Drawing.Point(2, 20);
+            this.groupControl4.Location = new System.Drawing.Point(2, 23);
             this.groupControl4.Name = "groupControl4";
             this.groupControl4.Size = new System.Drawing.Size(504, 125);
             this.groupControl4.TabIndex = 2;
@@ -498,7 +504,7 @@
             // rd_write
             // 
             this.rd_write.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rd_write.Location = new System.Drawing.Point(2, 20);
+            this.rd_write.Location = new System.Drawing.Point(2, 23);
             this.rd_write.MenuManager = this.barManager1;
             this.rd_write.Name = "rd_write";
             this.rd_write.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -524,11 +530,11 @@
             // grd_readpane
             // 
             this.grd_readpane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_readpane.Location = new System.Drawing.Point(2, 201);
+            this.grd_readpane.Location = new System.Drawing.Point(2, 204);
             this.grd_readpane.MainView = this.grdv_readpane;
             this.grd_readpane.MenuManager = this.barManager1;
             this.grd_readpane.Name = "grd_readpane";
-            this.grd_readpane.Size = new System.Drawing.Size(360, 245);
+            this.grd_readpane.Size = new System.Drawing.Size(360, 242);
             this.grd_readpane.TabIndex = 2;
             this.grd_readpane.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_readpane});
@@ -579,7 +585,7 @@
             this.groupControl3.Controls.Add(this.labelControl1);
             this.groupControl3.Controls.Add(this.rd_read);
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl3.Location = new System.Drawing.Point(2, 20);
+            this.groupControl3.Location = new System.Drawing.Point(2, 23);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(360, 125);
             this.groupControl3.TabIndex = 1;
@@ -658,7 +664,7 @@
             // rd_read
             // 
             this.rd_read.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rd_read.Location = new System.Drawing.Point(2, 20);
+            this.rd_read.Location = new System.Drawing.Point(2, 23);
             this.rd_read.MenuManager = this.barManager1;
             this.rd_read.Name = "rd_read";
             this.rd_read.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
@@ -680,7 +686,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("Modbus_Test.IconOptions.Icon")));
             this.Name = "Modbus_Test";
             this.Text = "PLC Data Test";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
