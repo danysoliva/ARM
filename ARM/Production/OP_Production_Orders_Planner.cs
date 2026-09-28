@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿using ARM.Classes;
+using ARM.Reports;
+using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
-using System.Threading;
-using System.Timers;
-
-using DevExpress.XtraSplashScreen;
-
-using ARM.Classes;
-using System.Data.SqlClient;
+using DevExpress.XtraGrid;
 //--
 //using System.Windows.Forms;
 //using System.Drawing;
 //--
 //using Npgsql;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using S7.Net;
-using ARM.Reports;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
 
 namespace ARM.Production
 {
@@ -72,7 +71,16 @@ namespace ARM.Production
         #region Form Contructors
         public OP_Production_Orders_Planner(string ActiveUserCode)
         {
+            
+
             InitializeComponent();
+            //Modo Oscuro
+            LookAndFeel.UseDefaultLookAndFeel = false;
+            LookAndFeel.SetSkinStyle(SkinSvgPalette.WXI.Darkness);
+            grd_Orders.LookAndFeel.ParentLookAndFeel = LookAndFeel;
+            grd_Structure.LookAndFeel.ParentLookAndFeel = LookAndFeel;
+
+
             plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
 
             if (!plc319.IsConnected)
@@ -595,9 +603,27 @@ namespace ARM.Production
         private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             #region AutorRow_Color_Diferente
+            //if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+            //}
             if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
             {
-                e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                var view = (DevExpress.XtraGrid.Views.Grid.GridView)sender;
+                Color fondo = DevExpress.Skins.CommonSkins
+                    .GetSkin(view.GridControl.LookAndFeel)
+                    .Colors.GetColor(DevExpress.Skins.CommonColors.Control);
+                if (fondo.GetBrightness() < 0.5f)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(56, 64, 78);
+                    e.Appearance.ForeColor = Color.FromArgb(230, 232, 235);
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                    e.Appearance.ForeColor = Color.Black;
+                }
+                e.HighPriority = true;
             }
             #endregion
         }
@@ -605,9 +631,28 @@ namespace ARM.Production
         private void gridView2_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             #region AutorRow_Color_Diferente
+            //if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+            //}
+
             if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
             {
-                e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                var view = (DevExpress.XtraGrid.Views.Grid.GridView)sender;
+                Color fondo = DevExpress.Skins.CommonSkins
+                    .GetSkin(view.GridControl.LookAndFeel)
+                    .Colors.GetColor(DevExpress.Skins.CommonColors.Control);
+                if (fondo.GetBrightness() < 0.5f)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(56, 64, 78);
+                    e.Appearance.ForeColor = Color.FromArgb(230, 232, 235);
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                    e.Appearance.ForeColor = Color.Black;
+                }
+                e.HighPriority = true;
             }
             #endregion
         }
@@ -1060,9 +1105,8 @@ namespace ARM.Production
 
         private void OP_Production_Orders_Planner_Load(object sender, EventArgs e)
         {
-            if (Classes.Globals.CTS_ServerName == "Servidor de Desarrollo") barHeaderItem1.Appearance.BackColor = Color.Aqua;
-            //timerValidacionStock.Enabled = true;
-            //timerValidacionStock.Start();
+            //if (Classes.Globals.CTS_ServerName == "Servidor de Desarrollo") barHeaderItem1.Appearance.BackColor = Color.Aqua;
+            
         }
 
         private void barStaticItem1_ItemDoubleClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

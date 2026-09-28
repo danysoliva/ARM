@@ -127,6 +127,8 @@
             this.col_postpellet_cant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.col_kg_entregados_req = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_inv_bg018 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_cantidad_consumida = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
@@ -596,7 +598,8 @@
             this.btn_exit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_exit.Caption = "Salir";
             this.btn_exit.Id = 6;
-            this.btn_exit.ImageOptions.Image = global::ARM.Properties.Resources.Salir_32;
+            this.btn_exit.ImageOptions.Image = global::ARM.Properties.Resources.cancel2_32;
+            this.btn_exit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_exit.ImageOptions.LargeImage")));
             this.btn_exit.ItemAppearance.Normal.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.btn_exit.ItemAppearance.Normal.Options.UseFont = true;
             this.btn_exit.Name = "btn_exit";
@@ -949,26 +952,26 @@
             // 
             // grdv_Structure
             // 
-            this.grdv_Structure.Appearance.FocusedCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.FocusedCell.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.FocusedCell.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.FocusedCell.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseFont = true;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.grdv_Structure.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.FocusedRow.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.FocusedRow.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.FocusedRow.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.FocusedRow.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseFont = true;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseForeColor = true;
-            this.grdv_Structure.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.SelectedRow.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.SelectedRow.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.SelectedRow.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.SelectedRow.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.SelectedRow.Options.UseFont = true;
@@ -991,11 +994,13 @@
             this.col_is_postpellet,
             this.col_pospelt,
             this.col_postpellet_cant,
-            this.col_kg_entregados_req});
+            this.col_kg_entregados_req,
+            this.col_inv_bg018,
+            this.col_cantidad_consumida});
             gridFormatRule5.ApplyToRow = true;
             gridFormatRule5.Name = "SinBinAsignado";
-            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Salmon;
-            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.White;
+            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.Black;
             formatConditionRuleValue5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.DarkRed;
             formatConditionRuleValue5.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
@@ -1007,8 +1012,8 @@
             gridFormatRule5.Rule = formatConditionRuleValue5;
             gridFormatRule6.ApplyToRow = true;
             gridFormatRule6.Name = "Manual";
-            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightCyan;
-            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
+            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.Black;
             formatConditionRuleValue6.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             formatConditionRuleValue6.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
@@ -1065,7 +1070,7 @@
             this.col_item_id_.OptionsColumn.AllowEdit = false;
             this.col_item_id_.Visible = true;
             this.col_item_id_.VisibleIndex = 0;
-            this.col_item_id_.Width = 22;
+            this.col_item_id_.Width = 30;
             // 
             // col_item_code
             // 
@@ -1076,7 +1081,7 @@
             this.col_item_code.OptionsColumn.AllowEdit = false;
             this.col_item_code.Visible = true;
             this.col_item_code.VisibleIndex = 1;
-            this.col_item_code.Width = 34;
+            this.col_item_code.Width = 46;
             // 
             // col_item_name
             // 
@@ -1087,7 +1092,7 @@
             this.col_item_name.OptionsColumn.AllowEdit = false;
             this.col_item_name.Visible = true;
             this.col_item_name.VisibleIndex = 2;
-            this.col_item_name.Width = 155;
+            this.col_item_name.Width = 214;
             // 
             // col_item_type
             // 
@@ -1107,7 +1112,7 @@
             this.col_kg_batch.OptionsColumn.AllowEdit = false;
             this.col_kg_batch.Visible = true;
             this.col_kg_batch.VisibleIndex = 3;
-            this.col_kg_batch.Width = 33;
+            this.col_kg_batch.Width = 45;
             // 
             // col_kg_total
             // 
@@ -1118,7 +1123,7 @@
             this.col_kg_total.OptionsColumn.AllowEdit = false;
             this.col_kg_total.Visible = true;
             this.col_kg_total.VisibleIndex = 4;
-            this.col_kg_total.Width = 33;
+            this.col_kg_total.Width = 45;
             // 
             // col_bin_id
             // 
@@ -1146,8 +1151,8 @@
             this.col_bin_longname.Name = "col_bin_longname";
             this.col_bin_longname.OptionsColumn.AllowEdit = false;
             this.col_bin_longname.Visible = true;
-            this.col_bin_longname.VisibleIndex = 5;
-            this.col_bin_longname.Width = 30;
+            this.col_bin_longname.VisibleIndex = 8;
+            this.col_bin_longname.Width = 43;
             // 
             // col_require_alarm
             // 
@@ -1166,8 +1171,8 @@
             this.col_alarma.Name = "col_alarma";
             this.col_alarma.OptionsColumn.AllowEdit = false;
             this.col_alarma.Visible = true;
-            this.col_alarma.VisibleIndex = 6;
-            this.col_alarma.Width = 20;
+            this.col_alarma.VisibleIndex = 9;
+            this.col_alarma.Width = 27;
             // 
             // col_is_postpellet
             // 
@@ -1186,8 +1191,8 @@
             this.col_pospelt.Name = "col_pospelt";
             this.col_pospelt.OptionsColumn.AllowEdit = false;
             this.col_pospelt.Visible = true;
-            this.col_pospelt.VisibleIndex = 7;
-            this.col_pospelt.Width = 32;
+            this.col_pospelt.VisibleIndex = 10;
+            this.col_pospelt.Width = 46;
             // 
             // col_postpellet_cant
             // 
@@ -1198,8 +1203,8 @@
             this.col_postpellet_cant.OptionsColumn.AllowMove = false;
             this.col_postpellet_cant.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.col_postpellet_cant.Visible = true;
-            this.col_postpellet_cant.VisibleIndex = 8;
-            this.col_postpellet_cant.Width = 90;
+            this.col_postpellet_cant.VisibleIndex = 11;
+            this.col_postpellet_cant.Width = 147;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -1218,7 +1223,26 @@
             this.col_kg_entregados_req.FieldName = "kg_entregados_req";
             this.col_kg_entregados_req.Name = "col_kg_entregados_req";
             this.col_kg_entregados_req.Visible = true;
-            this.col_kg_entregados_req.VisibleIndex = 9;
+            this.col_kg_entregados_req.VisibleIndex = 7;
+            this.col_kg_entregados_req.Width = 104;
+            // 
+            // col_inv_bg018
+            // 
+            this.col_inv_bg018.Caption = "Inv BG018";
+            this.col_inv_bg018.FieldName = "inv_bg018";
+            this.col_inv_bg018.Name = "col_inv_bg018";
+            this.col_inv_bg018.Visible = true;
+            this.col_inv_bg018.VisibleIndex = 6;
+            this.col_inv_bg018.Width = 81;
+            // 
+            // col_cantidad_consumida
+            // 
+            this.col_cantidad_consumida.Caption = "Kg Consumidos";
+            this.col_cantidad_consumida.FieldName = "cantidad_consumida";
+            this.col_cantidad_consumida.Name = "col_cantidad_consumida";
+            this.col_cantidad_consumida.Visible = true;
+            this.col_cantidad_consumida.VisibleIndex = 5;
+            this.col_cantidad_consumida.Width = 103;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -1442,11 +1466,11 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("OP_Production_Orders_Planner.IconOptions.Icon")));
             this.Name = "OP_Production_Orders_Planner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Planificador de Ordenes de Producción";
+            this.Text = "Ordenes de Producción";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OP_Production_Orders_Planner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).EndInit();
@@ -1581,5 +1605,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn col_batch_programados;
         private DevExpress.XtraGrid.Columns.GridColumn colapagar_alarma_micros;
         private DevExpress.XtraGrid.Columns.GridColumn col_kg_entregados_req;
+        private DevExpress.XtraGrid.Columns.GridColumn col_inv_bg018;
+        private DevExpress.XtraGrid.Columns.GridColumn col_cantidad_consumida;
     }
 }
