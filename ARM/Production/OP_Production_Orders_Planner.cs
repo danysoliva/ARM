@@ -640,6 +640,9 @@ namespace ARM.Production
             cargar_grd_ordenes_estructuras();
             cargar_grd_comentarios();
             cargar_grd_eventos();
+
+           //set_active_mix_OP_mix(14954, 70);
+            
         }
 
         private void btn_Activar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
