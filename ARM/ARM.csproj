@@ -189,6 +189,7 @@
     <Compile Include="Classes\GrupoUser.cs" />
     <Compile Include="Classes\LotePT.cs" />
     <Compile Include="Classes\MateriaPrima.cs" />
+    <Compile Include="Classes\OP_Production_Orders_Main_Mix.cs" />
     <Compile Include="Classes\OperationsARMS.cs" />
     <Compile Include="Classes\SecOps.cs" />
     <Compile Include="Classes\Security.cs" />

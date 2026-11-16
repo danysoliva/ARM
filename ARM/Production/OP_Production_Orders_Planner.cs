@@ -769,8 +769,15 @@ namespace ARM.Production
 
 
                 set_active_mix_OP_mix(idMix, 70);    // active_mix= 1
+
+
                 //Escribir el lote a los bines para el guardado PLC.
 
+                OP_Production_Orders_Main_Mix MainMix = new OP_Production_Orders_Main_Mix();
+                if (MainMix.RecuperarRegistro(idMix))
+                {
+                    EscribirLotePT(MainMix.fp_lot_number);
+                }
 
                 registrarEvento("[Activando] Enviado a producir correctamente.");
                 //btn_Actualizar.PerformClick();
@@ -792,6 +799,84 @@ namespace ARM.Production
 
                 }
                 
+            }
+        }
+
+        private void EscribirLotePT(int lotePT)
+        {
+            try
+            {
+                plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                if (!plc319.IsConnected)
+                    plc319.Open();
+
+                // INT de Siemens (DBW) es de 16 bits.
+                ushort lote = Convert.ToInt16(lotePT).ConvertToUshort();
+
+                string[] direccionesLote =
+                {
+                    "db831.dbw2",    // FD1_Lote
+                    "db831.dbw10",   // FD2_Lote
+                    "db831.dbw18",   // FD3_Lote
+                    "db831.dbw26",   // FD4_Lote
+                    "db831.dbw34",   // FD5_Lote
+                    "db831.dbw42",   // FD6_Lote
+                    "db831.dbw50",   // FD7_Lote
+                    "db831.dbw58",   // FD8_Lote
+                    "db831.dbw66",   // FD9_Lote
+                    "db831.dbw74",   // FD10_Lote
+                    "db831.dbw82",   // FD11_Lote
+                    "db831.dbw90",   // FD12_Lote
+                    "db831.dbw98",   // FD13_Lote
+                    "db831.dbw106",  // FD14_Lote
+                    "db831.dbw114",  // FD15_Lote
+                    "db831.dbw122",  // FD16_Lote
+                    "db831.dbw130",  // FD17_Lote
+                    "db831.dbw138",  // SD1_Lote
+                    "db831.dbw146",  // SD2_Lote
+                    "db831.dbw154",  // SD3_Lote
+                    "db831.dbw162",  // WL1_M2_Lote
+                    "db831.dbw170",  // WL2_M2_Lote
+                    "db831.dbw178",  // WL3_M2_Lote
+                    "db831.dbw186",  // WL4_M2_Lote
+                    "db831.dbw194",  // WL5_M2_Lote
+                    "db831.dbw202",  // WL6_M2_Lote
+                    "db831.dbw210",  // WL1_M1_Lote
+                    "db831.dbw218",  // WL2_M1_Lote
+                    "db831.dbw226",  // WL3_M1_Lote
+                    "db831.dbw234",  // WL4_M1_Lote
+                    "db831.dbw242",  // WL5_M1_Lote
+                    "db831.dbw250",  // WL6_M1_Lote
+                    "db831.dbw258",  // FYLAX_Lote
+                    "db831.dbw266",  // WL7_M2_Lote
+                    "db831.dbw274",  // WL8_M2_Lote
+                    "db831.dbw282",  // WL7_M1_Lote
+                    "db831.dbw290",  // WL8_M1_Lote
+                    "db831.dbw298",  // ACEITE_1_Lote
+                    "db831.dbw306",  // ACEITE_3_Lote
+                    "db831.dbw314",  // ACEITE_4_Lote
+                    "db831.dbw322",  // Colina_Lote
+                    "db831.dbw330",  // Agua_1_Lote
+                    "db831.dbw338",  // Agua_2_Lote
+                    "db831.dbw346",  // Fylax_Interno_Lote
+                    "db831.dbw354",  // C1_Tanque_2_Lote
+                    "db831.dbw362",  // C1_Tanque_3_Lote
+                    "db831.dbw370",  // C1_Tanque_5_Lote
+                    "db831.dbw378",  // C1_Hacienda_Lote
+                    "db831.dbw386",  // C2_Tanque_2_Lote
+                    "db831.dbw394",  // C2_Tanque_3_Lote
+                    "db831.dbw402",  // C2_Tanque_5_Lote
+                    "db831.dbw410",  // C2_Hacienda_Lote
+                    "db831.dbw418"   // Lecitina_Lote
+                };
+
+                foreach (string direccion in direccionesLote)
+                    plc319.Write(direccion, lote);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo escribir el lote PT en el PLC.\n\nDetalle: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
