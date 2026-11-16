@@ -30,10 +30,20 @@ namespace ARM.Classes
         public static string CTS_DB_Pass = "AquaF33dHN2014";
 
         //APMS (Aquafeed Pocess Management System)
-        public static string APMS_Server = @"AQFSVR008\AQFSVR008";
+        //public static string APMS_Server = @"AQFSVR008\AQFSVR008";
+        //public static string APMS_DB_User = "mrt";
+        //public static string APMS_DB_Pass = "AquaF33dHN2017";
+        //public static string APMS_ActiveDB = "APMS";
+        public static string APMS_Server = @"AQFSVR012";
         public static string APMS_DB_User = "sa";
-        public static string APMS_DB_Pass = "AquaF33dHN2017";
+        public static string APMS_DB_Pass = "AquaF33dHN2026";
         public static string APMS_ActiveDB = "APMS";
+
+        //LOSA 
+        public static string LOSA_Server = @"AQFSVR010\AQFSVR010";
+        public static string LOSA_DB_User = "losa_user_db";
+        public static string LOSA_DB_Pass = "AquaF33dHN2014";
+        public static string LOSA_ActiveDB = "LOSA";
 
         //ODOO
         public static string odoo_ServerAddress = "AQFSVR003";

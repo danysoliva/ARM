@@ -44,6 +44,7 @@
             DevExpress.XtraEditors.FormatConditionRuleValue formatConditionRuleValue6 = new DevExpress.XtraEditors.FormatConditionRuleValue();
             this.col_batch_restantes = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Orders = new DevExpress.XtraGrid.GridControl();
+            this.dsARM1 = new ARM.Production.dsARM();
             this.grdv_Orders = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_mix_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_order_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,6 +64,8 @@
             this.col_acs_id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_formula = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_batch_mp = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_batch_programados = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colapagar_alarma_micros = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -103,13 +106,6 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.grp_Orders = new DevExpress.XtraEditors.GroupControl();
             this.grp_Structure = new DevExpress.XtraEditors.GroupControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.dsARM1 = new ARM.Production.dsARM();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMaterial = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPesoporBatch = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBatchPlan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grd_Structure = new DevExpress.XtraGrid.GridControl();
             this.grdv_Structure = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_record_id = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -130,8 +126,10 @@
             this.col_pospelt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_postpellet_cant = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.col_kg_entregados_req = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_inv_bg018 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_cantidad_consumida = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.label1 = new System.Windows.Forms.Label();
             this.ContextMenu_Ordenes = new DevExpress.XtraBars.PopupMenu(this.components);
             this.ContextMenu_Estructura = new DevExpress.XtraBars.PopupMenu(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -149,15 +147,13 @@
             this.col_coment_nota = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timerValidacionStock = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Orders)).BeginInit();
             this.grp_Orders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).BeginInit();
             this.grp_Structure.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -179,24 +175,30 @@
             // 
             this.col_batch_restantes.Caption = "Batch-Restantes";
             this.col_batch_restantes.FieldName = "batch_restantes";
+            this.col_batch_restantes.MinWidth = 10;
             this.col_batch_restantes.Name = "col_batch_restantes";
             this.col_batch_restantes.OptionsColumn.AllowEdit = false;
             this.col_batch_restantes.Visible = true;
             this.col_batch_restantes.VisibleIndex = 8;
-            this.col_batch_restantes.Width = 56;
+            this.col_batch_restantes.Width = 28;
             // 
             // grd_Orders
             // 
+            this.grd_Orders.DataMember = "OrdenesRecetas";
+            this.grd_Orders.DataSource = this.dsARM1;
             this.grd_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Orders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.grd_Orders.Location = new System.Drawing.Point(3, 136);
+            this.grd_Orders.Location = new System.Drawing.Point(2, 72);
             this.grd_Orders.MainView = this.grdv_Orders;
-            this.grd_Orders.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Orders.Name = "grd_Orders";
-            this.grd_Orders.Size = new System.Drawing.Size(2560, 243);
+            this.grd_Orders.Size = new System.Drawing.Size(954, 154);
             this.grd_Orders.TabIndex = 0;
             this.grd_Orders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Orders});
+            // 
+            // dsARM1
+            // 
+            this.dsARM1.DataSetName = "dsARM";
+            this.dsARM1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // grdv_Orders
             // 
@@ -245,9 +247,9 @@
             this.col_mezclado,
             this.col_acs_id,
             this.col_formula,
-            this.col_batch_mp});
-            this.grdv_Orders.DetailHeight = 673;
-            this.grdv_Orders.FixedLineWidth = 4;
+            this.col_batch_mp,
+            this.col_batch_programados,
+            this.colapagar_alarma_micros});
             gridFormatRule1.ApplyToRow = true;
             gridFormatRule1.Name = "Activas";
             formatConditionRuleValue1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -302,6 +304,7 @@
             this.grdv_Orders.FormatRules.Add(gridFormatRule4);
             this.grdv_Orders.GridControl = this.grd_Orders;
             this.grdv_Orders.GroupCount = 1;
+            this.grdv_Orders.LevelIndent = 0;
             this.grdv_Orders.Name = "grdv_Orders";
             this.grdv_Orders.OptionsBehavior.AutoExpandAllGroups = true;
             this.grdv_Orders.OptionsCustomization.AllowColumnMoving = false;
@@ -309,168 +312,208 @@
             this.grdv_Orders.OptionsMenu.EnableColumnMenu = false;
             this.grdv_Orders.OptionsView.ShowAutoFilterRow = true;
             this.grdv_Orders.OptionsView.ShowGroupPanel = false;
+            this.grdv_Orders.PreviewIndent = 0;
             this.grdv_Orders.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.col_grupo, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.grdv_Orders.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Orders_RowClick);
-            this.grdv_Orders.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grdv_Orders_RowCellClick);
             this.grdv_Orders.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView1_RowStyle);
             this.grdv_Orders.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            this.grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grdv_Orders_CellValueChanged);
             // 
             // col_mix_id
             // 
             this.col_mix_id.Caption = "Id";
             this.col_mix_id.FieldName = "mix_id";
+            this.col_mix_id.MinWidth = 10;
             this.col_mix_id.Name = "col_mix_id";
+            this.col_mix_id.Width = 37;
             // 
             // col_order_id
             // 
             this.col_order_id.Caption = "order_id";
             this.col_order_id.FieldName = "order_id";
+            this.col_order_id.MinWidth = 10;
             this.col_order_id.Name = "col_order_id";
             this.col_order_id.OptionsColumn.AllowEdit = false;
+            this.col_order_id.Width = 37;
             // 
             // col_order_number
             // 
             this.col_order_number.Caption = "No.Orden";
             this.col_order_number.FieldName = "order_number";
+            this.col_order_number.MinWidth = 10;
             this.col_order_number.Name = "col_order_number";
             this.col_order_number.OptionsColumn.AllowEdit = false;
             this.col_order_number.Visible = true;
             this.col_order_number.VisibleIndex = 0;
-            this.col_order_number.Width = 62;
+            this.col_order_number.Width = 31;
             // 
             // col_mix_num
             // 
             this.col_mix_num.Caption = "mix_num";
             this.col_mix_num.FieldName = "mix_num";
+            this.col_mix_num.MinWidth = 10;
             this.col_mix_num.Name = "col_mix_num";
             this.col_mix_num.OptionsColumn.AllowEdit = false;
+            this.col_mix_num.Width = 37;
             // 
             // col_mix_fullCode
             // 
             this.col_mix_fullCode.Caption = "Cod.Mesclado";
             this.col_mix_fullCode.FieldName = "mix_fullCode";
+            this.col_mix_fullCode.MinWidth = 10;
             this.col_mix_fullCode.Name = "col_mix_fullCode";
             this.col_mix_fullCode.OptionsColumn.AllowEdit = false;
             this.col_mix_fullCode.Visible = true;
             this.col_mix_fullCode.VisibleIndex = 3;
-            this.col_mix_fullCode.Width = 67;
+            this.col_mix_fullCode.Width = 33;
             // 
             // col_short_name
             // 
             this.col_short_name.Caption = "Producto";
             this.col_short_name.FieldName = "finish_product";
+            this.col_short_name.MinWidth = 10;
             this.col_short_name.Name = "col_short_name";
             this.col_short_name.OptionsColumn.AllowEdit = false;
             this.col_short_name.Visible = true;
             this.col_short_name.VisibleIndex = 4;
-            this.col_short_name.Width = 198;
+            this.col_short_name.Width = 99;
             // 
             // col_fp_lot_number
             // 
             this.col_fp_lot_number.Caption = "No.Lote";
             this.col_fp_lot_number.FieldName = "fp_lot_number";
+            this.col_fp_lot_number.MinWidth = 10;
             this.col_fp_lot_number.Name = "col_fp_lot_number";
             this.col_fp_lot_number.OptionsColumn.AllowEdit = false;
             this.col_fp_lot_number.Visible = true;
             this.col_fp_lot_number.VisibleIndex = 5;
-            this.col_fp_lot_number.Width = 66;
+            this.col_fp_lot_number.Width = 33;
             // 
             // col_order_status
             // 
             this.col_order_status.Caption = "order_status";
             this.col_order_status.FieldName = "order_status";
+            this.col_order_status.MinWidth = 10;
             this.col_order_status.Name = "col_order_status";
             this.col_order_status.OptionsColumn.AllowEdit = false;
+            this.col_order_status.Width = 37;
             // 
             // col_mix_status
             // 
-            this.col_mix_status.Caption = "Sts";
+            this.col_mix_status.Caption = "Estado Codigo";
             this.col_mix_status.FieldName = "mix_status";
+            this.col_mix_status.MinWidth = 10;
             this.col_mix_status.Name = "col_mix_status";
             this.col_mix_status.OptionsColumn.AllowEdit = false;
             this.col_mix_status.Visible = true;
             this.col_mix_status.VisibleIndex = 10;
-            this.col_mix_status.Width = 78;
+            this.col_mix_status.Width = 39;
             // 
             // col_mix_code
             // 
             this.col_mix_code.Caption = "Mix";
             this.col_mix_code.FieldName = "mix_code";
+            this.col_mix_code.MinWidth = 10;
             this.col_mix_code.Name = "col_mix_code";
             this.col_mix_code.OptionsColumn.AllowEdit = false;
             this.col_mix_code.Visible = true;
             this.col_mix_code.VisibleIndex = 9;
-            this.col_mix_code.Width = 34;
+            this.col_mix_code.Width = 17;
             // 
             // col_grupo
             // 
             this.col_grupo.Caption = "Estado";
             this.col_grupo.FieldName = "grupo";
+            this.col_grupo.MinWidth = 10;
             this.col_grupo.Name = "col_grupo";
             this.col_grupo.Visible = true;
             this.col_grupo.VisibleIndex = 6;
+            this.col_grupo.Width = 37;
             // 
             // col_plan_batch
             // 
             this.col_plan_batch.Caption = "Batch-Plan";
             this.col_plan_batch.FieldName = "plan_batch";
+            this.col_plan_batch.MinWidth = 10;
             this.col_plan_batch.Name = "col_plan_batch";
             this.col_plan_batch.OptionsColumn.AllowEdit = false;
             this.col_plan_batch.Visible = true;
             this.col_plan_batch.VisibleIndex = 6;
-            this.col_plan_batch.Width = 50;
+            this.col_plan_batch.Width = 25;
             // 
             // col_real_batch
             // 
             this.col_real_batch.Caption = "Batch-Real";
             this.col_real_batch.FieldName = "real_batch";
+            this.col_real_batch.MinWidth = 10;
             this.col_real_batch.Name = "col_real_batch";
             this.col_real_batch.OptionsColumn.AllowEdit = false;
-            this.col_real_batch.Width = 48;
+            this.col_real_batch.Width = 24;
             // 
             // col_real_batch2
             // 
             this.col_real_batch2.Caption = "Batch-Real2";
             this.col_real_batch2.FieldName = "real_batch2";
+            this.col_real_batch2.MinWidth = 10;
             this.col_real_batch2.Name = "col_real_batch2";
             this.col_real_batch2.OptionsColumn.AllowEdit = false;
-            this.col_real_batch2.Width = 47;
+            this.col_real_batch2.Width = 23;
             // 
             // col_mezclado
             // 
             this.col_mezclado.Caption = "Mix";
             this.col_mezclado.FieldName = "mezclado";
+            this.col_mezclado.MinWidth = 10;
             this.col_mezclado.Name = "col_mezclado";
             this.col_mezclado.OptionsColumn.AllowEdit = false;
             this.col_mezclado.Visible = true;
             this.col_mezclado.VisibleIndex = 2;
-            this.col_mezclado.Width = 24;
+            this.col_mezclado.Width = 12;
             // 
             // col_acs_id
             // 
             this.col_acs_id.Caption = "acs";
             this.col_acs_id.FieldName = "acs_id";
+            this.col_acs_id.MinWidth = 10;
             this.col_acs_id.Name = "col_acs_id";
+            this.col_acs_id.Width = 37;
             // 
             // col_formula
             // 
             this.col_formula.Caption = "Formula";
             this.col_formula.FieldName = "formula";
+            this.col_formula.MinWidth = 10;
             this.col_formula.Name = "col_formula";
             this.col_formula.OptionsColumn.AllowEdit = false;
             this.col_formula.Visible = true;
             this.col_formula.VisibleIndex = 1;
-            this.col_formula.Width = 49;
+            this.col_formula.Width = 24;
             // 
             // col_batch_mp
             // 
-            this.col_batch_mp.Caption = "Batch MP";
+            this.col_batch_mp.Caption = "Batch Completados";
             this.col_batch_mp.FieldName = "batch_mp";
+            this.col_batch_mp.MinWidth = 10;
             this.col_batch_mp.Name = "col_batch_mp";
             this.col_batch_mp.Visible = true;
             this.col_batch_mp.VisibleIndex = 7;
-            this.col_batch_mp.Width = 55;
+            this.col_batch_mp.Width = 27;
+            // 
+            // col_batch_programados
+            // 
+            this.col_batch_programados.Caption = "Batch Programados";
+            this.col_batch_programados.FieldName = "cant_batch_run";
+            this.col_batch_programados.Name = "col_batch_programados";
+            this.col_batch_programados.Visible = true;
+            this.col_batch_programados.VisibleIndex = 11;
+            // 
+            // colapagar_alarma_micros
+            // 
+            this.colapagar_alarma_micros.FieldName = "alarma_micros";
+            this.colapagar_alarma_micros.Name = "colapagar_alarma_micros";
+            this.colapagar_alarma_micros.Visible = true;
+            this.colapagar_alarma_micros.VisibleIndex = 12;
             // 
             // barManager1
             // 
@@ -555,7 +598,8 @@
             this.btn_exit.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.btn_exit.Caption = "Salir";
             this.btn_exit.Id = 6;
-            this.btn_exit.ImageOptions.Image = global::ARM.Properties.Resources.Salir_32;
+            this.btn_exit.ImageOptions.Image = global::ARM.Properties.Resources.cancel2_32;
+            this.btn_exit.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_exit.ImageOptions.LargeImage")));
             this.btn_exit.ItemAppearance.Normal.FontStyleDelta = System.Drawing.FontStyle.Bold;
             this.btn_exit.ItemAppearance.Normal.Options.UseFont = true;
             this.btn_exit.Name = "btn_exit";
@@ -715,11 +759,10 @@
             // 
             this.standaloneBarDockControl1.CausesValidation = false;
             this.standaloneBarDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.standaloneBarDockControl1.Location = new System.Drawing.Point(3, 42);
+            this.standaloneBarDockControl1.Location = new System.Drawing.Point(2, 23);
             this.standaloneBarDockControl1.Manager = this.barManager1;
-            this.standaloneBarDockControl1.Margin = new System.Windows.Forms.Padding(6);
             this.standaloneBarDockControl1.Name = "standaloneBarDockControl1";
-            this.standaloneBarDockControl1.Size = new System.Drawing.Size(2560, 94);
+            this.standaloneBarDockControl1.Size = new System.Drawing.Size(954, 49);
             this.standaloneBarDockControl1.Text = "standaloneBarDockControl1";
             // 
             // barDockControlTop
@@ -728,35 +771,31 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(6);
-            this.barDockControlTop.Size = new System.Drawing.Size(2594, 92);
+            this.barDockControlTop.Size = new System.Drawing.Size(970, 40);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 880);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 508);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(6);
-            this.barDockControlBottom.Size = new System.Drawing.Size(2594, 28);
+            this.barDockControlBottom.Size = new System.Drawing.Size(970, 20);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 92);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 40);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(6);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 788);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 468);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2594, 92);
+            this.barDockControlRight.Location = new System.Drawing.Point(970, 40);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(6);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 788);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 468);
             // 
             // btn_Refresh
             // 
@@ -876,10 +915,9 @@
             this.grp_Orders.Controls.Add(this.grd_Orders);
             this.grp_Orders.Controls.Add(this.standaloneBarDockControl1);
             this.grp_Orders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Orders.Location = new System.Drawing.Point(6, 6);
-            this.grp_Orders.Margin = new System.Windows.Forms.Padding(6);
+            this.grp_Orders.Location = new System.Drawing.Point(3, 3);
             this.grp_Orders.Name = "grp_Orders";
-            this.grp_Orders.Size = new System.Drawing.Size(2566, 382);
+            this.grp_Orders.Size = new System.Drawing.Size(958, 228);
             this.grp_Orders.TabIndex = 5;
             this.grp_Orders.Text = "Ordenes de Producción";
             // 
@@ -887,127 +925,53 @@
             // 
             this.grp_Structure.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grp_Structure.AppearanceCaption.Options.UseFont = true;
-            this.grp_Structure.Controls.Add(this.gridControl1);
             this.grp_Structure.Controls.Add(this.grd_Structure);
-            this.grp_Structure.Controls.Add(this.label1);
             this.grp_Structure.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Structure.Location = new System.Drawing.Point(6, 400);
-            this.grp_Structure.Margin = new System.Windows.Forms.Padding(6);
+            this.grp_Structure.Location = new System.Drawing.Point(3, 237);
             this.grp_Structure.Name = "grp_Structure";
-            this.grp_Structure.Size = new System.Drawing.Size(2566, 382);
+            this.grp_Structure.Size = new System.Drawing.Size(958, 228);
             this.grp_Structure.TabIndex = 6;
             this.grp_Structure.Text = "Estructura de Orden";
-            // 
-            // gridControl1
-            // 
-            this.gridControl1.DataMember = "detalle_micros";
-            this.gridControl1.DataSource = this.dsARM1;
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gridControl1.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gridControl1.Location = new System.Drawing.Point(1691, 42);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Margin = new System.Windows.Forms.Padding(6);
-            this.gridControl1.MenuManager = this.barManager1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(872, 337);
-            this.gridControl1.TabIndex = 1;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // dsARM1
-            // 
-            this.dsARM1.DataSetName = "dsARM";
-            this.dsARM1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.ColumnFilterButton.BorderColor = System.Drawing.Color.Black;
-            this.gridView1.Appearance.ColumnFilterButton.Options.UseBorderColor = true;
-            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMaterial,
-            this.colPesoporBatch,
-            this.colTotal,
-            this.colBatchPlan});
-            this.gridView1.DetailHeight = 673;
-            this.gridView1.FixedLineWidth = 4;
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // colMaterial
-            // 
-            this.colMaterial.FieldName = "Material";
-            this.colMaterial.Name = "colMaterial";
-            this.colMaterial.Visible = true;
-            this.colMaterial.VisibleIndex = 0;
-            this.colMaterial.Width = 139;
-            // 
-            // colPesoporBatch
-            // 
-            this.colPesoporBatch.FieldName = "Peso por Batch";
-            this.colPesoporBatch.Name = "colPesoporBatch";
-            this.colPesoporBatch.Visible = true;
-            this.colPesoporBatch.VisibleIndex = 1;
-            this.colPesoporBatch.Width = 90;
-            // 
-            // colTotal
-            // 
-            this.colTotal.FieldName = "Total";
-            this.colTotal.Name = "colTotal";
-            this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 3;
-            this.colTotal.Width = 126;
-            // 
-            // colBatchPlan
-            // 
-            this.colBatchPlan.FieldName = "Batch Plan";
-            this.colBatchPlan.Name = "colBatchPlan";
-            this.colBatchPlan.Visible = true;
-            this.colBatchPlan.VisibleIndex = 2;
-            this.colBatchPlan.Width = 101;
             // 
             // grd_Structure
             // 
             this.grd_Structure.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grd_Structure.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.grd_Structure.Location = new System.Drawing.Point(4, 40);
+            this.grd_Structure.Location = new System.Drawing.Point(2, 21);
             this.grd_Structure.MainView = this.grdv_Structure;
-            this.grd_Structure.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Structure.MenuManager = this.barManager1;
             this.grd_Structure.Name = "grd_Structure";
             this.grd_Structure.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1});
-            this.grd_Structure.Size = new System.Drawing.Size(1674, 338);
+            this.grd_Structure.Size = new System.Drawing.Size(956, 205);
             this.grd_Structure.TabIndex = 0;
             this.grd_Structure.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Structure});
             // 
             // grdv_Structure
             // 
-            this.grdv_Structure.Appearance.FocusedCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.FocusedCell.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.FocusedCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.FocusedCell.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.FocusedCell.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseFont = true;
             this.grdv_Structure.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.grdv_Structure.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.FocusedRow.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.FocusedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.FocusedRow.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.FocusedRow.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.FocusedRow.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseFont = true;
             this.grdv_Structure.Appearance.FocusedRow.Options.UseForeColor = true;
-            this.grdv_Structure.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.grdv_Structure.Appearance.SelectedRow.BackColor = System.Drawing.Color.LightSkyBlue;
             this.grdv_Structure.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.Wheat;
             this.grdv_Structure.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdv_Structure.Appearance.SelectedRow.ForeColor = System.Drawing.Color.OrangeRed;
+            this.grdv_Structure.Appearance.SelectedRow.ForeColor = System.Drawing.Color.Black;
             this.grdv_Structure.Appearance.SelectedRow.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             this.grdv_Structure.Appearance.SelectedRow.Options.UseBackColor = true;
             this.grdv_Structure.Appearance.SelectedRow.Options.UseFont = true;
@@ -1029,13 +993,14 @@
             this.col_alarma,
             this.col_is_postpellet,
             this.col_pospelt,
-            this.col_postpellet_cant});
-            this.grdv_Structure.DetailHeight = 673;
-            this.grdv_Structure.FixedLineWidth = 4;
+            this.col_postpellet_cant,
+            this.col_kg_entregados_req,
+            this.col_inv_bg018,
+            this.col_cantidad_consumida});
             gridFormatRule5.ApplyToRow = true;
             gridFormatRule5.Name = "SinBinAsignado";
-            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.Salmon;
-            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.White;
+            formatConditionRuleValue5.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue5.Appearance.BackColor2 = System.Drawing.Color.Black;
             formatConditionRuleValue5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             formatConditionRuleValue5.Appearance.ForeColor = System.Drawing.Color.DarkRed;
             formatConditionRuleValue5.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
@@ -1047,8 +1012,8 @@
             gridFormatRule5.Rule = formatConditionRuleValue5;
             gridFormatRule6.ApplyToRow = true;
             gridFormatRule6.Name = "Manual";
-            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightCyan;
-            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.AliceBlue;
+            formatConditionRuleValue6.Appearance.BackColor = System.Drawing.Color.LightSkyBlue;
+            formatConditionRuleValue6.Appearance.BackColor2 = System.Drawing.Color.Black;
             formatConditionRuleValue6.Appearance.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
             formatConditionRuleValue6.Appearance.Options.UseBackColor = true;
             formatConditionRuleValue6.Condition = DevExpress.XtraEditors.FormatCondition.Expression;
@@ -1057,12 +1022,14 @@
             this.grdv_Structure.FormatRules.Add(gridFormatRule5);
             this.grdv_Structure.FormatRules.Add(gridFormatRule6);
             this.grdv_Structure.GridControl = this.grd_Structure;
+            this.grdv_Structure.LevelIndent = 0;
             this.grdv_Structure.Name = "grdv_Structure";
             this.grdv_Structure.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
             this.grdv_Structure.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
             this.grdv_Structure.OptionsView.ShowAutoFilterRow = true;
             this.grdv_Structure.OptionsView.ShowGroupPanel = false;
             this.grdv_Structure.PaintStyleName = "Skin";
+            this.grdv_Structure.PreviewIndent = 0;
             this.grdv_Structure.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grdv_Structure_RowClick);
             this.grdv_Structure.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridView2_RowStyle);
             this.grdv_Structure.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.grdv_Structure_FocusedRowChanged);
@@ -1072,152 +1039,172 @@
             // 
             this.col_record_id.Caption = "record_id";
             this.col_record_id.FieldName = "record_id";
+            this.col_record_id.MinWidth = 10;
             this.col_record_id.Name = "col_record_id";
             this.col_record_id.OptionsColumn.AllowEdit = false;
+            this.col_record_id.Width = 37;
             // 
             // col_order_id_
             // 
             this.col_order_id_.Caption = "order_id";
             this.col_order_id_.FieldName = "order_id";
+            this.col_order_id_.MinWidth = 10;
             this.col_order_id_.Name = "col_order_id_";
             this.col_order_id_.OptionsColumn.AllowEdit = false;
+            this.col_order_id_.Width = 37;
             // 
             // col_mix
             // 
             this.col_mix.Caption = "mix";
+            this.col_mix.MinWidth = 10;
             this.col_mix.Name = "col_mix";
             this.col_mix.OptionsColumn.AllowEdit = false;
+            this.col_mix.Width = 37;
             // 
             // col_item_id_
             // 
             this.col_item_id_.Caption = "Id Material";
             this.col_item_id_.FieldName = "item_id";
+            this.col_item_id_.MinWidth = 10;
             this.col_item_id_.Name = "col_item_id_";
             this.col_item_id_.OptionsColumn.AllowEdit = false;
             this.col_item_id_.Visible = true;
             this.col_item_id_.VisibleIndex = 0;
-            this.col_item_id_.Width = 45;
+            this.col_item_id_.Width = 30;
             // 
             // col_item_code
             // 
             this.col_item_code.Caption = "Codigo";
             this.col_item_code.FieldName = "item_code";
+            this.col_item_code.MinWidth = 10;
             this.col_item_code.Name = "col_item_code";
             this.col_item_code.OptionsColumn.AllowEdit = false;
             this.col_item_code.Visible = true;
             this.col_item_code.VisibleIndex = 1;
-            this.col_item_code.Width = 69;
+            this.col_item_code.Width = 46;
             // 
             // col_item_name
             // 
             this.col_item_name.Caption = "Material";
             this.col_item_name.FieldName = "item_name";
+            this.col_item_name.MinWidth = 10;
             this.col_item_name.Name = "col_item_name";
             this.col_item_name.OptionsColumn.AllowEdit = false;
             this.col_item_name.Visible = true;
             this.col_item_name.VisibleIndex = 2;
-            this.col_item_name.Width = 311;
+            this.col_item_name.Width = 214;
             // 
             // col_item_type
             // 
             this.col_item_type.Caption = "item_type";
             this.col_item_type.FieldName = "item_type";
+            this.col_item_type.MinWidth = 10;
             this.col_item_type.Name = "col_item_type";
             this.col_item_type.OptionsColumn.AllowEdit = false;
+            this.col_item_type.Width = 37;
             // 
             // col_kg_batch
             // 
             this.col_kg_batch.Caption = "Kg Batch";
             this.col_kg_batch.FieldName = "kg_batch";
+            this.col_kg_batch.MinWidth = 10;
             this.col_kg_batch.Name = "col_kg_batch";
             this.col_kg_batch.OptionsColumn.AllowEdit = false;
             this.col_kg_batch.Visible = true;
             this.col_kg_batch.VisibleIndex = 3;
-            this.col_kg_batch.Width = 67;
+            this.col_kg_batch.Width = 45;
             // 
             // col_kg_total
             // 
             this.col_kg_total.Caption = "kg Total";
             this.col_kg_total.FieldName = "kg_total";
+            this.col_kg_total.MinWidth = 10;
             this.col_kg_total.Name = "col_kg_total";
             this.col_kg_total.OptionsColumn.AllowEdit = false;
             this.col_kg_total.Visible = true;
             this.col_kg_total.VisibleIndex = 4;
-            this.col_kg_total.Width = 66;
+            this.col_kg_total.Width = 45;
             // 
             // col_bin_id
             // 
             this.col_bin_id.Caption = "Bin_Id";
             this.col_bin_id.FieldName = "bin_id";
+            this.col_bin_id.MinWidth = 10;
             this.col_bin_id.Name = "col_bin_id";
             this.col_bin_id.OptionsColumn.AllowEdit = false;
-            this.col_bin_id.Width = 46;
+            this.col_bin_id.Width = 23;
             // 
             // col_bin
             // 
             this.col_bin.Caption = "Bin_Short";
             this.col_bin.FieldName = "bin_short_name";
+            this.col_bin.MinWidth = 10;
             this.col_bin.Name = "col_bin";
             this.col_bin.OptionsColumn.AllowEdit = false;
-            this.col_bin.Width = 89;
+            this.col_bin.Width = 44;
             // 
             // col_bin_longname
             // 
             this.col_bin_longname.Caption = "Bin";
             this.col_bin_longname.FieldName = "bin_longname";
+            this.col_bin_longname.MinWidth = 10;
             this.col_bin_longname.Name = "col_bin_longname";
             this.col_bin_longname.OptionsColumn.AllowEdit = false;
             this.col_bin_longname.Visible = true;
-            this.col_bin_longname.VisibleIndex = 5;
-            this.col_bin_longname.Width = 61;
+            this.col_bin_longname.VisibleIndex = 8;
+            this.col_bin_longname.Width = 43;
             // 
             // col_require_alarm
             // 
             this.col_require_alarm.Caption = "require_alarm";
             this.col_require_alarm.FieldName = "require_alarm";
+            this.col_require_alarm.MinWidth = 10;
             this.col_require_alarm.Name = "col_require_alarm";
             this.col_require_alarm.OptionsColumn.AllowEdit = false;
-            this.col_require_alarm.Width = 95;
+            this.col_require_alarm.Width = 47;
             // 
             // col_alarma
             // 
             this.col_alarma.Caption = "Alarma";
             this.col_alarma.FieldName = "alarma";
+            this.col_alarma.MinWidth = 10;
             this.col_alarma.Name = "col_alarma";
             this.col_alarma.OptionsColumn.AllowEdit = false;
             this.col_alarma.Visible = true;
-            this.col_alarma.VisibleIndex = 6;
-            this.col_alarma.Width = 41;
+            this.col_alarma.VisibleIndex = 9;
+            this.col_alarma.Width = 27;
             // 
             // col_is_postpellet
             // 
             this.col_is_postpellet.Caption = "is_postpellet";
             this.col_is_postpellet.FieldName = "is_postpellet";
+            this.col_is_postpellet.MinWidth = 10;
             this.col_is_postpellet.Name = "col_is_postpellet";
             this.col_is_postpellet.OptionsColumn.AllowEdit = false;
+            this.col_is_postpellet.Width = 37;
             // 
             // col_pospelt
             // 
             this.col_pospelt.Caption = "Pospelet";
             this.col_pospelt.FieldName = "pospelet";
+            this.col_pospelt.MinWidth = 10;
             this.col_pospelt.Name = "col_pospelt";
             this.col_pospelt.OptionsColumn.AllowEdit = false;
             this.col_pospelt.Visible = true;
-            this.col_pospelt.VisibleIndex = 7;
-            this.col_pospelt.Width = 65;
+            this.col_pospelt.VisibleIndex = 10;
+            this.col_pospelt.Width = 46;
             // 
             // col_postpellet_cant
             // 
             this.col_postpellet_cant.Caption = "Cant. Post Pellet";
             this.col_postpellet_cant.ColumnEdit = this.repositoryItemButtonEdit1;
             this.col_postpellet_cant.FieldName = "post_pellet_cant";
-            this.col_postpellet_cant.MinWidth = 40;
             this.col_postpellet_cant.Name = "col_postpellet_cant";
             this.col_postpellet_cant.OptionsColumn.AllowMove = false;
             this.col_postpellet_cant.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.col_postpellet_cant.Visible = true;
-            this.col_postpellet_cant.VisibleIndex = 8;
-            this.col_postpellet_cant.Width = 180;
+            this.col_postpellet_cant.VisibleIndex = 11;
+            this.col_postpellet_cant.Width = 147;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -1228,21 +1215,38 @@
             this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
             // 
+            // col_kg_entregados_req
+            // 
+            this.col_kg_entregados_req.Caption = "Kg Entregados Requisición";
+            this.col_kg_entregados_req.DisplayFormat.FormatString = "n2";
+            this.col_kg_entregados_req.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.col_kg_entregados_req.FieldName = "kg_entregados_req";
+            this.col_kg_entregados_req.Name = "col_kg_entregados_req";
+            this.col_kg_entregados_req.Visible = true;
+            this.col_kg_entregados_req.VisibleIndex = 7;
+            this.col_kg_entregados_req.Width = 104;
+            // 
+            // col_inv_bg018
+            // 
+            this.col_inv_bg018.Caption = "Inv BG018";
+            this.col_inv_bg018.FieldName = "inv_bg018";
+            this.col_inv_bg018.Name = "col_inv_bg018";
+            this.col_inv_bg018.Visible = true;
+            this.col_inv_bg018.VisibleIndex = 6;
+            this.col_inv_bg018.Width = 81;
+            // 
+            // col_cantidad_consumida
+            // 
+            this.col_cantidad_consumida.Caption = "Kg Consumidos";
+            this.col_cantidad_consumida.FieldName = "cantidad_consumida";
+            this.col_cantidad_consumida.Name = "col_cantidad_consumida";
+            this.col_cantidad_consumida.Visible = true;
+            this.col_cantidad_consumida.VisibleIndex = 5;
+            this.col_cantidad_consumida.Width = 103;
+            // 
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(2108, 8);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(449, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Detalle Micro Ingredientes Manuales";
             // 
             // ContextMenu_Ordenes
             // 
@@ -1278,13 +1282,12 @@
             this.tableLayoutPanel1.Controls.Add(this.grp_Structure, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.grp_Comments, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 92);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 40);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(2594, 788);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 468);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // grp_events
@@ -1293,10 +1296,9 @@
             this.grp_events.AppearanceCaption.Options.UseFont = true;
             this.grp_events.Controls.Add(this.grd_Events);
             this.grp_events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_events.Location = new System.Drawing.Point(2584, 400);
-            this.grp_events.Margin = new System.Windows.Forms.Padding(6);
+            this.grp_events.Location = new System.Drawing.Point(967, 237);
             this.grp_events.Name = "grp_events";
-            this.grp_events.Size = new System.Drawing.Size(4, 382);
+            this.grp_events.Size = new System.Drawing.Size(1, 228);
             this.grp_events.TabIndex = 8;
             this.grp_events.Text = "Eventos";
             this.grp_events.Visible = false;
@@ -1304,13 +1306,11 @@
             // grd_Events
             // 
             this.grd_Events.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Events.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.grd_Events.Location = new System.Drawing.Point(3, 42);
+            this.grd_Events.Location = new System.Drawing.Point(1, 23);
             this.grd_Events.MainView = this.grdv_Events;
-            this.grd_Events.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Events.MenuManager = this.barManager1;
             this.grd_Events.Name = "grd_Events";
-            this.grd_Events.Size = new System.Drawing.Size(0, 337);
+            this.grd_Events.Size = new System.Drawing.Size(0, 203);
             this.grd_Events.TabIndex = 1;
             this.grd_Events.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Events});
@@ -1322,14 +1322,14 @@
             this.col_event_fecha,
             this.col_event_hora,
             this.col_event_event});
-            this.grdv_Events.DetailHeight = 673;
-            this.grdv_Events.FixedLineWidth = 4;
             this.grdv_Events.GridControl = this.grd_Events;
+            this.grdv_Events.LevelIndent = 0;
             this.grdv_Events.Name = "grdv_Events";
             this.grdv_Events.OptionsBehavior.AutoSelectAllInEditor = false;
             this.grdv_Events.OptionsBehavior.Editable = false;
             this.grdv_Events.OptionsView.ShowAutoFilterRow = true;
             this.grdv_Events.OptionsView.ShowGroupPanel = false;
+            this.grdv_Events.PreviewIndent = 0;
             this.grdv_Events.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grdv_Events_RowStyle);
             // 
             // col_event_fecha
@@ -1338,11 +1338,12 @@
             this.col_event_fecha.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.col_event_fecha.Caption = "Fecha";
             this.col_event_fecha.FieldName = "fecha";
+            this.col_event_fecha.MinWidth = 10;
             this.col_event_fecha.Name = "col_event_fecha";
             this.col_event_fecha.OptionsColumn.AllowEdit = false;
             this.col_event_fecha.Visible = true;
             this.col_event_fecha.VisibleIndex = 0;
-            this.col_event_fecha.Width = 50;
+            this.col_event_fecha.Width = 25;
             // 
             // col_event_hora
             // 
@@ -1352,21 +1353,23 @@
             this.col_event_hora.DisplayFormat.FormatString = "T";
             this.col_event_hora.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.col_event_hora.FieldName = "hora";
+            this.col_event_hora.MinWidth = 10;
             this.col_event_hora.Name = "col_event_hora";
             this.col_event_hora.OptionsColumn.AllowEdit = false;
             this.col_event_hora.Visible = true;
             this.col_event_hora.VisibleIndex = 1;
-            this.col_event_hora.Width = 50;
+            this.col_event_hora.Width = 25;
             // 
             // col_event_event
             // 
             this.col_event_event.Caption = "Evento";
             this.col_event_event.FieldName = "evento";
+            this.col_event_event.MinWidth = 10;
             this.col_event_event.Name = "col_event_event";
             this.col_event_event.OptionsColumn.AllowEdit = false;
             this.col_event_event.Visible = true;
             this.col_event_event.VisibleIndex = 2;
-            this.col_event_event.Width = 221;
+            this.col_event_event.Width = 110;
             // 
             // grp_Comments
             // 
@@ -1374,10 +1377,9 @@
             this.grp_Comments.AppearanceCaption.Options.UseFont = true;
             this.grp_Comments.Controls.Add(this.grd_Comments);
             this.grp_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grp_Comments.Location = new System.Drawing.Point(2584, 6);
-            this.grp_Comments.Margin = new System.Windows.Forms.Padding(6);
+            this.grp_Comments.Location = new System.Drawing.Point(967, 3);
             this.grp_Comments.Name = "grp_Comments";
-            this.grp_Comments.Size = new System.Drawing.Size(4, 382);
+            this.grp_Comments.Size = new System.Drawing.Size(1, 228);
             this.grp_Comments.TabIndex = 7;
             this.grp_Comments.Text = "Comentarios";
             this.grp_Comments.Visible = false;
@@ -1385,13 +1387,11 @@
             // grd_Comments
             // 
             this.grd_Comments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grd_Comments.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.grd_Comments.Location = new System.Drawing.Point(3, 42);
+            this.grd_Comments.Location = new System.Drawing.Point(1, 23);
             this.grd_Comments.MainView = this.grdv_Comments;
-            this.grd_Comments.Margin = new System.Windows.Forms.Padding(6);
             this.grd_Comments.MenuManager = this.barManager1;
             this.grd_Comments.Name = "grd_Comments";
-            this.grd_Comments.Size = new System.Drawing.Size(0, 337);
+            this.grd_Comments.Size = new System.Drawing.Size(0, 203);
             this.grd_Comments.TabIndex = 0;
             this.grd_Comments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grdv_Comments});
@@ -1402,14 +1402,14 @@
             this.col_coment_fecha,
             this.col_coment_hora,
             this.col_coment_nota});
-            this.grdv_Comments.DetailHeight = 673;
-            this.grdv_Comments.FixedLineWidth = 4;
             this.grdv_Comments.GridControl = this.grd_Comments;
+            this.grdv_Comments.LevelIndent = 0;
             this.grdv_Comments.Name = "grdv_Comments";
             this.grdv_Comments.OptionsBehavior.AutoSelectAllInEditor = false;
             this.grdv_Comments.OptionsBehavior.Editable = false;
             this.grdv_Comments.OptionsView.ShowAutoFilterRow = true;
             this.grdv_Comments.OptionsView.ShowGroupPanel = false;
+            this.grdv_Comments.PreviewIndent = 0;
             this.grdv_Comments.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grdv_Comments_RowStyle);
             // 
             // col_coment_fecha
@@ -1418,11 +1418,12 @@
             this.col_coment_fecha.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.col_coment_fecha.Caption = "Fecha";
             this.col_coment_fecha.FieldName = "fecha";
+            this.col_coment_fecha.MinWidth = 10;
             this.col_coment_fecha.Name = "col_coment_fecha";
             this.col_coment_fecha.OptionsColumn.AllowEdit = false;
             this.col_coment_fecha.Visible = true;
             this.col_coment_fecha.VisibleIndex = 0;
-            this.col_coment_fecha.Width = 50;
+            this.col_coment_fecha.Width = 25;
             // 
             // col_coment_hora
             // 
@@ -1432,56 +1433,54 @@
             this.col_coment_hora.DisplayFormat.FormatString = "T";
             this.col_coment_hora.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.col_coment_hora.FieldName = "hora";
+            this.col_coment_hora.MinWidth = 10;
             this.col_coment_hora.Name = "col_coment_hora";
             this.col_coment_hora.OptionsColumn.AllowEdit = false;
             this.col_coment_hora.Visible = true;
             this.col_coment_hora.VisibleIndex = 1;
-            this.col_coment_hora.Width = 50;
+            this.col_coment_hora.Width = 25;
             // 
             // col_coment_nota
             // 
             this.col_coment_nota.Caption = "Nota";
             this.col_coment_nota.FieldName = "nota";
+            this.col_coment_nota.MinWidth = 10;
             this.col_coment_nota.Name = "col_coment_nota";
             this.col_coment_nota.OptionsColumn.AllowEdit = false;
             this.col_coment_nota.Visible = true;
             this.col_coment_nota.VisibleIndex = 2;
-            this.col_coment_nota.Width = 221;
+            this.col_coment_nota.Width = 110;
             // 
             // timerValidacionStock
             // 
-            this.timerValidacionStock.Interval = 25000;
+            this.timerValidacionStock.Interval = 70000;
             this.timerValidacionStock.Tick += new System.EventHandler(this.timerValidacionStock_Tick);
             // 
             // OP_Production_Orders_Planner
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2594, 908);
+            this.ClientSize = new System.Drawing.Size(970, 528);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("OP_Production_Orders_Planner.IconOptions.Icon")));
             this.Name = "OP_Production_Orders_Planner";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Planificador de Ordenes de Producción";
+            this.Text = "Ordenes de Producción";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OP_Production_Orders_Planner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grd_Orders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Orders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grp_Orders)).EndInit();
             this.grp_Orders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grp_Structure)).EndInit();
             this.grp_Structure.ResumeLayout(false);
-            this.grp_Structure.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsARM1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdv_Structure)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
@@ -1600,15 +1599,13 @@
         public DevExpress.XtraGrid.Views.Grid.GridView grdv_Structure;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private dsARM dsARM1;
-        private DevExpress.XtraGrid.Columns.GridColumn colMaterial;
-        private DevExpress.XtraGrid.Columns.GridColumn colPesoporBatch;
-        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
-        private DevExpress.XtraGrid.Columns.GridColumn colBatchPlan;
-        private System.Windows.Forms.Label label1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private System.Windows.Forms.Timer timerValidacionStock;
+        private DevExpress.XtraGrid.Columns.GridColumn col_batch_programados;
+        private DevExpress.XtraGrid.Columns.GridColumn colapagar_alarma_micros;
+        private DevExpress.XtraGrid.Columns.GridColumn col_kg_entregados_req;
+        private DevExpress.XtraGrid.Columns.GridColumn col_inv_bg018;
+        private DevExpress.XtraGrid.Columns.GridColumn col_cantidad_consumida;
     }
 }

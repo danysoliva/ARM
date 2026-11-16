@@ -1,29 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿using ARM.Classes;
+using ARM.Reports;
+using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
-using System.Threading;
-using System.Timers;
-
-using DevExpress.XtraSplashScreen;
-
-using ARM.Classes;
-using System.Data.SqlClient;
+using DevExpress.XtraGrid;
 //--
 //using System.Windows.Forms;
 //using System.Drawing;
 //--
 //using Npgsql;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using S7.Net;
-using ARM.Reports;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Forms;
 
 namespace ARM.Production
 {
@@ -37,10 +36,14 @@ namespace ARM.Production
         DataTable dtEstructura;
         FMOP fmop = new FMOP();
         int IdMPSinStock;
-
+        bool PermitirMontar_Orden;
+        int Requisas_Abiertas;
+        int Maximo_Permitidas;
+        //Comentario
         Plc plc319;
         static CpuType plc319_CPUType = CpuType.S71500;
-        static string plc319_IPAddress = "192.168.10.2";
+        static string plc319_IPAddress = "192.168.12.2";//para publicar
+        //static string plc319_IPAddress = "192.168.10.2";//para pruebas
         static Int16 plc319_Rack = 0;
         static Int16 plc319_Slot = 1;
 
@@ -68,7 +71,20 @@ namespace ARM.Production
         #region Form Contructors
         public OP_Production_Orders_Planner(string ActiveUserCode)
         {
+            
+
             InitializeComponent();
+            //Modo Oscuro
+            LookAndFeel.UseDefaultLookAndFeel = false;
+            LookAndFeel.SetSkinStyle(SkinSvgPalette.WXI.Darkness);
+            grd_Orders.LookAndFeel.ParentLookAndFeel = LookAndFeel;
+            grd_Structure.LookAndFeel.ParentLookAndFeel = LookAndFeel;
+
+
+            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+            if (!plc319.IsConnected)
+                plc319.Open();
 
             #region Screen Selection
             //if (Screen.AllScreens.Count() > 1) 
@@ -118,8 +134,17 @@ namespace ARM.Production
                 cmd.Parameters["@status_fin"].Value = 80;
                 #endregion
 
-                grd_Orders.DataSource = null; 
-                grd_Orders.DataSource = dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_Mix_by_Status", cmd);
+                //grd_Orders.DataSource = null; 
+                //grd_Orders.DataSource = dp.APMS_Exec_SP_Get_Data("OP_Get_Orders_Mix_by_Status", cmd);
+                SqlConnection conn = new SqlConnection(dp.ConnectionStringAPMS);
+                conn.Open();
+                cmd.Connection = conn;
+                cmd.CommandText = "OP_Get_Orders_Mix_by_Status";
+                SqlDataAdapter adat = new SqlDataAdapter(cmd);
+
+                dsARM1.OrdenesRecetas.Clear();
+                adat.Fill(dsARM1.OrdenesRecetas);
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -453,34 +478,6 @@ namespace ARM.Production
             catch (Exception) { throw; }
         }
 
-        //void set_sts_xOrden_Odoo(string orden, int status)
-        //{
-        //    try
-        //    {
-        //        NpgsqlCommand cmd = new NpgsqlCommand();
-        //        cmd.Parameters.Add(new NpgsqlParameter(":orden", DbType.AnsiString));
-        //        cmd.Parameters.Add(new NpgsqlParameter(":status", DbType.Int32));
-
-        //        cmd.Parameters[":orden"].Value  = orden ;
-        //        cmd.Parameters[":status"].Value = status ;
-
-        //        dp.ODOO_Exec_SP("x_sp_set_sts_OrdenProd", cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        #region Try-Catch_Mensaje-Error
-        //        var dialogTypeName = "System.Windows.Forms.PropertyGridInternal.GridErrorDlg";
-        //        var dialogType = typeof(Form).Assembly.GetType(dialogTypeName);
-        //        var dialog = (Form)Activator.CreateInstance(dialogType, new PropertyGrid());
-        //        dialog.Text = "Error";
-        //        dialogType.GetProperty("Message").SetValue(dialog, "Error: " + ex.Message, null);
-        //        dialogType.GetProperty("Details").SetValue(dialog, ex.StackTrace, null);
-        //        var result = dialog.ShowDialog();
-        //        #endregion
-        //    }
-
-        //}
-
 
         /// <summary>
         /// Revisa si ya existe un MIX de la OP con status indicado
@@ -524,7 +521,6 @@ namespace ARM.Production
                 MessageBox.Show(string.Format("Ha ocurrido un error al cargar la informacion de ordenes de producción\n\nDetalle: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
-
         }
 
         int getStatus_activeMix_Sts_mix(int vMixID)    // Existe Mesclado con STS ..
@@ -597,7 +593,6 @@ namespace ARM.Production
                 SqlDataAdapter adat = new SqlDataAdapter(cmd);
                 dsARM1.detalle_micros.Clear();
                 adat.Fill(dsARM1.detalle_micros);
-
             }
             catch (Exception ec)
             {
@@ -608,9 +603,27 @@ namespace ARM.Production
         private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             #region AutorRow_Color_Diferente
+            //if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+            //}
             if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
             {
-                e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                var view = (DevExpress.XtraGrid.Views.Grid.GridView)sender;
+                Color fondo = DevExpress.Skins.CommonSkins
+                    .GetSkin(view.GridControl.LookAndFeel)
+                    .Colors.GetColor(DevExpress.Skins.CommonColors.Control);
+                if (fondo.GetBrightness() < 0.5f)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(56, 64, 78);
+                    e.Appearance.ForeColor = Color.FromArgb(230, 232, 235);
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                    e.Appearance.ForeColor = Color.Black;
+                }
+                e.HighPriority = true;
             }
             #endregion
         }
@@ -618,9 +631,28 @@ namespace ARM.Production
         private void gridView2_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
         {
             #region AutorRow_Color_Diferente
+            //if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
+            //{
+            //    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+            //}
+
             if (e.RowHandle == DevExpress.XtraGrid.GridControl.AutoFilterRowHandle)
             {
-                e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                var view = (DevExpress.XtraGrid.Views.Grid.GridView)sender;
+                Color fondo = DevExpress.Skins.CommonSkins
+                    .GetSkin(view.GridControl.LookAndFeel)
+                    .Colors.GetColor(DevExpress.Skins.CommonColors.Control);
+                if (fondo.GetBrightness() < 0.5f)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(56, 64, 78);
+                    e.Appearance.ForeColor = Color.FromArgb(230, 232, 235);
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.FromArgb(200, 255, 255, 204);
+                    e.Appearance.ForeColor = Color.Black;
+                }
+                e.HighPriority = true;
             }
             #endregion
         }
@@ -653,13 +685,16 @@ namespace ARM.Production
             cargar_grd_ordenes_estructuras();
             cargar_grd_comentarios();
             cargar_grd_eventos();
+
+           //set_active_mix_OP_mix(14954, 70);
+            
         }
 
         private void btn_Activar_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // Solo se activaran los que active_mix=0 y que status=50 o
             // status=60
-
+       
             //setStatus_OP_mix(idMix, 70);
             if (PermitirMontar(idMix) == 0)
             {
@@ -687,6 +722,42 @@ namespace ARM.Production
                     return;
                 }
 
+
+                //Validacion 6 Requisas
+
+
+                try
+                {
+                    SqlConnection connection = new SqlConnection(dp.ConnectionStringLOSA);
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("sp_get_validacion_requisas_abiertas_montar_orden_PRD", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        PermitirMontar_Orden = dr.GetBoolean(0);
+                        Requisas_Abiertas = dr.GetInt32(1);
+                        Maximo_Permitidas = dr.GetInt32(2);
+                    }
+                    dr.Close();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    CajaDialogo.Error(ex.Message);
+                }
+
+                if (PermitirMontar_Orden == false)
+                {
+                    //if (PermitirMontar_Orden == false)
+                    //{
+                    frmMensajeProduccion frm = new frmMensajeProduccion(Requisas_Abiertas, Maximo_Permitidas);
+                    frm.ShowDialog();
+                    return;
+
+                    //}
+                }
+
                 DialogResult resultado = MessageBox.Show("¿Esta realmente seguro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resultado != System.Windows.Forms.DialogResult.Yes) return;
 
@@ -698,6 +769,9 @@ namespace ARM.Production
 
 
                 set_active_mix_OP_mix(idMix, 70);    // active_mix= 1
+                //Escribir el lote a los bines para el guardado PLC.
+
+
                 registrarEvento("[Activando] Enviado a producir correctamente.");
                 //btn_Actualizar.PerformClick();
                 IdMPSinStock = 0;
@@ -715,6 +789,7 @@ namespace ARM.Production
                     MessageBox.Show("No hay Inventario en la Bodega BG018 (Producción), de la Materia Prima: " + mp1.ItemCode + " - " + mp1.Nombre + ". " +
                                     "No se permite operar una orden sin inventario en Kardex en BG018!"
                                    ,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
                 
             }
@@ -1033,9 +1108,8 @@ namespace ARM.Production
 
         private void OP_Production_Orders_Planner_Load(object sender, EventArgs e)
         {
-            if (Classes.Globals.CTS_ServerName == "Servidor de Desarrollo") barHeaderItem1.Appearance.BackColor = Color.Aqua;
-            //timerValidacionStock.Enabled = true;
-            //timerValidacionStock.Start();
+            //if (Classes.Globals.CTS_ServerName == "Servidor de Desarrollo") barHeaderItem1.Appearance.BackColor = Color.Aqua;
+            
         }
 
         private void barStaticItem1_ItemDoubleClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1101,11 +1175,6 @@ namespace ARM.Production
             //Reports.IntakeBatchViewer form = new Reports.IntakeBatchViewer();
             IntakeBatchViewerFull form = new IntakeBatchViewerFull();
             form.Show();
-        }
-
-        private void grdv_Orders_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
-        {
-
         }
 
         private void grdv_Structure_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -1246,13 +1315,29 @@ namespace ARM.Production
 
         private void timerValidacionStock_Tick(object sender, EventArgs e)
         {
-            //sp_get_activate_suspension_out_stock
+            ////sp_get_activate_suspension_out_stock
             //if (ValidacionInventariosPRD())
             //{
-
+            //    cargar_grd_ordenes();
             //}
 
-            cargar_grd_ordenes();
+            //Comentado el 17 feb 2026
+            //cargar_grd_ordenes();
+
+            for (int i = 0; i < grdv_Orders.RowCount; i++)
+            {
+                var row = grdv_Orders.GetRow(i);
+
+                if (row != null)
+                {
+                    int estado_row = Convert.ToInt32(grdv_Orders.GetRowCellValue(i, "mix_status"));
+                    if (estado_row == 70)
+                    {
+                        idMix = Convert.ToInt32(grdv_Orders.GetRowCellValue(i, "mix_id"));
+                        PermitirMontar(idMix);
+                    }
+                }
+            }
         }
 
         private bool ValidacionInventariosPRD()
@@ -1275,6 +1360,328 @@ namespace ARM.Production
                 MessageBox.Show(ec.Message);
             }
             return r;
+        }
+
+        private void grdv_Orders_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            
+        }
+
+        private void grdv_Orders_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            var gridView = (GridView)grd_Orders.FocusedView;
+            dsARM.OrdenesRecetasRow row = (dsARM.OrdenesRecetasRow)grdv_Orders.GetDataRow(e.RowHandle);
+            //dsARM.OrdenesRecetasRow row = (dsARM.OrdenesRecetasRow)gridView.GetFocusedDataRow();
+            
+
+            int batch_old = row.cant_batch_run;
+            switch (e.Column.FieldName)
+            {
+                case "alarma_micros":
+                    if (row.mix_status == 70 && row.mix_num == 1)
+                    {
+                        bool BitAlarma = Convert.ToBoolean(e.Value);
+                        //SetUpdateAlarmaMicroIngredientes3ernivel
+                        //@bit_alarma_micros bit,
+                        //@mix_id bigint
+                        //DB798.DBX6.0
+                        //Bit_Sin_Bascula
+
+                        plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                        if (!plc319.IsConnected)
+                            plc319.Open();
+
+                        if (plc319.IsConnected)
+                        {
+                            //Si lleva micros valor en 0. Sino lleve micros en 1
+                            if (BitAlarma)
+                                plc319.Write("DB798.DBX6.1", 0);
+                            else
+                                plc319.Write("DB798.DBX6.1", 1);
+                        }
+
+                        //plc319.Write("db459.dbd12", 0);
+                        //bool binPruebas = false;
+                        //try
+                        //{
+                        //    binPruebas = Convert.ToBoolean(plc319.Read("DB798.DBX6.1"));
+                        //    MessageBox.Show(binPruebas.ToString());
+                        //}
+                        //catch { }
+
+
+
+                        try
+                        {
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+
+                            SqlCommand cmd = new SqlCommand("dbo.SetUpdateAlarmaMicroIngredientes3ernivel", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@bit_alarma_micros", BitAlarma);
+                            cmd.Parameters.AddWithValue("@mix_id", row.mix_id);
+                            cmd.ExecuteScalar();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            CajaDialogo.Error(ec.Message);
+                        }
+                    }
+                    else
+                    {
+                        row.alarma_micros = Convert.ToBoolean(e.OldValue);
+                    }
+                    break;
+                case "cant_batch_run":
+                    //int batch_new = Convert.ToInt32(e.Value); 
+                    int batch_new = row.cant_batch_run;
+
+                    //Leer el idle del mezclado
+                    plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                    if (!plc319.IsConnected)
+                        plc319.Open();
+
+                    bool idle_1;
+                    idle_1 = Convert.ToBoolean(plc319.Read("db414.dbx1.0"));
+
+                    //Si el idle_1 es verdadero siginifica que el mezclado esta en play
+                    //Si el mezclado esta activo no permitiremos cambiar la cantidad de batch
+                    if (idle_1 == true)// && row.cant_batch_run > 0)
+                    {
+                        CajaDialogo.Error("El mezclado esta activo, no se permite cambiar la cantidad de batch previamente establecida");
+                        return;
+                    }
+
+                    int id_mp = 0;
+
+                    string MpName;
+                    decimal vcant_inv=0, vcant_req=0, kg_by_batch = 0;
+                    int CantBatchAllow = 0;
+
+                    if(row.mix_status != 70)
+                    {
+                        return;
+                    }
+
+                    int mix_id = row.mix_id;
+
+                    if (batch_new == 0)
+                    {
+                       
+
+                        //Update RUN BATCH
+                        try
+                        {
+                            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                            if (!plc319.IsConnected)
+                                plc319.Open();
+
+                            //Borrar el valor de la variable
+                            plc319.Write("db459.dbd12", 0);
+
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                            cmd.Parameters.AddWithValue("@cant_batch", 0);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            MessageBox.Show(ec.Message);
+                        }
+
+                        grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                        row.cant_batch_run = 0;
+                        dsARM1.AcceptChanges();
+                        grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+
+                        return;
+                    }
+
+                    //Validar stock MP
+                    try
+                    {
+                        DataOperations dp = new DataOperations();
+                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand("[dbo].[sp_get_activate_suspension_order_out_stock_scada_v4]", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@id_main_mix", mix_id);// row.mix_id);
+                        cmd.Parameters.AddWithValue("@cant_batch", batch_new);
+                        //id_mp = Convert.ToInt32(cmd.ExecuteScalar());
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            id_mp = dr.GetInt32(0);
+                            //if (!dr.IsDBNull(dr.GetOrdinal("mp_name")))
+                            //    MpName = dr.GetString(1);
+                            //else
+                            //    MpName = "N/D";
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("inventario")))
+                                vcant_inv = dr.GetDecimal(2);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("requerido")))
+                                vcant_req = dr.GetDecimal(3);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("cant_por_batch")))
+                                kg_by_batch = dr.GetDecimal(4);
+
+                            if (!dr.IsDBNull(dr.GetOrdinal("batch_disponibles")))
+                                CantBatchAllow = dr.GetInt32(5);
+
+                        }
+                        dr.Close();
+                        con.Close();
+                    }
+                    catch (Exception ec)
+                    {
+                        MessageBox.Show(ec.Message);
+                    }
+
+                    if (id_mp > 0)
+                    {
+                        //Hay materia prima corta de inventario para la cantidad de batch prevista.
+                        MateriaPrima mp = new MateriaPrima();
+                        if (mp.RecuperarRegistro(id_mp))
+                        {
+                            //CajaDialogo.Error("La cantidad de batch excede el inventario de la Materia Prima: " + mp.Nombre 
+                            //                  +" en BG018, por favor revise el inventario en bodega de Produccion (BG018)");
+                            //grd_Orders.cell
+                            //grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                            //row.cant_batch_run = 0;
+                            //dsARM1.AcceptChanges();
+                            //grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                            string mp_parametro = mp.ItemCode + " - " + mp.Nombre;
+                            frmMsjErrorBatchSinINV frm = new frmMsjErrorBatchSinINV(mp_parametro, vcant_inv, vcant_req, kg_by_batch, CantBatchAllow);
+                            if(frm.ShowDialog() == DialogResult.OK)
+                            {
+                                if (frm.Aplicar)
+                                {
+                                    //grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                                    //row.cant_batch_run = CantBatchAllow;
+                                    //dsARM1.AcceptChanges();
+                                    //grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                                    //Update RUN BATCH
+                                    try
+                                    {
+                                        
+
+                                        DataOperations dp = new DataOperations();
+                                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                                        cmd.Parameters.AddWithValue("@cant_batch", CantBatchAllow);
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        //plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                                        //if (!plc319.IsConnected)
+                                        //    plc319.Open();
+
+                                        ////Borrar el valor de la variable
+                                        //plc319.Write("db459.dbd12", batch_new);
+                                    }
+                                    catch (Exception ec)
+                                    {
+                                        MessageBox.Show(ec.Message);
+                                    }
+
+                                    row.cant_batch_run = CantBatchAllow;
+
+                                    dsARM1.AcceptChanges();
+                                    //e.OldValue = CantBatchAllow;
+                                    grdv_Orders_CellValueChanged(sender, e);
+                                }
+                                else
+                                {
+                                    grdv_Orders.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+                                    row.cant_batch_run = 0;
+                                    dsARM1.AcceptChanges();
+                                    grdv_Orders.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(grdv_Orders_CellValueChanged);
+
+                                    //Update RUN BATCH
+                                    try
+                                    {
+                                        
+
+                                        DataOperations dp = new DataOperations();
+                                        SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                                        con.Open();
+                                        SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                                        cmd.Parameters.AddWithValue("@cant_batch", 0);
+                                        cmd.ExecuteNonQuery();
+                                        con.Close();
+
+                                        plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                                        if (!plc319.IsConnected)
+                                            plc319.Open();
+
+                                        //Borrar el valor de la variable
+                                        plc319.Write("db459.dbd12", 0);
+                                    }
+                                    catch (Exception ec)
+                                    {
+                                        MessageBox.Show(ec.Message);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Update RUN BATCH
+                        try
+                        {
+                            plc319 = new Plc(plc319_CPUType, plc319_IPAddress, plc319_Rack, plc319_Slot);
+
+                            if (!plc319.IsConnected)
+                                plc319.Open();
+
+                            //Escribir el valor de la variable
+                            plc319.Write("db459.dbd12", batch_new);
+                            
+                            DataOperations dp = new DataOperations();
+                            SqlConnection con = new SqlConnection(dp.ConnectionStringAPMS);
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("[dbo].[sp_set_update_batch_run_mix_id]", con);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@mix_id", mix_id);// row.mix_id);
+                            cmd.Parameters.AddWithValue("@cant_batch", batch_new);
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        catch (Exception ec)
+                        {
+                            MessageBox.Show(ec.Message);
+                        }
+                    }
+
+
+                    
+
+
+                    break;
+            }
         }
     }
 }
