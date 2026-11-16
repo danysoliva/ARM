@@ -769,6 +769,9 @@ namespace ARM.Production
 
 
                 set_active_mix_OP_mix(idMix, 70);    // active_mix= 1
+                //Escribir el lote a los bines para el guardado PLC.
+
+
                 registrarEvento("[Activando] Enviado a producir correctamente.");
                 //btn_Actualizar.PerformClick();
                 IdMPSinStock = 0;
