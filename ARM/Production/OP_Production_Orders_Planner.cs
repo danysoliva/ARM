@@ -854,21 +854,22 @@ namespace ARM.Production
                     "db831.dbw282",  // WL7_M1_Lote
                     "db831.dbw290",  // WL8_M1_Lote
                     "db831.dbw298",  // ACEITE_1_Lote
-                    "db831.dbw306",  // ACEITE_3_Lote
-                    "db831.dbw314",  // ACEITE_4_Lote
-                    "db831.dbw322",  // Colina_Lote
-                    "db831.dbw330",  // Agua_1_Lote
-                    "db831.dbw338",  // Agua_2_Lote
-                    "db831.dbw346",  // Fylax_Interno_Lote
-                    "db831.dbw354",  // C1_Tanque_2_Lote
-                    "db831.dbw362",  // C1_Tanque_3_Lote
-                    "db831.dbw370",  // C1_Tanque_5_Lote
-                    "db831.dbw378",  // C1_Hacienda_Lote
-                    "db831.dbw386",  // C2_Tanque_2_Lote
-                    "db831.dbw394",  // C2_Tanque_3_Lote
-                    "db831.dbw402",  // C2_Tanque_5_Lote
-                    "db831.dbw410",  // C2_Hacienda_Lote
-                    "db831.dbw418"   // Lecitina_Lote
+                    "db831.dbw306",  // Aceite_2_lote
+                    "db831.dbw314",  // ACEITE_3_Lote
+                    "db831.dbw322",  // ACEITE_4_Lote
+                    "db831.dbw330",  // Colina_Lote
+                    "db831.dbw338",  // Agua_1_Lote
+                    "db831.dbw346",  // Agua_2_Lote
+                    "db831.dbw354",  // Fylax_Interno_Lote
+                    "db831.dbw362",  // C1_Tanque_2_Lote
+                    "db831.dbw370",  // C1_Tanque_3_Lote
+                    "db831.dbw378",  // C1_Tanque_5_Lote
+                    "db831.dbw386",  // C1_Hacienda_Lote
+                    "db831.dbw394",  // C2_Tanque_2_Lote
+                    "db831.dbw402",  // C2_Tanque_3_Lote
+                    "db831.dbw410",  // C2_Tanque_5_Lote
+                    "db831.dbw418",  // C2_Hacienda_Lote
+                    "db831.dbw426"   // Lecitina_Lote
                 };
 
                 foreach (string direccion in direccionesLote)
